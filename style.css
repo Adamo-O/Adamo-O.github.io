@@ -1,60 +1,64 @@
 body {
     margin: 0;
-    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, "Neue Haas Grotesk", Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, "Neue Haas Grotesk", "Arial", "Lucida Grande", sans-serif !important;
     background-color: grey;
 }
 
 h2 {
-    color:rgb(79, 25, 104);
+    font-weight: bold;
+    color:rgb(30, 39, 90);
 }
 
-nav {
-    position: absolute;
-    top: 20px;
-    right: 0;
+h5 {
+    color:rgb(31, 31, 31);
 }
 
-nav ul {
+.button {
+    appearance: button;
+    border: 1px solid rgb(30, 39, 90);
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    color: rgb(30, 39, 90);
+    font-size: 1.2em;
+    background: #585e8300;
+    padding: 10px 20px 10px 20px;
     text-decoration: none;
-    list-style-type: none;
+    transition: all 0.5s;
+}
+  
+.button:hover {
+    color:#ffffff;
+    background: rgb(30, 39, 90);
+    text-decoration: none;
 }
 
-nav ul li {
-    font-weight: 750;
-    display: inline;
-    padding-right: 30px;
-    font-size: 20px;
-}
-
-.line, .vline {
-    border-top: 1px solid rgb(187, 187, 187);
-    text-align: right;
-    width: 560px;
+.menu {
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
 }
 
 .main-wrapper {
     height: 100vh;
 }
 
-.vCenter {
-    display: inline-block;
-    position: relative;
-    top: 40%;
-}
-
 #introHead {
-    display: inline-block;
-    vertical-align: middle;
     color:white;
 }
 
-.right-align {
-    text-align: right;
+.introDescription {
+    line-height: 1.5em;
+}
+
+#heroButton {
+    font-size: 1.3em;
+    padding: 0.5em 0.75em 0.5em 0.75em;
 }
 
 .aboutIcons {
     padding-left: 15px;
-    font-size: 2.5em;
+    font-size: 2em;
     margin-top: 0vh;  
     padding-bottom: 80px;
 }
@@ -64,27 +68,28 @@ nav ul li {
     font-size: 1.5em;
 }
 
-.fab, .fas {
+.icon, .footerIcon {
     color: rgb(192, 192, 192);
     text-decoration: none;
     transition: all 0.5s;
 }
 
-.fab:hover, .fas:hover {
-    color: rgb(133, 157, 236);
+.icon:hover {
+    color: rgb(30, 39, 90);
     transition: all 0.5s;
 }
 
 .section {
-    margin-left: -0.33em;
+    color: rgb(3, 7, 29);
+    margin-left: -0.29em;
     writing-mode: vertical-lr;
-    font-size: 10em;
+    font-size: 15vmin;
     font-weight: 700;
 }
 
 .subtitleSection {
     text-align: left;
-    font-size: 1.5em;
+    font-size: 2vh;
 }
 
 .subtitle {
@@ -94,6 +99,32 @@ nav ul li {
     color: rgb(192, 192, 192);
 }
 
+.section-top-divider {
+    margin-top: 10%;
+}
+
 .item-divider {
-    padding-bottom: 10%;
+    margin-bottom: 20%;
+}
+
+.skills {
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+/*Footer*/
+.footer {
+    margin-top: 5%;
+    text-align: center;
+    background-color: rgb(33, 33, 37);
+    color: rgb(190, 190, 190);
+}
+
+.footerIcon {
+    font-size: 2em;
+}
+
+.footerIcon:hover {
+    color: rgb(68, 87, 179);
 }
