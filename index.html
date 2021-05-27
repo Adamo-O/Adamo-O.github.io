@@ -7,13 +7,24 @@
     
     <!--Google search description-->
     <meta name="description" content="Hi, I'm Adamo Orsini! I'm a Software Engineering Co-op student at Concordia University in Montreal.">
+    <meta name="author" content="Adamo Orsini">
+
+    <!--Social media meta (og)-->
+    <meta property="og:title" content="Adamo Orsini" />
+    <meta property="og:description" content="Hi, I'm Adamo Orsini! I'm a Software Engineering Co-op student at Concordia University in Montreal.">
+    <meta name="image" property="og:image" content="https://i.imgur.com/ROk7gs7.png?2" />
+    <meta property="og:url" content="https://adamoorsini.com/" />
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#03071d">
     
-    <!--Social media share image-->
-    <meta property="og:image" content="Images\SocialLogo.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="1024">
-    
+    <!--Twitter meta-->
+    <meta property="twitter:title" content="Adamo Orsini" />
+    <meta property="twitter:url" content="https://adamoorsini.com/" />
+    <meta property="twitter:image" content="https://i.imgur.com/ROk7gs7.png?2">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!--Bootstrap & Custom CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
@@ -31,7 +42,7 @@
             </div>
             <div class="col-10">
                 <div class="row h-100">
-                    <div class="col col-9 col-md-10 text-start align-self-center">
+                    <div class="col col-9 col-md-10 col-lg-11 text-start align-self-center">
                         <div class="col text-end menu">
                             <a class="button" href="Resume Adamo Orsini 2021.pdf" target="_blank" rel="noopener noreferrer" role="button">Resume</a>
                         </div>
@@ -44,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col col-xs-1 col-md-2 align-self-end border-start aboutIcons">
+                    <div class="col col-xs-1 col-md-2 col-lg-1 align-self-end border-start aboutIcons">
                         <a href="https://www.linkedin.com/in/adamo-orsini/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin icon" title="adamo-orsini on LinkedIn"></i></a><br />
                         <a href="mailto:adamo.orsini12@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope icon" title="adamo.orsini01@gmail.com"></i></a><br />
                         <a href="https://github.com/Adamo-O/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github icon" title="Adamo-O on GitHub"></i></a><br />
@@ -59,8 +70,8 @@
                 <h1 class="section sticky-top">PROJECTS&nbsp</h1>
             </div>
             <div class="col-10">
-                <div class="row item-divider">
-                    <div class="col-12 col-md-10 text-end px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-md-10 col-lg-11 text-end px-3 pt-3 item-divider">
                         <div class="row mb-3">
                             <div class="col offset-xl-6">
                                 <h2>Grocery Store Website</h2>
@@ -68,7 +79,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-xl-6 col-sm-12 mb-3 order-1 order-xl-0">
+                            <div class="col-sm-12 col-xl-6 mb-3 order-1 order-xl-0">
                                 <div class="pb-2">
                                     <h3>Summary</h3>
                                     <p>Semester-long group assignment for Web Programming class to build an online grocery store.</p>
@@ -79,19 +90,21 @@
                                 <p class="skills pb-2">HTML &nbsp CSS &nbsp Bootstrap &nbsp PHP &nbsp JavaScript</p>
                                 <a class="button" href="https://github.com/Adamo-O/Grocery-Store-Website" target="_blank" rel="noopener noreferrer" role="button">View Project</a>
                             </div>
-                            <div class="col-xl-6 col-sm-12 mb-3 order-0 order-xl-1">
-                                <img src="https://media.giphy.com/media/ktCiKdYsypWQS3sXkU/giphy.gif" class="rounded img-fluid w-100" alt="Grocery Store Website"/>
+                            <div class="col-sm-12 col-xl-6 mb-3 order-0 order-xl-1 embed-responsive">
+                                <video autoplay loop muted playsinline class="embed-responsive-item w-100">
+                                    <source src="https://media.giphy.com/media/x9bcgDFAsBHC4qiJep/giphy.mp4" type="video/mp4">
+                                </video>
                             </div>
                         </div>
                     </div>
-                    <div class="col-2 d-none d-md-flex border-start pt-3 ">
+                    <div class="col-2 col-lg-1 d-none d-md-flex border-start pt-3 ">
                         <div class="subtitleSection"> 
                             <h1 class="subtitle">WEB DEVELOPMENT</h1>
                         </div>
                     </div>
                 </div>
-                <div class="row item-divider">
-                    <div class="col-12 col-md-10 text-end px-3 ">
+                <div class="row">
+                    <div class="col-12 col-md-10 col-lg-11 text-end px-3 item-divider">
                         <div class="row mb-3">
                             <div class="col offset-xl-6">
                                 <h2>Handwriting Recognition using Accelerometers</h2>
@@ -111,18 +124,18 @@
                                 <a class="button" href="https://github.com/Adamo-O/Handwriting-Recognition-using-Accelerometers" target="_blank" rel="noopener noreferrer" role="button">View Project</a>
                             </div>
                             <div class="col-xl-6 col-sm-12 mb-3 order-0 order-xl-1">
-                                <img onmouseover="accelSwitch(this)" onmouseout="accelSwitch(this)" src="Images\L Acceleration.png" class="rounded img-fluid w-100 h-100 pb-2" alt="Acceleration graph"/>
+                                <img onmouseover="accelSwitch(this)" onmouseout="accelSwitch(this)" src="Images\L Acceleration.png" class="img-fluid w-100 pb-2" alt="Acceleration graph"/>
                             </div>
                         </div>
                     </div>
-                    <div class="col-2 d-none d-md-flex border-start pt-2 ">
+                    <div class="col-2 col-lg-1 d-none d-md-flex border-start pt-2 ">
                         <div class="subtitleSection"> 
                             <h1 class="subtitle">ACCELEROMETER TESTING</h1>
                         </div>
                     </div>
                 </div>
-                <div class="row item-divider">
-                    <div class="col-12 col-md-10 text-end px-3">
+                <div class="row">
+                    <div class="col-12 col-md-10 col-lg-11 text-end px-3 item-divider">
                         <div class="row mb-3">
                             <div class="col offset-xl-6">
                                 <h2>Traversing an obstacle course like it's nobody's business</h2>
@@ -141,18 +154,20 @@
                                 <p class="skills">C++ &nbsp Arduino &nbsp TinkerCad &nbsp Team management</p>
                             </div>
                             <div class="col-xl-6 col-sm-12 mb-3 order-0 order-xl-1">
-                                <img src="https://media.giphy.com/media/HH6Cz8XACJpuzt9iUg/giphy.gif" class="rounded img-fluid w-100 h-100" alt="Arduino Robot GIF" />
+                                <video autoplay loop muted playsinline class="embed-responsive-item w-100">
+                                    <source src="https://media.giphy.com/media/HH6Cz8XACJpuzt9iUg/giphy.mp4" type="video/mp4">
+                                </video>
                             </div>
                         </div>
                     </div>
-                    <div class="col-2 d-none d-md-flex border-start pt-2">
+                    <div class="col-2 col-lg-1 d-none d-md-flex border-start pt-2">
                         <div class="subtitleSection"> 
                             <h1 class="subtitle">ROBOT DESIGN</h1>
                         </div>
                     </div>
                 </div>
-                <div class="row item-divider">
-                    <div class="col-12 col-md-10 text-end px-3">
+                <div class="row">
+                    <div class="col-12 col-md-10 col-lg-11 text-end px-3 item-divider">
                         <div class="row pb-3">
                             <div class="col offset-xl-6">
                                 <h2>A simpler video game from a simpler time</h2>
@@ -172,11 +187,13 @@
                                 <a class="button" href="https://github.com/Adamo-O/The-Ascent" target="_blank" rel="noopener noreferrer" role="button">View Project</a>
                             </div>
                             <div class="col-xl-6 col-sm-12 mb-3 order-0 order-xl-1">
-                                <img src="https://media.giphy.com/media/laDZKZqHTee1p8D0Lw/giphy.gif" class="rounded img-fluid w-100 h-100" alt="The Ascent game demo Adamo Orsini" />
+                                <video autoplay loop muted playsinline title="The Ascent game demo Adamo Orsini" class="embed-responsive-item w-100">
+                                    <source src="https://media.giphy.com/media/laDZKZqHTee1p8D0Lw/giphy.mp4" type="video/mp4">
+                                </video>
                             </div>
                         </div>
                     </div>
-                    <div class="col-2 d-none d-md-flex border-start pt-2">
+                    <div class="col-2 col-lg-1 d-none d-md-flex border-start pt-2">
                         <div class="subtitleSection">
                             <h1 class="subtitle">GAME DEVELOPMENT</h1>
                         </div>
@@ -188,21 +205,21 @@
             <div class="col-2">
                 <h1 class="section sticky-top">EXPERIENCE&nbsp</h1>
             </div>
-            <div class="col-9 col-sm-10">
+            <div class="col-8 col-lg-9">
                 <div class="row border-start item-divider">
                     <div class="col text-start px-3 ">
                         <div class="row pb-3">
-                            <div class="col-12 col-xl-5">
+                            <div class="col-12 col-xl-6">
                                 <h2>Web Developer</h2>
                                 <h4 class="pb-3">Compass Athletic Advising</h4>
                                 <h5>December 2020 - April 2021</h5>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-xl-5 col-sm-10 mb-3">
-                                <a href="https://compassathleticadvising.com/"><img src="Images\CompassAthleticAdvising.png" class="rounded img-fluid w-100 h-100" alt="Compass Athletic Advising" /></a>
+                            <div class="col-12 col-xl-6 mb-3">
+                                <a href="https://compassathleticadvising.com/"><img src="Images\CompassAthleticAdvising.png" class="img-fluid w-100" alt="Compass Athletic Advising Adamo Orsini" /></a>
                             </div>
-                            <div class="col-xl-5 col-sm-10 mb-3">
+                            <div class="col-12 col-xl-6 mb-3">
                                 <div class="pb-2">
                                     <h3>Summary</h3>
                                     <p>Researched modern web design and SEO standards to attract target customer base.</p>
@@ -219,17 +236,17 @@
                 <div class="row border-start item-divider">
                     <div class="col text-start px-3">
                         <div class="row pb-3">
-                            <div class="col-12 col-xl-5">
+                            <div class="col-12 col-xl-6">
                                 <h2>Web Developer</h2>
                                 <h4 class="pb-3">West Island Inflatables</h4>
                                 <h5>August - December 2020</h5>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-xl-5 col-sm-10 mb-3">
-                                <a href="https://westislandinflatables.com/"><img src="Images\WestIslandInflatables.png" class="rounded img-fluid w-100 h-100" alt="West Island Inflatables" /></a>
+                            <div class="col-12 col-xl-6 mb-3">
+                                <a href="https://westislandinflatables.com/"><img src="Images\WestIslandInflatables.png" class="img-fluid w-100" alt="West Island Inflatables Adamo Orsini" /></a>
                             </div>
-                            <div class="col-xl-5 col-sm-10 mb-3">
+                            <div class="col-12 col-xl-6 mb-3">
                                 <div class="pb-2">
                                     <h3>Summary</h3>
                                     <p>Updated website design and SEO capabilities according to company’s vision.</p>
@@ -246,17 +263,17 @@
                 <div class="row border-start item-divider">
                     <div class="col text-start px-3">
                         <div class="row pb-3">
-                            <div class="col-12 col-xl-5">
+                            <div class="col-12 col-xl-6">
                                 <h2>Customer Experience Representative</h2>
                                 <h4 class="pb-3">Indigo Books and Music Inc.</h4>
                                 <h5>October 2017 - September 2020</h5>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-5 col-sm-10 pb-3 align-self-center">
-                                <img src="Images\Indigo_logo.png" class="rounded img-fluid w-50" alt="Indigo Books and Music Inc." />
+                            <div class="col-12 col-xl-6 pb-3 align-self-center">
+                                <img src="Images\Indigo_logo.png" class="img-fluid w-50" alt="Indigo Books and Music Inc." />
                             </div>
-                            <div class="col-xl-5 col-sm-10 mb-3">
+                            <div class="col-12 col-xl-6 mb-3">
                                 <div class="pb-2">
                                     <h3>Summary</h3>
                                     <p>Performed cash opening and closing, inventory management, sales, restocking, and customer service.</p>
