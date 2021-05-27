@@ -15,7 +15,7 @@ h5 {
 
 .button {
     appearance: button;
-    border: 1px solid rgb(30, 39, 90);
+    border: 1px solid #1e275a;
     -webkit-border-radius: 4;
     -moz-border-radius: 4;
     border-radius: 4px;
@@ -63,11 +63,6 @@ h5 {
     padding-bottom: 80px;
 }
 
-.projectIcon {
-    padding-left: 15px;
-    font-size: 1.5em;
-}
-
 .icon, .footerIcon {
     color: rgb(192, 192, 192);
     text-decoration: none;
@@ -75,12 +70,12 @@ h5 {
 }
 
 .icon:hover {
-    color: #1e275a;
+    color: rgb(30, 39, 90);
     transition: all 0.5s;
 }
 
 .section {
-    color: rgb(3, 7, 29);
+    color: #03071d;
     margin-left: -0.29em;
     writing-mode: vertical-lr;
     font-size: 15vmin;
@@ -99,12 +94,8 @@ h5 {
     color: rgb(192, 192, 192);
 }
 
-.section-top-divider {
-    margin-top: 10%;
-}
-
 .item-divider {
-    margin-bottom: 20%;
+    padding-bottom: 20%;
 }
 
 .skills {
