@@ -1,27 +1,49 @@
 body {
     margin: 0;
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, "Neue Haas Grotesk", "Arial", "Lucida Grande", sans-serif !important;
-    background-color: grey;
+    background-color: #1d1d1d;
+    color:#dbdbdb;
 }
 
 h2 {
     font-weight: bold;
-    color:rgb(30, 39, 90);
+    color:#7690d6;
 }
 
 h5 {
-    color:rgb(31, 31, 31);
+    color:rgb(138, 138, 138);
+}
+
+@media screen and (max-width: 576px) {
+    .introDescription {
+        display: none;
+    }
+    .heroButton {
+        width: 80%;
+        text-align: center;
+        margin-bottom: 5%;
+    }
+}
+
+.aLink {
+    text-decoration: none;
+    color: #6581ce;
+    transition: all 0.5s;
+}
+
+.aLink:hover {
+    color: #2d478dc0;
 }
 
 .button {
     appearance: button;
-    border: 1px solid #1e275a;
+    border: 1.5px solid #2d478d9a;
     -webkit-border-radius: 4;
     -moz-border-radius: 4;
     border-radius: 4px;
-    color: rgb(30, 39, 90);
+    color: rgb(255, 255, 255);
     font-size: 1.2em;
-    background: #585e8300;
+    background: #2d478dc0;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     transition: all 0.5s;
@@ -29,8 +51,14 @@ h5 {
   
 .button:hover {
     color:#ffffff;
-    background: rgb(30, 39, 90);
+    background: #6581cea4;
     text-decoration: none;
+}
+
+.button-outline {
+    background: transparent;
+    border: 1.5px solid #2d478dc0;
+    color: #819ce4
 }
 
 .menu {
@@ -45,15 +73,26 @@ h5 {
 
 #introHead {
     color:white;
+    font-weight: bold;
 }
 
 .introDescription {
     line-height: 1.5em;
 }
 
-#heroButton {
-    font-size: 1.3em;
+.heroButton {
+    font-size: 1em;
     padding: 0.5em 0.75em 0.5em 0.75em;
+}
+
+.borderRight {
+    border-right: 0px;
+}
+
+@media (max-width: 768px) {
+    .borderRight {
+        border-right: 1px solid rgb(212, 212, 212);
+    }
 }
 
 .aboutIcons {
@@ -67,15 +106,16 @@ h5 {
     color: rgb(192, 192, 192);
     text-decoration: none;
     transition: all 0.5s;
+    font-size: 1.2em;
 }
 
 .icon:hover {
-    color: rgb(30, 39, 90);
+    color: rgb(67, 87, 201);
     transition: all 0.5s;
 }
 
 .section {
-    color: #03071d;
+    color: #4f72d1;
     margin-left: -0.29em;
     writing-mode: vertical-lr;
     font-size: 15vmin;
@@ -95,7 +135,7 @@ h5 {
 }
 
 .item-divider {
-    padding-bottom: 20%;
+    padding-bottom: 5%;
 }
 
 .skills {
