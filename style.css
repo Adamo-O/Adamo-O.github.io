@@ -37,7 +37,7 @@ h5 {
 
 .button {
     appearance: button;
-    border: 1.5px solid #2d478d9a;
+    border: 1.5px solid #273c75;
     -webkit-border-radius: 4;
     -moz-border-radius: 4;
     border-radius: 4px;
@@ -51,6 +51,7 @@ h5 {
   
 .button:hover {
     color:#ffffff;
+    border: 1.5px solid #495e96;
     background: #6581cea4;
     text-decoration: none;
 }
@@ -110,7 +111,7 @@ h5 {
 }
 
 .icon:hover {
-    color: rgb(67, 87, 201);
+    color: #6581cea4;
     transition: all 0.5s;
 }
 
@@ -157,5 +158,5 @@ h5 {
 }
 
 .footerIcon:hover {
-    color: rgb(68, 87, 179);
+    color: #6581cea4;
 }
