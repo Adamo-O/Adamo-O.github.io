@@ -27,12 +27,12 @@ h5 {
 
 .aLink {
     text-decoration: none;
-    color: #6581ce;
+    color: #a1baff;
     transition: all 0.5s;
 }
 
 .aLink:hover {
-    color: #2d478dc0;
+    color: #5974be;
 }
 
 .button {
