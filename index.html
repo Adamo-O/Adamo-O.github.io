@@ -35,8 +35,30 @@
     <title>Adamo Orsini</title>
 </head>
 <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark align-self-end">
+        <button class="navbar-toggler ms-auto me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbar">
+            <ul class="customNav navbar-nav ms-auto flex-nowrap mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#experience">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact Me</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container-fluid">
-        <div id="about" class="row main-wrapper pe-3">
+        <div id="about" class="navSection row main-wrapper pe-3">
             <div class="col-2">
                 <h1 class="section sticky-top pt-3">ABOUT</h1>
             </div>
@@ -48,10 +70,10 @@
                             Currently, I'm studying Software Engineering at Concordia University.<br />
                             On the side, I'm working on various projects to hone my skills.
                         </h2>
-                        <div class="row">
+                        <div class="row mb-5">
                             <div class="col text-start">
-                                <a class="button heroButton" href="mailto:adamo.orsini01@gmail.com" role="button">Contact Me</a>&nbsp;&nbsp;&nbsp;
-                                <a class="button heroButton button-outline" href="Resume Adamo Orsini 2021.pdf" target="_blank" rel="noopener noreferrer" role="button">Resume</a>
+                                <a class="button" href="mailto:adamo.orsini01@gmail.com" role="button">Contact Me</a>&nbsp;&nbsp;&nbsp;
+                                <a class="button button-outline" href="Resume Adamo Orsini 2021.pdf" target="_blank" rel="noopener noreferrer" role="button">Resume</a>
                             </div>
                         </div>
                     </div>
@@ -65,11 +87,11 @@
                 </div>
             </div>
         </div>
-        <div id="projects" class="row pe-3">
+        <div class="row pe-3">
             <div class="col-2 pt-3">
                 <h1 class="section sticky-top">PROJECTS&nbsp</h1>
             </div>
-            <div class="col-10">
+            <div id="projects" class="navSection col-10">
                 <div class="row">
                     <div class="col-12 col-md-10 col-lg-11 text-end px-3 pt-3 item-divider">
                         <div class="row mb-3">
@@ -84,12 +106,11 @@
                                     <h3>Summary</h3>
                                     <p>Designed a Discord bot to play a unique theme song on YouTube for each user when they enter a voice channel.</p>
                                     <p>The bot was built using the <a class="aLink" href="https://discordpy.readthedocs.io/en/stable/api.html">Discord.py API</a> in Python.</p>
-                                    <p>It is hosted by a Flask server.<br /></p>
-                                    <p><a class="aLink" href="https://uptimerobot.com/">UptimeRobot</a> was used to ping the bot every 20 minutes to keep it online at all times.<br /></p>
-                                    <p>Finally, the bot uses a Replit database to maintain user data.</p>
+                                    <p>It is hosted by a Flask server on Heroku.<br /></p>
+                                    <p>Finally, the bot uses a MongoDB database to maintain user data in documents.</p>
                                 </div>
                                 <h3>Skills</h3>
-                                <p class="skills pb-2">Python &nbsp Discord.py &nbsp Flask &nbsp Replit</p>
+                                <p class="skills pb-2">Python &nbsp Discord.py &nbsp MongoDB &nbsp Flask</p>
                                 <a class="button" href="https://github.com/Adamo-O/Theme-Song-Discord-Bot" target="_blank" rel="noopener noreferrer" role="button">View Project</a>
                             </div>
                             <div class="col-sm-12 col-xxl-6 mb-3 order-0 order-xxl-1 embed-responsive">
@@ -234,11 +255,65 @@
                 </div>
             </div>
         </div>
-        <div id="experience" class="row pe-3">
+        <div id="experience" class="navSection row pe-3">
             <div class="col-2">
                 <h1 class="section sticky-top">EXPERIENCE&nbsp</h1>
             </div>
             <div class="col-10 col-md-8 col-lg-9">
+                <div class="row border-start item-divider">
+                    <div class="col text-start px-3 ">
+                        <div class="row pb-3">
+                            <div class="col-12 col-xxl-6">
+                                <h2>Software Engineer Intern</h2>
+                                <h3 class="pb-3">PTC Inc.</h3>
+                                <h4>June - August 2022</h4>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12 col-xxl-6 mb-3 align-self-center">
+                                <a href="https://www.ptc.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/PTC_logo.svg/1200px-PTC_logo.svg.png" class="img-fluid w-75" alt="PTC Adamo Orsini" /></a>
+                            </div>
+                            <div class="col-12 col-xxl-6 mb-3">
+                                <div class="pb-2">
+                                    <h3>Summary</h3>
+                                    <p>Developed hierarchy graph web component as part of a new company initiative. My work confirmed that this initiative was desirable by our team, and they continued development of the project as a result.</p>
+                                    <p>Built the web component using Polymer.js, featuring an interactive collapsible tree graph using D3.js. This graph was used to visualize relationships between dependencies in a core application.</p>
+                                    <p>Documented project work as reference for future web component development. Presented the documentation and demoed the development experience of the project to the Montreal office.</p>
+                                    <p>Collaborated in a scrum team with daily meetings for task grooming and allocation. Represented the interns in meetings on multiple occaisons.</p>
+                                </div>
+                                <h3>Skills</h3>
+                                <p class="skills pb-2">JavaScript &nbsp Polymer.js &nbsp D3.js &nbsp Scrum &nbsp IoT</p>
+                                <a class="button" href="https://www.ptc.com/" target="_blank" rel="noopener noreferrer" role="button">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-start item-divider">
+                    <div class="col text-start px-3 ">
+                        <div class="row pb-3">
+                            <div class="col-12 col-xxl-6">
+                                <h2>Web Developer</h2>
+                                <h3 class="pb-3">Pappas Design Studio Inc.</h3>
+                                <h4>December 2021 - May 2022 (On-call)</h4>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12 col-xxl-6 mb-3 align-self-center">
+                                <a href="http://pdstudioinc.com/"><img src="http://www.pdstudioinc.com/images/logo.png" class="img-fluid w-75" alt="Pappas Design Studio Adamo Orsini" /></a>
+                            </div>
+                            <div class="col-12 col-xxl-6 mb-3">
+                                <div class="pb-2">
+                                    <h3>Summary</h3>
+                                    <p>Showcased new projects on company website.</p>
+                                    <p>Utilized HTML, CSS in existing code base.</p>
+                                </div>
+                                <h3>Skills</h3>
+                                <p class="skills pb-2">HTML &nbsp CSS &nbsp jQuery</p>
+                                <a class="button" href="http://pdstudioinc.com/" target="_blank" rel="noopener noreferrer" role="button">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row border-start item-divider">
                     <div class="col text-start px-3 ">
                         <div class="row pb-3">
@@ -277,7 +352,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-12 col-xxl-6 mb-3">
-                                <a href="https://compassathleticadvising.com/"><img src="Images\CompassAthleticAdvising.png" class="img-fluid w-100" alt="Compass Athletic Advising Adamo Orsini" /></a>
+                                <a href="https://compassathleticadvising.com/"><img src="Images\Compass-Athletic-Advising-Logo-Square.png" class="img-fluid w-50" alt="Compass Athletic Advising Adamo Orsini" /></a>
                             </div>
                             <div class="col-12 col-xxl-6 mb-3">
                                 <div class="pb-2">
@@ -304,7 +379,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-12 col-xxl-6 mb-3">
-                                <a href="https://westislandinflatables.com/"><img src="Images\WestIslandInflatables.png" class="img-fluid w-100" alt="West Island Inflatables Adamo Orsini" /></a>
+                                <a href="https://westislandinflatables.com/"><img src="data:image/jpeg;base64,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" class="img-fluid w-50" alt="West Island Inflatables Adamo Orsini" /></a>
                             </div>
                             <div class="col-12 col-xxl-6 mb-3">
                                 <div class="pb-2">
@@ -350,7 +425,7 @@
                 </div>
             </div>
         </div>
-        <div id="contact" class="row">
+        <div id="contact" class="navSection row">
             <div class="col-2">
                 <h1 class="section sticky-top">CONTACT</h1>
             </div>
@@ -385,7 +460,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid footer">
+    <footer class="container-fluid footer">
         <div class="row justify-content-center">
             <div class="col-8 pt-3">
                 <p>Built and designed by Adamo Orsini. View the source code on my GitHub below.</p>
@@ -393,7 +468,7 @@
                 <p>Thanks for stopping by!</p>
             </div>
         </div>
-    </div>
+    </footer>
 
     <!--JavaScript-->
     <script src="https://kit.fontawesome.com/9ddd870af7.js" crossorigin="anonymous"></script>

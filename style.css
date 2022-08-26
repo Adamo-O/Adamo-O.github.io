@@ -1,3 +1,7 @@
+html {
+    scroll-padding-top: 4rem;
+}
+
 body {
     margin: 0;
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, "Neue Haas Grotesk", "Arial", "Lucida Grande", sans-serif !important;
@@ -12,6 +16,21 @@ h2 {
 
 h5 {
     color:rgb(138, 138, 138);
+}
+
+.customNav {
+    text-align: right;
+    padding: 0% 2%;
+}
+
+@media screen and (min-width: 992px) {
+    .customNav {
+        padding: 0 8.2%;
+    }
+}
+
+.active {
+    color: white;
 }
 
 @media screen and (max-width: 576px) {
@@ -121,6 +140,7 @@ h5 {
     writing-mode: vertical-lr;
     font-size: 15vmin;
     font-weight: 700;
+    top: 60px;
 }
 
 .subtitleSection {
