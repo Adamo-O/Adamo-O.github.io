@@ -1,0 +1,85 @@
+---
+import { UserRound, PencilRuler, Briefcase, Send } from 'lucide-astro'
+---
+<>
+<script>
+  // Highlight section in navbar on visit
+  let current = '';
+  window.onscroll = () => {
+      
+      document.querySelectorAll('.navSection').forEach(section => {
+          const sectionTop = section.getBoundingClientRect().top;
+          if (sectionTop <= 100) {
+              current = section.id;
+          }
+      });
+
+      document.querySelectorAll('.nav-link').forEach(linkItem => {
+          linkItem.classList.remove('active');
+          if (linkItem.getAttribute('href')?.includes(current)) {
+              linkItem.classList.add('active');
+          }
+      })
+  }
+</script>
+<nav class="flex fixed max-md:hidden top-0 bg-slate-900 justify-end w-full z-50">
+  <!-- <button
+        class="navbar-toggler mx-auto my-2"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbar"
+        aria-controls="navbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+
+  <div class="flex items-end justify-end" id="navbar">
+    <ul class="flex items-end justify-end gap-2">
+      <li class="nav-item">
+        <a class="nav-link active" href="#about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#projects">Projects</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#experience">Experience</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">Contact Me</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<nav class="md:hidden fixed bottom-0 bg-slate-900 z-50">
+  <div class="flex gap-2" id="navbar">
+    <ul class="flex items-end justify-end gap-2">
+      <li class="nav-item">
+        <a class="flex flex-col justify-center gap-1 nav-link active" href="#about">
+          <UserRound size="24" />
+          About
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="flex flex-col justify-center gap-1 nav-link" href="#projects">
+          <PencilRuler size="24" />
+          Projects
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="flex flex-col justify-center gap-1 nav-link" href="#experience">
+          <Briefcase size="24" />
+          Experience
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="flex flex-col justify-center gap-1 nav-link" href="#contact">
+          <Send size="24" />
+          Contact Me
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</u>
