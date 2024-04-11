@@ -1,0 +1,92 @@
+---
+import { Button } from "./ui/button"
+
+interface ProjectProps {
+  frontmatter: {
+    title: string
+    img: string
+    dates: string
+    lines?: string[]
+    skills: string[]
+    link: string
+    secondLink?: { text: string; link: string },
+    subtitle: string
+  },
+}
+
+const { frontmatter: {title, img, dates, lines, skills, link, secondLink, subtitle} } = Astro.props as ProjectProps
+---
+<div class="grid grid-cols-12">
+  <div
+    class="col-span-12 md:col-span-10 lg:col-span-11 px-3 pt-3 item-divider"
+  >
+    <div class="row mb-3">
+      <div class="col offset-xxl-6">
+        <h2 class="text-3xl">{title}</h2>
+        <h3 class="text-2xl">{dates}</h3>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-12 col-xxl-6 mb-3 order-1 order-xxl-0">
+        <div class="pb-2">
+          <h3 class="text-2xl">Summary</h3>
+          <div class="text-lg">
+            <slot />
+          </div>
+        </div>
+        <h3 class="text-2xl">Skills</h3>
+        <div class="flex gap-1 flex-wrap mb-2 text-lg">
+          {
+            skills.map(skill => <p class="py-0.5 px-2 rounded-full bg-slate-700 inline">{skill}</p>)
+          }
+        </div>
+        <div
+          class="flex gap-3 flex-wrap"
+        >
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            role="button"
+            class="w-sm-100"
+          >
+            <Button className="max-md:w-full">
+              Visit Website
+            </Button>
+          </a>
+
+          <!-- <a
+            class="button w-sm-100"
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            role="button"
+            >Visit Website</a> -->
+          {secondLink && (
+            <a
+              class="button button-outline w-sm-100"
+              href={secondLink.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              role="button"
+              >{secondLink.text}</a>
+          )}
+        </div>
+      </div>
+      <div
+        class="col-sm-12 col-xxl-6 mb-3 order-0 order-xxl-1 embed-responsive text-start item-center"
+      >
+        <img
+          class="embed-responsive-item w-50"
+          src={img}
+          alt={`${title} Adamo Orsini`}
+        />
+      </div>
+    </div>
+  </div>
+  <div class="col-2 col-lg-1 d-none d-md-flex pt-3 border-start">
+    <div class="subtitleSection">
+      <h1 class="subtitle">{subtitle}</h1>
+    </div>
+  </div>
+</div>
