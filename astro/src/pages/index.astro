@@ -2,34 +2,34 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../layouts/Navbar.astro';
 const projects = await Astro.glob('../content/projects/*.md');
-import 'globals.css';
+import '../../globals.css';
+import { Linkedin, Mail, Github, Instagram } from 'lucide-astro';
 ---
-
 <Layout title="Adamo Orsini">
-	<Navbar />
 	<main>
-		<div class="w-screen">
-      <div id="about" class="navSection grid grid-cols-12 main-wrapper px-3">
+	  <Navbar />
+		<div class="w-full">
+      <div id="about" class="navSection grid px-3 grid-cols-12 h-[calc(100vh-5rem)] md:h-[calc(100vh-3.5rem)]">
         <div class="col-span-2">
-          <h1 class="section sticky top-0 pt-3">ABOUT</h1>
+          <h1 class="section sticky pt-3 z-0">ABOUT</h1>
         </div>
         <div class="col-span-10">
-          <div class="flex h-full items-center">
+          <div class="grid grid-cols-12 h-full">
             <div
-              class="grid col-span-12 md:col-span-10 lg:col-span-11 text-start align-middle self-center items-center"
+              class="col col-span-12 md:col-span-10 lg:col-span-11 text-start align-self-center"
             >
-              <h1 class="text-slate-100 font-bold pb-3">
+              <h1 id="introHead" class="pb-3">
                 Hi, I'm Adamo Orsini!<br />I'm an aspiring Software Engineer.
               </h1>
               <h2
-                class="introDescription text-slate-300 font-normal pb-2"
+                class="introDescription pb-2"
               >
                 Currently, I'm studying Software Engineering at Concordia
                 University.<br />
                 On the side, I'm working on various projects to hone my skills.
               </h2>
               <div class="row mb-5">
-                <div class="col text-start flex flex-row gap-3 flex-wrap">
+                <div class="col text-start d-flex flex-row gap-3 flex-wrap">
                   <a
                     class="button w-sm-100"
                     href="mailto:adamo.orsini01@gmail.com"
@@ -48,69 +48,61 @@ import 'globals.css';
               </div>
             </div>
             <div
-              class="d-none d-md-inline col-0 col-md-2 col-lg-1 align-self-end border-start aboutIcons"
+              class="flex flex-col gap-4 space-y-2 d-none d-md-inline col-0 col-md-2 col-lg-1 align-self-end border-start aboutIcons"
             >
               <a
                 href="https://www.linkedin.com/in/adamo-orsini/"
                 target="_blank"
                 rel="noopener noreferrer"
-                ><i
-                  class="fab fa-linkedin icon"
-                  title="adamo-orsini on LinkedIn"
-                ></i></a
-              ><br />
+                class="icon block w-fit"
+                ><Linkedin class="w-8 h-8" title="adamo-orsini on LinkedIn" />
+                </a
+              >
               <a
                 href="mailto:adamo.orsini01@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                ><i
-                  class="fas fa-envelope icon"
+                class="icon block w-fit"
+                ><Mail
+                  class="w-8 h-8"
                   title="adamo.orsini01@gmail.com"
-                ></i></a
-              ><br />
+                ></Mail></a
+              >
               <a
                 href="https://github.com/Adamo-O/"
                 target="_blank"
                 rel="noopener noreferrer"
-                ><i class="fab fa-github icon" title="Adamo-O on GitHub"></i></a
-              ><br />
+                class="icon block w-fit"
+              ><Github class="w-8 h-8" title="Adamo-O on GitHub"></Github></a
+              >
               <a
                 href="https://www.instagram.com/adamoorsini/"
                 target="_blank"
                 rel="noopener noreferrer"
-                ><i class="fab fa-instagram icon" title="@adamoorsini"></i></a
-              ><br />
-              <a
-                href="https://www.facebook.com/adamo.orsini/"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><i
-                  class="fab fa-facebook icon"
-                  title="Adamo Orsini on Facebook"
-                ></i></a
-              ><br />
+                class="icon block w-fit"
+                ><Instagram class="w-8 h-8" title="@adamoorsini"></Instagram></a
+              >
             </div>
           </div>
         </div>
       </div>
       <div class="grid grid-cols-12 px-3">
         <div class="col-span-2 pt-3">
-          <h1 class="section sticky top-0">PROJECTS&nbsp;</h1>
+          <h1 class="section sticky z-0">PROJECTS&nbsp;</h1>
         </div>
-        <div id="projects" class="navSection col-span-10">
+        <div id="projects" class="col-span-10 -scroll-m-2 navSection">
 					{projects.map(project => (
 						<project.Content />
-						// <Project {...project} />
 					))}
 				</div>
 			</div>
-      <div id="contact" class="navSection row">
-        <div class="col-2">
+      <div id="contact" class="px-3 navSection grid grid-cols-12 h-[calc(100vh-5rem)] md:h-[calc(100vh-4rem)]">
+        <div class="col-span-2">
           <h1 class="section sticky-top">CONTACT</h1>
         </div>
-        <div class="col-10 col-md-8 col-lg-9">
-          <div class="row justify-content-start pb-3 mb-3">
-            <div class="col-12 col-lg-8 col-xxl-6 text-start">
+        <div class="col-span-10 md:col-span-8 lg:col-span-9">
+          <div class="grid grid-cols-12 justify-content-start pb-3 mb-3">
+            <div class="col-span-12 lg:col-span-8 xl:col-span-6 text-start">
               <h2>Get In Touch</h2>
               <p class="pb-3">
                 Whether you have a question or would just like to reach out, my
@@ -127,14 +119,14 @@ import 'globals.css';
               </div>
             </div>
           </div>
-          <div class="row justify-content-start pb-3 mb-3">
-            <div class="col-12 col-lg-8 col-xxl-6 text-start">
+          <div class="grid grid-cols-12 justify-start pb-3 mb-3">
+            <div class="col-span-12 lg:col-span-8 xl:col-span-6 text-start">
               <h2>Resume</h2>
               <p class="pb-3">
                 Looking for more information? Check out my resume below for a
                 brief layout of my career, projects, and skills.
               </p>
-              <div class="d-flex flex-row gap-3 flex-wrap">
+              <div class="flex flex-row gap-3 flex-wrap">
                 <a
                   class="button w-sm-100"
                   href="Adamo Orsini Resume 2024.pdf"
@@ -146,50 +138,43 @@ import 'globals.css';
               </div>
             </div>
           </div>
-          <div class="row justify-content-start pb-3 mb-3">
-            <div class="col-12 col-lg-8 col-xxl-6 text-start">
+          <div class="grid grid-cols-12 justify-content-start pb-3 mb-3">
+            <div class="col-span-12 lg:col-span-8 xl:col-span-6 text-start">
               <h2>Socials</h2>
             </div>
-            <div class="col-12 footerIcon">
+            <div class="col-span-12 flex gap-2 footerIcon">
               <a
                 href="https://www.linkedin.com/in/adamo-orsini/"
                 target="_blank"
                 rel="noopener noreferrer"
-                ><i
-                  class="fab fa-linkedin icon"
-                  title="adamo-orsini on LinkedIn"
-                ></i
-              ></a>
+                class="icon block w-fit"
+                ><Linkedin class="w-8 h-8" title="adamo-orsini on LinkedIn" />
+                </a
+              >
               <a
                 href="mailto:adamo.orsini01@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                ><i
-                  class="fas fa-envelope icon"
+                class="icon block w-fit"
+                ><Mail
+                  class="w-8 h-8"
                   title="adamo.orsini01@gmail.com"
-                ></i
-              ></a>
+                ></Mail></a
+              >
               <a
                 href="https://github.com/Adamo-O/"
                 target="_blank"
                 rel="noopener noreferrer"
-                ><i class="fab fa-github icon" title="Adamo-O on GitHub"></i
-              ></a>
+                class="icon block w-fit"
+              ><Github class="w-8 h-8" title="Adamo-O on GitHub"></Github></a
+              >
               <a
                 href="https://www.instagram.com/adamoorsini/"
                 target="_blank"
                 rel="noopener noreferrer"
-                ><i class="fab fa-instagram icon" title="@adamoorsini"></i
-              ></a>
-              <a
-                href="https://www.facebook.com/adamo.orsini/"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><i
-                  class="fab fa-facebook icon"
-                  title="Adamo Orsini on Facebook"
-                ></i
-              ></a>
+                class="icon block w-fit"
+                ><Instagram class="w-8 h-8" title="@adamoorsini"></Instagram></a
+              >
             </div>
           </div>
         </div>

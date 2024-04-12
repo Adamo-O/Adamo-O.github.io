@@ -22,7 +22,7 @@ import { UserRound, PencilRuler, Briefcase, Send } from 'lucide-astro'
       })
   }
 </script>
-<nav class="flex fixed max-md:hidden top-0 bg-slate-900 justify-end w-full z-50">
+<nav class="flex sticky max-md:hidden top-0 bg-slate-800 py-2 px-4 justify-end w-full z-50 h-14">
   <!-- <button
         class="navbar-toggler mx-auto my-2"
         type="button"
@@ -38,21 +38,33 @@ import { UserRound, PencilRuler, Briefcase, Send } from 'lucide-astro'
   <div class="flex items-end justify-end" id="navbar">
     <ul class="flex items-end justify-end gap-2">
       <li class="nav-item">
-        <a class="nav-link active" href="#about">About</a>
+        <a class="flex justify-center gap-2 items-center p-2 hover:bg-slate-700 hover:text-white rounded-md transition nav-link [&:.active]:bg-slate-700 active" href="#about">
+          <UserRound size="24" />
+          About
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#projects">Projects</a>
+        <a class="flex justify-center gap-2 items-center p-2 hover:bg-slate-700 hover:text-white rounded-md transition nav-link [&:.active]:bg-slate-700" href="#projects">
+          <PencilRuler size="24" />
+          Projects
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#experience">Experience</a>
+        <a class="flex justify-center gap-2 items-center p-2 hover:bg-slate-700 hover:text-white rounded-md transition nav-link [&:.active]:bg-slate-700" href="#experience">
+          <Briefcase size="24" />
+          Experience
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#contact">Contact Me</a>
+        <a class="flex justify-center gap-2 items-center p-2 hover:bg-slate-700 hover:text-white rounded-md transition nav-link [&:.active]:bg-slate-700" href="#contact">
+          <Send size="24" />
+          Contact Me
+        </a>
       </li>
     </ul>
   </div>
 </nav>
-<nav class="md:hidden fixed bottom-0 bg-slate-900 z-50">
+<nav class="md:hidden fixed bottom-0 bg-slate-800 py-2 px-4 z-50 h-20">
   <div class="flex gap-2" id="navbar">
     <ul class="flex items-end justify-end gap-2">
       <li class="nav-item">
