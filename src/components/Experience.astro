@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Button from "./Button.astro";
-import { ExternalLink, Github } from "lucide-astro";
+import { ExternalLink } from "lucide-astro";
 
 interface ExperienceProps {
   frontmatter: {
@@ -12,6 +12,7 @@ interface ExperienceProps {
     img: string;
     skills: string[];
     link?: string;
+    order?: number;
   };
 }
 
