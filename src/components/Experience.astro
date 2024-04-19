@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import Button from "./Button.astro";
+import { ExternalLink, Github } from "lucide-astro";
+
+interface ExperienceProps {
+  frontmatter: {
+    position: string;
+    company: string;
+    type: string;
+    dates: string;
+    img: string;
+    skills: string[];
+    link?: string;
+  };
+}
+
+const {
+  frontmatter: { position, company, type, img, dates, skills, link },
+} = Astro.props as ExperienceProps;
+---
+
+<div class="grid grid-cols-12 gap-4">
+  <div
+    class="grid grid-cols-12 col-span-12 md:col-span-10 lg:col-span-11 gap-3 pt-3 item-divider"
+  >
+    <div class="col-span-12">
+      <h2 class="text-3xl lg:text-4xl">{position}</h2>
+      <h2 class="text-2xl lg:text-3xl text-white">{company}</h2>
+      <h3 class="text-xl lg:text-2xl">{type}</h3>
+    </div>
+    <div
+      class="col-span-12 lg:col-span-6 mb-3 flex flex-col place-content-center text-center"
+    >
+      <Image
+        class="max-w-[750px] w-full object-contain object-left max-h-56"
+        src={img}
+        alt={`${position} ${company} Adamo Orsini`}
+        width={750}
+        height={300}
+      />
+    </div>
+    <div
+    class="flex flex-col gap-2 col-span-12 lg:col-span-6 mb-3"
+    >
+      <h3 class="text-2xl lg:text-3xl">Summary</h3>
+      <div class="text-md mb-3">
+        <slot />
+      </div>
+      <h3 class="text-2xl lg:text-3xl">Skills</h3>
+      <div class="flex gap-1.5 flex-wrap text-md mb-3">
+        {
+          skills.map((skill) => (
+            <p class="py-0.5 px-2 rounded-full bg-primaryBlueDark inline">
+              {skill}
+            </p>
+          ))
+        }
+      </div>
+      <div class="flex gap-3 flex-wrap">
+        {
+          link && (
+            <Button className="max-md:w-full" href={link} newTab><ExternalLink size="20" class="mr-2" /> Visit Website</Button>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>

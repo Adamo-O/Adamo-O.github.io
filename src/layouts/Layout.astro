@@ -1,0 +1,63 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+import '@fontsource-variable/inter-tight';
+---
+
+<!doctype html>
+<html lang="en" class="md:scroll-pt-16 scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="Images/Favicon1024.png"
+      sizes="1024x1024"
+			/>
+		<meta name="generator" content={Astro.generator} />
+
+    <!--Google search description-->
+    <meta
+      name="description"
+      content="Hi, I'm Adamo Orsini! I'm an aspiring Software Engineer in Montreal."
+    />
+    <meta name="author" content="Adamo Orsini" />
+
+    <!--Social media meta (og)-->
+    <meta property="og:title" content="Adamo Orsini" />
+    <meta
+      property="og:description"
+      content="Hi, I'm Adamo Orsini! I'm an aspiring Software Engineer in Montreal."
+    />
+    <meta
+      name="image"
+      property="og:image"
+      content="https://i.imgur.com/ROk7gs7.png?2"
+    />
+    <meta property="og:url" content="https://adamoorsini.com/" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#03071d" />
+
+    <!--Twitter meta-->
+    <meta property="twitter:title" content="Adamo Orsini" />
+    <meta property="twitter:url" content="https://adamoorsini.com/" />
+    <meta
+      property="twitter:image"
+      content="https://i.imgur.com/ROk7gs7.png?2"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

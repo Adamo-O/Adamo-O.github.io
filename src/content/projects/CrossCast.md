@@ -1,0 +1,27 @@
+---
+layout: ../../components/Project.astro
+title: CrossCast
+img: https://media.giphy.com/media/dsYOWiR5j13TJjqoMF/giphy.gif
+dates: January 2023
+skills:
+  - Project Planning
+  - Next.js
+  - TypeScript
+github: https://github.com/JR-prog/Cross-Cast
+subtitle: WEB APP DESIGN
+---
+Created as part of ConUHacks VII in 24 hours!
+
+<br />
+
+Directed development of full-stack Next.js and TypeScript
+web application.
+
+<br />
+
+Designed centralized application for cross-platform
+company updates and news.
+
+<br />
+
+Won Mirego sponsorship challenge at ConUHacks VII. 🏆
