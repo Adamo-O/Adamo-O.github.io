@@ -4,6 +4,7 @@ import Navbar from "../layouts/Navbar.astro";
 import "../../globals.css";
 import { Linkedin, Mail, Github, Instagram, FileText } from "lucide-astro";
 import Button from "@/components/Button.astro";
+import {sortContent} from "../lib/utils";
 
 const projects = await Astro.glob("../content/projects/*.md");
 const experiences = await Astro.glob("../content/experience/*.md");
@@ -130,7 +131,10 @@ const experiences = await Astro.glob("../content/experience/*.md");
           <h1 class="section sticky pb-3 z-0 top-3 md:top-16">PROJECTS</h1>
         </div>
         <div id="projects" class="col-span-10 -scroll-m-2 navSection pb-4">
-          {projects.map((project) => <project.Content />)}
+          {projects
+            .sort((a, b) => sortContent(a.frontmatter.dates, b.frontmatter.dates))
+            .map((project) => <project.Content />)
+          }
         </div>
       </div>
       <div class="grid grid-cols-12 px-3 gap-4">
@@ -138,7 +142,10 @@ const experiences = await Astro.glob("../content/experience/*.md");
           <h1 class="section sticky pb-3 z-0 top-3 md:top-16">EXPERIENCE</h1>
         </div>
         <div id="experience" class="col-span-10 -scroll-m-2 navSection pb-4">
-          {experiences.map((experience) => <experience.Content />)}
+          {experiences
+            .sort((a, b) => sortContent(a.frontmatter.dates, b.frontmatter.dates))
+            .map((experience) => <experience.Content />)
+          }
         </div>
       </div>
       <div
