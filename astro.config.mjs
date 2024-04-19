@@ -16,4 +16,5 @@ export default defineConfig({
     }),
     react(),
   ],
+  site: 'https://adamoorsini.com'
 });
