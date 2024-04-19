@@ -1,97 +1,134 @@
 ---
-import { UserRound, PencilRuler, Briefcase, Send } from 'lucide-astro'
+import Image from "astro/components/Image.astro";
+import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
 ---
+
 <>
-<script>
-  // Highlight section in navbar on visit
-  let current = '';
-  window.onscroll = () => {
-      
-      document.querySelectorAll('.navSection').forEach(section => {
-          const sectionTop = section.getBoundingClientRect().top;
-          if (sectionTop <= 100) {
-              current = section.id;
+  <script>
+    // Highlight section in navbar on visit
+    let current = "";
+    window.onscroll = () => {
+      document.querySelectorAll(".navSection").forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const sectionHeight = section.getBoundingClientRect().height;
+        if (sectionTop >= -(sectionHeight / 2) && sectionTop <= 100) {
+          current = section.id;
+          const oldHash = window.location.hash;
+          if (oldHash !== `#${current}`) {
+            const location = window.location.toString().split("#")[0];
+            history.replaceState(null, "", `${location}#${current}`);
           }
+        }
       });
 
-      document.querySelectorAll('.nav-link').forEach(linkItem => {
-          linkItem.classList.remove('active');
-          if (linkItem.getAttribute('href')?.includes(current)) {
-              linkItem.classList.add('active');
-          }
-      })
-  }
-</script>
-<nav class="flex sticky max-md:hidden top-0 bg-slate-800 py-2 px-4 justify-end w-full z-50 h-14">
-  <!-- <button
-        class="navbar-toggler mx-auto my-2"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbar"
-        aria-controls="navbar"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+      document.querySelectorAll(".nav-link").forEach((linkItem) => {
+        linkItem.classList.remove("active");
+        if (linkItem.getAttribute("href") === `#${current}`) {
+          linkItem.classList.add("active");
+        }
+      });
+    };
+  </script>
+  <nav
+    class="grid grid-cols-12 place-items-center sticky max-md:hidden top-0 bg-primaryBlue/90 backdrop-blur py-2 px-4 justify-center w-full z-50 md:h-14"
+  >
+    <div
+      class="flex lg:col-start-3 col-span-12 lg:col-span-9 items-center justify-between w-full"
+      id="navbar"
+    >
+      <div class="flex gap-2 items-center">
+        <Image
+          src="/Images/Favicon1024.png"
+          alt="Adamo Orsini Logo"
+          class="h-full object-scale-down"
+          width="40"
+          height="40"
+        />
+        <h1 class="text-white font-bold text-xl leading-5">Adamo Orsini</h1>
+      </div>
+      <ul class="flex items-end gap-2 font-medium">
+        <li class="nav-item">
+          <a
+            class="flex justify-center gap-2 items-center p-2 hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white active"
+            href="#about"
+          >
+            <UserRound size="24" />
+            About
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="flex justify-center gap-2 items-center p-2 hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white"
+            href="#projects"
+          >
+            <PencilRuler size="24" />
+            Projects
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="flex justify-center gap-2 items-center p-2 hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white"
+            href="#experience"
+          >
+            <Briefcase size="24" />
+            Experience
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="flex justify-center gap-2 items-center p-2 hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white"
+            href="#contact"
+          >
+            <Send size="24" />
+            Contact Me
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <nav class="md:hidden fixed bottom-0 bg-primaryBlue py-2 px-2 w-full z-50">
+    <div class="flex items-center justify-stretch" id="navbar">
+      <ul
+        class="grid grid-cols-4 items-end justify-stretch w-full font-medium gap-2 text-slate-300"
       >
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
-
-  <div class="flex items-end justify-end" id="navbar">
-    <ul class="flex items-end justify-end gap-2">
-      <li class="nav-item">
-        <a class="flex justify-center gap-2 items-center p-2 hover:bg-slate-700 hover:text-white rounded-md transition nav-link [&:.active]:bg-slate-700 active" href="#about">
-          <UserRound size="24" />
-          About
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="flex justify-center gap-2 items-center p-2 hover:bg-slate-700 hover:text-white rounded-md transition nav-link [&:.active]:bg-slate-700" href="#projects">
-          <PencilRuler size="24" />
-          Projects
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="flex justify-center gap-2 items-center p-2 hover:bg-slate-700 hover:text-white rounded-md transition nav-link [&:.active]:bg-slate-700" href="#experience">
-          <Briefcase size="24" />
-          Experience
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="flex justify-center gap-2 items-center p-2 hover:bg-slate-700 hover:text-white rounded-md transition nav-link [&:.active]:bg-slate-700" href="#contact">
-          <Send size="24" />
-          Contact Me
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
-<nav class="md:hidden fixed bottom-0 bg-slate-800 py-2 px-4 z-50 h-20">
-  <div class="flex gap-2" id="navbar">
-    <ul class="flex items-end justify-end gap-2">
-      <li class="nav-item">
-        <a class="flex flex-col justify-center gap-1 nav-link active" href="#about">
-          <UserRound size="24" />
-          About
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="flex flex-col justify-center gap-1 nav-link" href="#projects">
-          <PencilRuler size="24" />
-          Projects
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="flex flex-col justify-center gap-1 nav-link" href="#experience">
-          <Briefcase size="24" />
-          Experience
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="flex flex-col justify-center gap-1 nav-link" href="#contact">
-          <Send size="24" />
-          Contact Me
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
-</u>
+        <li class="nav-item">
+          <a
+            class="flex flex-col justify-center gap-2 items-center p-2 md:hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white active"
+            href="#about"
+          >
+            <UserRound size="24" />
+            About
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="flex flex-col justify-center gap-2 items-center p-2 md:hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white"
+            href="#projects"
+          >
+            <PencilRuler size="24" />
+            Projects
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="flex flex-col justify-center gap-2 items-center p-2 md:hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark
+             [&.active]:text-white"
+            href="#experience"
+          >
+            <Briefcase size="24" />
+            Experience
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="flex flex-col justify-center gap-2 items-center p-2 md:hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white"
+            href="#contact"
+          >
+            <Send size="24" />
+            Contact
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</>

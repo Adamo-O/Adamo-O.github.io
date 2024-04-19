@@ -1,3 +1,5 @@
+import defaultTheme from "tailwindcss/defaultTheme";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -12,6 +14,14 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter Tight Variable', ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        primaryBlue: '#344f97',
+        primaryBlueDark: '#324372',
+        primaryBlueLight: '#7690d6',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -21,10 +31,17 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        animatedgradient: {
+          to: { backgroundPosition: '150% 50%'},
+        },
+      },
+      backgroundSize: {
+        '300%': '300%',
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        gradient: 'animatedgradient 6s linear infinite',
       },
     },
   },

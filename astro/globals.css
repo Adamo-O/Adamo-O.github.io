@@ -3,12 +3,12 @@
   @tailwind utilities;
   
 html {
-    scroll-padding-top: 4rem;
+    /* scroll-padding-top: 4rem; */
 }
 
 body {
     margin: 0;
-    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, "Neue Haas Grotesk", "Arial", "Lucida Grande", sans-serif !important;
+    font-family: "Inter Tight Variable", "HelveticaNeue", "Helvetica Neue", Helvetica, "Neue Haas Grotesk", "Arial", "Lucida Grande", sans-serif !important;
     background-color: #1d1d1d;
     color:#dbdbdb;
 }
@@ -31,11 +31,6 @@ h5 {
     .customNav {
         padding: 0 8.2%;
     }
-}
-
-.active {
-    color: white;
-    background-color: #334155;
 }
 
 @media screen and (max-width: 576px) {
@@ -71,7 +66,7 @@ h5 {
     border-radius: 4px;
     color: rgb(255, 255, 255);
     font-size: 1.2em;
-    background: #2d478dc0;
+    background: #2d478d;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     transition: all 0.5s;
@@ -100,11 +95,6 @@ h5 {
     height: 100vh;
 }
 
-#introHead {
-    color:white;
-    font-weight: bold;
-}
-
 .introDescription {
     line-height: 1.5em;
 }
@@ -126,16 +116,8 @@ h5 {
 
 .aboutIcons {
     padding-left: 15px;
-    font-size: 2em;
-    margin-top: 0vh;  
+    margin-top: 0vh;
     padding-bottom: 80px;
-}
-
-.icon, .footerIcon {
-    color: rgb(192, 192, 192);
-    text-decoration: none;
-    transition: all 0.2s;
-    font-size: 1.6em;
 }
 
 .icon:hover {
@@ -145,22 +127,21 @@ h5 {
 
 .section {
     color: #4f72d1;
-    margin-left: -0.29em;
+    margin-left: -0.37em;
     writing-mode: vertical-lr;
     font-size: 15vmin;
     font-weight: 700;
-    top: 60px;
 }
 
 .subtitleSection {
     text-align: left;
-    font-size: 2vh;
+    /* font-size: 2vh; */
 }
 
 .subtitle {
     writing-mode: vertical-lr;
     margin-left: 0px;
-    font-size: 2.5em;
+    /* font-size: 2.5em; */
     color: rgb(192, 192, 192);
 }
 
@@ -174,18 +155,18 @@ h5 {
     text-transform: uppercase;
 }
 
-/*Footer*/
-.footer {
-    margin-top: 5%;
-    text-align: center;
-    background-color: rgb(33, 33, 37);
-    color: rgb(190, 190, 190);
+.animate-gradient {
+    background-size: 300%;
+    -webkit-animation: animatedgradient 6s linear infinite;
+    -moz-animation: animatedgradient 6s linear infinite;
+    animation: animatedgradient 6s linear infinite;
 }
 
-.footerIcon {
-    font-size: 2em;
-}
-
-.footerIcon:hover {
-    color: #6581cea4;
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 150% 50%;
+    }
 }

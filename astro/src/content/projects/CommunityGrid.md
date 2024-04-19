@@ -1,7 +1,7 @@
 ---
 layout: ../../components/Project.astro
 title: CommunityGrid
-img: Images/CommunityGridLogo.png
+img: /Images/CommunityGridLogo.png
 dates: September 2023 - April 2024
 skills:
   - Project Management
