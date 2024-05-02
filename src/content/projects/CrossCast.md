@@ -1,6 +1,7 @@
 ---
 layout: ../../components/Project.astro
 title: CrossCast
+href: CrossCast
 img: https://media.giphy.com/media/dsYOWiR5j13TJjqoMF/giphy.gif
 dates: January 2023
 skills:
@@ -20,7 +21,7 @@ web application.
 <br />
 
 Designed centralized application for cross-platform
-company updates and news.
+company updates and news using X, GitHub, and Slack APIs.
 
 <br />
 

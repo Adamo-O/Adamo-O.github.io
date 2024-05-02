@@ -1,6 +1,7 @@
 ---
 layout: ../../components/Project.astro
 title: Theme Song Welcome Bot
+href: theme-song-welcome-bot
 img: https://media.giphy.com/media/UZm1zhERZ5w75Pn9RP/giphy.gif
 dates: October - November 2021
 skills:

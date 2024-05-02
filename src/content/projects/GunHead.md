@@ -1,6 +1,7 @@
 ---
 layout: ../../components/Project.astro
 title: GunHead
+href: GunHead
 img: /Images/GunHead.png
 dates: October 2022
 skills:

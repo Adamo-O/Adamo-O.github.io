@@ -1,6 +1,7 @@
 ---
-import Image from "astro/components/Image.astro";
-import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
+import { Image } from "astro:assets";
+import AOIcon from "../Images/Favicon1024.png";
+import { UserRound, PencilRuler, Briefcase, Send, Award } from "lucide-astro";
 ---
 
 <>
@@ -13,11 +14,12 @@ import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
         const sectionHeight = section.getBoundingClientRect().height;
         if (sectionTop >= -(sectionHeight / 2) && sectionTop <= 100) {
           current = section.id;
-          const oldHash = window.location.hash;
-          if (oldHash !== `#${current}`) {
-            const location = window.location.toString().split("#")[0];
-            history.replaceState(null, "", `${location}#${current}`);
-          }
+          // const oldHash = window.location.hash;
+          // if (oldHash !== `#${current}`) {
+          //   const location = window.location.toString().split("#")[0];
+          //   history.replaceState(null, "", `${location}#${current}`);
+          // }
+          return;
         }
       });
 
@@ -27,18 +29,25 @@ import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
           linkItem.classList.add("active");
         }
       });
+      document.querySelectorAll(".nav-item").forEach((linkItem) => {
+        const link = linkItem.querySelector("a");
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
+      });
     };
   </script>
   <nav
     class="grid grid-cols-12 place-items-center sticky max-md:hidden top-0 bg-primaryBlue/90 backdrop-blur py-2 px-4 justify-center w-full z-50 md:h-14"
   >
     <div
-      class="flex lg:col-start-3 col-span-12 lg:col-span-9 items-center justify-between w-full"
+      class="flex xl:col-start-3 col-span-12 xl:col-span-9 items-center justify-between w-full"
       id="navbar"
     >
       <div class="flex gap-2 items-center">
         <Image
-          src="/Images/Favicon1024.png"
+          src={AOIcon}
           alt="Adamo Orsini Logo"
           class="h-full object-scale-down"
           width="40"
@@ -60,6 +69,15 @@ import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
         <li class="nav-item">
           <a
             class="flex justify-center gap-2 items-center p-2 hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white"
+            href="#featured"
+          >
+            <Award size="24" />
+            Featured
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="flex justify-center gap-2 items-center p-2 hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white"
             href="#projects"
           >
             <PencilRuler size="24" />
@@ -81,7 +99,7 @@ import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
             href="#contact"
           >
             <Send size="24" />
-            Contact Me
+            Contact
           </a>
         </li>
       </ul>
@@ -90,7 +108,7 @@ import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
   <nav class="md:hidden fixed bottom-0 bg-primaryBlue py-2 px-2 w-full z-50">
     <div class="flex items-center justify-stretch" id="navbar">
       <ul
-        class="grid grid-cols-4 items-end justify-stretch w-full font-medium gap-2 text-slate-300"
+        class="grid grid-cols-5 items-end justify-stretch w-full font-medium sm:gap-2 text-slate-300"
       >
         <li class="nav-item">
           <a
@@ -98,7 +116,16 @@ import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
             href="#about"
           >
             <UserRound size="24" />
-            About
+            <span class="text-xs sm:text-sm md:text-base">About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="flex flex-col justify-center gap-2 items-center p-2 md:hover:bg-primaryBlueDark hover:text-white rounded-md transition nav-link [&.active]:bg-primaryBlueDark [&.active]:text-white"
+            href="#featured"
+          >
+            <Award size="24" />
+            <span class="text-xs sm:text-sm md:text-base">Featured</span>
           </a>
         </li>
         <li class="nav-item">
@@ -107,7 +134,7 @@ import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
             href="#projects"
           >
             <PencilRuler size="24" />
-            Projects
+            <span class="text-xs sm:text-sm md:text-base">Projects</span>
           </a>
         </li>
         <li class="nav-item">
@@ -117,7 +144,7 @@ import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
             href="#experience"
           >
             <Briefcase size="24" />
-            Experience
+            <span class="text-xs sm:text-sm md:text-base">Experience</span>
           </a>
         </li>
         <li class="nav-item">
@@ -126,7 +153,7 @@ import { UserRound, PencilRuler, Briefcase, Send } from "lucide-astro";
             href="#contact"
           >
             <Send size="24" />
-            Contact
+            <span class="text-xs sm:text-sm md:text-base">Contact</span>
           </a>
         </li>
       </ul>

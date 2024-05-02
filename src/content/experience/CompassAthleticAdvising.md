@@ -2,6 +2,7 @@
 layout: ../../components/Experience.astro
 position: Web Developer
 company: Compass Athletic Advising
+href: compass-athletic-advising
 type: Contract
 dates: December 2020 - April 2021
 img: /Images/Compass-Athletic-Advising-Logo-Square.png

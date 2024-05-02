@@ -1,6 +1,7 @@
 ---
 layout: ../../components/Project.astro
 title: Interlinked
+href: Interlinked
 img: /Images/Interlinked.png
 dates: January - April 2023
 skills:

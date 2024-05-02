@@ -21,6 +21,7 @@ export default {
         primaryBlue: '#344f97',
         primaryBlueDark: '#324372',
         primaryBlueLight: '#7690d6',
+        primaryBlueBackground: '#23262d',
       },
       keyframes: {
         "accordion-down": {

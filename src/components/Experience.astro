@@ -3,27 +3,34 @@ import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import { ExternalLink } from "lucide-astro";
 
-interface ExperienceProps {
+export interface ExperienceProps {
   frontmatter: {
     position: string;
     company: string;
+    href: string;
     type: string;
     dates: string;
     img: string;
     skills: string[];
     link?: string;
     order?: number;
+    hidden?: boolean;
+    highlight?: boolean;
+    highlightSummary?: string;
   };
 }
 
 const {
-  frontmatter: { position, company, type, img, dates, skills, link },
+  frontmatter: { position, company, type, img, dates, skills, link, href },
 } = Astro.props as ExperienceProps;
 ---
 
-<div class="grid grid-cols-12 gap-4">
+<div 
+  id={href}
+  class="grid grid-cols-12 gap-4"
+>
   <div
-    class="grid grid-cols-12 col-span-12 md:col-span-10 lg:col-span-11 gap-3 pt-3 item-divider"
+    class="grid grid-cols-12 col-span-12 md:col-span-10 lg:col-span-11 gap-3 pt-3 p-4 max-md:bg-primaryBlueDark/10 rounded-xl mb-4"
   >
     <div class="col-span-12">
       <h2 class="text-3xl lg:text-4xl">{position}</h2>
@@ -35,7 +42,7 @@ const {
       class="col-span-12 lg:col-span-6 mb-3 flex flex-col place-content-center text-center"
     >
       <Image
-        class="max-w-[750px] w-full object-contain object-left max-h-56"
+        class="w-1/2 md:max-w-[750px] md:w-full object-contain object-left aspect-video max-h-64"
         src={img}
         alt={`${position} ${company} Adamo Orsini`}
         width={750}

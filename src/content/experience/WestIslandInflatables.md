@@ -2,6 +2,7 @@
 layout: ../../components/Experience.astro
 position: Web Developer
 company: West Island Inflatables
+href: west-island-inflatables
 type: Contract
 dates: August 2020 - December 2020
 img: /Images/WestIslandInflatables.jpg

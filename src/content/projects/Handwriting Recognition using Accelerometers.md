@@ -1,6 +1,7 @@
 ---
 layout: ../../components/Project.astro
 title: Handwriting Recognition using Accelerometers
+href: accelerometers-lab
 img: /Images/L Acceleration.png
 dates: February - April 2020
 skills:

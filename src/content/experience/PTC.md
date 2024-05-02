@@ -2,6 +2,7 @@
 layout: ../../components/Experience.astro
 position: Software Engineer Intern
 company: PTC Inc.
+href: PTC
 type: Internship
 dates: June - August 2022
 img: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/PTC_logo.svg/1200px-PTC_logo.svg.png
