@@ -17,7 +17,7 @@ skills:
   - SEO
 link: https://softgolf.io/
 highlight: true
-highlightSummary: Planned, developed, and managed full-stack web application platform for creating and managing golf tournaments.
+highlightSummary: Planned, developed, and managed full-stack web application platform for creating, browsing, and managing golf tournaments.
 ---
 Led re-architecture and re-development of the SoftGolf platform into a modern full-stack web application for creating, managing, and browsing charity golf tournaments.
 

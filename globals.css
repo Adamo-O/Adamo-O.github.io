@@ -2,6 +2,31 @@
   @tailwind components;
   @tailwind utilities;
   
+::-moz-selection {
+    color: white;
+    background-color: #344f97;
+}
+
+::selection {
+    color: white;
+    background-color: #344f97;
+}
+
+::-webkit-scrollbar {
+    width: 1.2em;
+}
+
+::-webkit-scrollbar-track {
+    background: #344f97e6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(169, 185, 255);
+    border-radius: 10px;
+    border: 4px solid transparent;
+    background-clip: content-box;
+}
+
 body {
     margin: 0;
     font-family: "Inter Tight Variable", "HelveticaNeue", "Helvetica Neue", Helvetica, "Neue Haas Grotesk", "Arial", "Lucida Grande", sans-serif !important;

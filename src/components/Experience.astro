@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import { ExternalLink } from "lucide-astro";
+import Skill from "./Skill.astro";
 
 export interface ExperienceProps {
   frontmatter: {
@@ -60,9 +61,7 @@ const {
       <div class="flex gap-1.5 flex-wrap text-md mb-3">
         {
           skills.map((skill) => (
-            <p class="py-0.5 px-2 rounded-full bg-primaryBlueDark inline">
-              {skill}
-            </p>
+            <Skill skill={skill} />
           ))
         }
       </div>

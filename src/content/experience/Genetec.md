@@ -10,6 +10,7 @@ skills:
   - Azure DevOps
   - YAML
   - .NET
+  - .NET Core
   - Bash
 link: https://www.genetec.com/
 ---

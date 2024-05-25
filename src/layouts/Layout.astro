@@ -1,17 +1,17 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 
-import '@fontsource-variable/inter-tight';
+import "@fontsource-variable/inter-tight";
 ---
 
 <!doctype html>
 <html lang="en" class="md:scroll-pt-16 scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -19,8 +19,8 @@ import '@fontsource-variable/inter-tight';
       type="image/png"
       href="Images/Favicon1024.png"
       sizes="1024x1024"
-			/>
-		<meta name="generator" content={Astro.generator} />
+    />
+    <meta name="generator" content={Astro.generator} />
 
     <!--Google search description-->
     <meta
@@ -55,9 +55,15 @@ import '@fontsource-variable/inter-tight';
     />
     <meta name="twitter:card" content="summary_large_image" />
 
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
