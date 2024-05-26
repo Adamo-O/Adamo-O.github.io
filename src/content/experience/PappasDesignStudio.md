@@ -5,7 +5,7 @@ company: Pappas Design Studio Inc.
 href: pappas-design-studio
 type: On-Call
 dates: December 2021 - May 2023
-img: https://media-exp2.licdn.com/dms/image/C4D0BAQFdBebb1gQzlA/company-logo_200_200/0/1538662759503?e=2147483647&v=beta&t=TPUVDeJ_B21n5zm2AGPhB6HgPNzarndT3a2x8Bykkxk
+img: https://media.licdn.com/dms/image/C4D1BAQGmD9HPdjkGKw/company-background_10000/0/1583755303181/pappas_design_studio_inc_cover?e=2147483647&v=beta&t=ughNC1b6BYF9dLJdNU__6-0poA28vuKWeE9R-tenQLc
 skills:
   - HTML
   - CSS
