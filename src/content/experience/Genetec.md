@@ -5,7 +5,7 @@ company: Genetec Inc.
 href: genetec
 type: Internship
 dates: September - December 2021
-img: https://www.nsca.org/wp-content/uploads/2018/07/Genetec-Logo_RGB_Color_TM-1.png
+img: https://compliance.genetec.com/api/share/e3cdc3e7-598a-4346-97b2-376e2722eaeb/logo.png
 skills:
   - Azure DevOps
   - YAML
