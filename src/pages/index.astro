@@ -2,15 +2,32 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../layouts/Navbar.astro";
 import "../../globals.css";
-import { Linkedin, Mail, Github, Instagram, FileText, Calendar } from "lucide-astro";
+import {
+  Linkedin,
+  Mail,
+  Github,
+  Instagram,
+  FileText,
+  Calendar,
+} from "lucide-astro";
 import Button from "@/components/Button.astro";
-import {cn, sortContent} from "../lib/utils";
+import { cn, sortContent } from "../lib/utils";
 import Card from "@/components/Card.astro";
 
 const projects = await Astro.glob("../content/projects/*.md");
 const experiences = await Astro.glob("../content/experience/*.md");
-const featuredProjects = projects.filter((project) => project.frontmatter.highlight && !project.frontmatter.hidden && project.frontmatter.highlightSummary);
-const featuredExperiences = experiences.filter((experience) => experience.frontmatter.highlight && !experience.frontmatter.hidden && experience.frontmatter.highlightSummary);
+const featuredProjects = projects.filter(
+  (project) =>
+    project.frontmatter.highlight &&
+    !project.frontmatter.hidden &&
+    project.frontmatter.highlightSummary
+);
+const featuredExperiences = experiences.filter(
+  (experience) =>
+    experience.frontmatter.highlight &&
+    !experience.frontmatter.hidden &&
+    experience.frontmatter.highlightSummary
+);
 ---
 
 <Layout title="Adamo Orsini">
@@ -30,15 +47,19 @@ const featuredExperiences = experiences.filter((experience) => experience.frontm
               class="space-y-3 col-span-12 max-md:px-6 md:col-span-10 lg:col-span-11 text-start self-center"
             >
               <div class="">
-                <h1 id="introHead" class="inline text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white/80 via-primaryBlue to-white/80 text-transparent bg-clip-text bg-300% animate-gradient">
-                  Hi, I'm Adamo Orsini!</h1>&nbsp;<span class="text-5xl lg:text-6xl">✌️</span>
+                <h1
+                  id="introHead"
+                  class="inline text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white/80 via-primaryBlue to-white/80 text-transparent bg-clip-text bg-300% animate-gradient"
+                >
+                  Hi, I'm Adamo Orsini!
+                </h1>&nbsp;<span class="text-5xl lg:text-6xl">✌️</span>
               </div>
               <h2 class="text-3xl lg:text-4xl">
                 I'm an aspiring Software Engineer based in Montreal.&nbsp;🍁
               </h2>
               <h3>
-                I'm planning on pursuing a Master's in Computer
-                Science with a focus on Applied Machine Learning.&nbsp;🤖
+                I'm pursuing a Master's of Computer Science with a focus on
+                Computer Vision and Deep Learning.&nbsp;🤖
               </h3>
               <h3>
                 My background is mainly in full-stack web development with
@@ -129,78 +150,136 @@ const featuredExperiences = experiences.filter((experience) => experience.frontm
           </div>
         </div>
       </div>
-      <div class="grid grid-cols-12 px-4 sm:px-6 md:px-3 gap-4 min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-3.5rem)]">
+      <div
+        class="grid grid-cols-12 px-4 sm:px-6 md:px-3 gap-4 min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-3.5rem)]"
+      >
         <div class="max-md:hidden col-span-2">
           <h1 class="section sticky pb-3 z-0 top-3 md:top-16">FEATURED</h1>
         </div>
-        <div id="featured" class="grid grid-cols-12 gap-x-4 col-span-12 md:col-span-10 scroll-m-6 md:scroll-m-0 navSection">
-          <div class="grid col-span-12 lg:col-span-11 md:col-span-10 grid-cols-12 gap-x-4 mb-6">
-            <div class="md:hidden col-span-12 md:col-span-10 lg:col-span-11 flex gap-2 mb-4">
-              <h1 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight mx-4">Featured</h1>
+        <div
+          id="featured"
+          class="grid grid-cols-12 gap-x-4 col-span-12 md:col-span-10 scroll-m-6 md:scroll-m-0 navSection"
+        >
+          <div
+            class="grid col-span-12 lg:col-span-11 md:col-span-10 grid-cols-12 gap-x-4 mb-6"
+          >
+            <div
+              class="md:hidden col-span-12 md:col-span-10 lg:col-span-11 flex gap-2 mb-4"
+            >
+              <h1
+                class="text-5xl lg:text-6xl font-bold text-primaryBlueLight mx-4"
+              >
+                Featured
+              </h1>
             </div>
-            <div class="col-span-12 md:col-span-10 lg:col-span-11 flex flex-col gap-4 mb-8">
-              <h1 class="text-3xl lg:text-4xl font-bold text-primaryBlueLight mx-4">Featured Projects</h1>
+            <div
+              class="col-span-12 md:col-span-10 lg:col-span-11 flex flex-col gap-4 mb-8"
+            >
+              <h1
+                class="text-3xl lg:text-4xl font-bold text-primaryBlueLight mx-4"
+              >
+                Featured Projects
+              </h1>
               <div class="grid 2xl:grid-flow-col gap-4">
-                {featuredProjects.map((project) => (
-                  <Card 
-                    title={project.frontmatter.title} 
-                    body={project.frontmatter.highlightSummary} 
-                    href={`#${project.frontmatter.href}`} 
-                    image={project.frontmatter.img} />
-                ))}
+                {
+                  featuredProjects.map((project) => (
+                    <Card
+                      title={project.frontmatter.title}
+                      body={project.frontmatter.highlightSummary}
+                      href={`#${project.frontmatter.href}`}
+                      image={project.frontmatter.img}
+                    />
+                  ))
+                }
               </div>
             </div>
-            <div class="col-span-12 md:col-span-10 lg:col-span-11 flex flex-col gap-4">
-              <h1 class="text-3xl lg:text-4xl font-bold text-primaryBlueLight mx-4">Featured Experience</h1>
+            <div
+              class="col-span-12 md:col-span-10 lg:col-span-11 flex flex-col gap-4"
+            >
+              <h1
+                class="text-3xl lg:text-4xl font-bold text-primaryBlueLight mx-4"
+              >
+                Featured Experience
+              </h1>
               <div class="grid 2xl:grid-flow-col gap-4">
-                {featuredExperiences.map((experience) => (
-                  <Card 
-                    title={experience.frontmatter.position} 
-                    subtitle={experience.frontmatter.company} 
-                    body={experience.frontmatter.highlightSummary} 
-                    href={`#${experience.frontmatter.href}`} 
-                    image={experience.frontmatter.img} />
-                ))}
+                {
+                  featuredExperiences.map((experience) => (
+                    <Card
+                      title={experience.frontmatter.position}
+                      subtitle={experience.frontmatter.company}
+                      body={experience.frontmatter.highlightSummary}
+                      href={`#${experience.frontmatter.href}`}
+                      image={experience.frontmatter.img}
+                    />
+                  ))
+                }
               </div>
             </div>
           </div>
-          <div class="col-span-1 lg:col-span-1 row-span-3 max-md:hidden md:flex pt-3 pl-1 border-s"></div>
+          <div
+            class="col-span-1 lg:col-span-1 row-span-3 max-md:hidden md:flex pt-3 pl-1 border-s"
+          >
+          </div>
         </div>
       </div>
       <div class="grid grid-cols-12 px-4 sm:px-6 md:px-3 gap-4">
         <div class="max-md:hidden col-span-2 pt-3">
           <h1 class="section sticky pb-3 z-0 top-3 md:top-16">PROJECTS</h1>
         </div>
-        <div id="projects" class="col-span-12 md:col-span-10 scroll-m-6 md:-scroll-m-2 navSection pb-4">
+        <div
+          id="projects"
+          class="col-span-12 md:col-span-10 scroll-m-6 md:-scroll-m-2 navSection pb-4"
+        >
           <div class="md:hidden grid grid-cols-12 gap-4 mb-6">
             <div class="col-span-12 md:col-span-10 lg:col-span-11 flex gap-2">
-              <h1 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight mx-4">Projects</h1>
+              <h1
+                class="text-5xl lg:text-6xl font-bold text-primaryBlueLight mx-4"
+              >
+                Projects
+              </h1>
             </div>
-            <div class="col-span-2 lg:col-span-1 max-md:hidden md:flex pt-3 pl-1 border-s"></div>
+            <div
+              class="col-span-2 lg:col-span-1 max-md:hidden md:flex pt-3 pl-1 border-s"
+            >
+            </div>
           </div>
-          {projects
-            .filter((project) => !project.frontmatter.hidden)
-            .sort((a, b) => sortContent(a.frontmatter.dates, b.frontmatter.dates))            
-            .map((project, i, pkts) => {
-              const nextSameSubtitle = i < pkts.length - 1 && project.frontmatter.subtitle === pkts[i + 1].frontmatter.subtitle;
-              const prevSameSubtitle = i > 0 && project.frontmatter.subtitle === pkts[i - 1].frontmatter.subtitle;
-              const next = pkts[i+1];
-
-              if (prevSameSubtitle) return;
-              return (
-                <div class="grid grid-cols-12 gap-4">
-                  <project.Content />
-                  <div class={cn("col-span-2 lg:col-span-1 max-md:hidden md:flex pt-3 pl-1 border-s", nextSameSubtitle && 'row-span-2')}>
-                    <div>
-                      <h1 class="subtitle text-3xl sticky top-3 md:top-16">{project.frontmatter.subtitle}</h1>
-                    </div>
-                  </div>
-                  {
-                    nextSameSubtitle && <next.Content />
-                  }
-                </div>
+          {
+            projects
+              .filter((project) => !project.frontmatter.hidden)
+              .sort((a, b) =>
+                sortContent(a.frontmatter.dates, b.frontmatter.dates)
               )
-            })
+              .map((project, i, pkts) => {
+                const nextSameSubtitle =
+                  i < pkts.length - 1 &&
+                  project.frontmatter.subtitle ===
+                    pkts[i + 1].frontmatter.subtitle;
+                const prevSameSubtitle =
+                  i > 0 &&
+                  project.frontmatter.subtitle ===
+                    pkts[i - 1].frontmatter.subtitle;
+                const next = pkts[i + 1];
+
+                if (prevSameSubtitle) return;
+                return (
+                  <div class="grid grid-cols-12 gap-4">
+                    <project.Content />
+                    <div
+                      class={cn(
+                        "col-span-2 lg:col-span-1 max-md:hidden md:flex pt-3 pl-1 border-s",
+                        nextSameSubtitle && "row-span-2"
+                      )}
+                    >
+                      <div>
+                        <h1 class="subtitle text-3xl sticky top-3 md:top-16">
+                          {project.frontmatter.subtitle}
+                        </h1>
+                      </div>
+                    </div>
+                    {nextSameSubtitle && <next.Content />}
+                  </div>
+                );
+              })
           }
         </div>
       </div>
@@ -208,17 +287,30 @@ const featuredExperiences = experiences.filter((experience) => experience.frontm
         <div class="max-md:hidden col-span-2 pt-3 md:border-r">
           <h1 class="section sticky pb-3 z-0 top-3 md:top-16">EXPERIENCE</h1>
         </div>
-        <div id="experience" class="col-span-12 md:col-span-10 scroll-m-6 md:-scroll-m-2 navSection pb-4">
+        <div
+          id="experience"
+          class="col-span-12 md:col-span-10 scroll-m-6 md:-scroll-m-2 navSection pb-4"
+        >
           <div class="md:hidden grid grid-cols-12 gap-4 mb-6">
             <div class="col-span-12 md:col-span-10 lg:col-span-11 flex gap-2">
-              <h1 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight mx-4">Experience</h1>
+              <h1
+                class="text-5xl lg:text-6xl font-bold text-primaryBlueLight mx-4"
+              >
+                Experience
+              </h1>
             </div>
-            <div class="col-span-2 lg:col-span-1 max-md:hidden md:flex pt-3 pl-1 border-s"></div>
+            <div
+              class="col-span-2 lg:col-span-1 max-md:hidden md:flex pt-3 pl-1 border-s"
+            >
+            </div>
           </div>
-          {experiences
-            .filter((experience) => !experience.frontmatter.hidden)
-            .sort((a, b) => sortContent(a.frontmatter.dates, b.frontmatter.dates))
-            .map((experience) => <experience.Content />)
+          {
+            experiences
+              .filter((experience) => !experience.frontmatter.hidden)
+              .sort((a, b) =>
+                sortContent(a.frontmatter.dates, b.frontmatter.dates)
+              )
+              .map((experience) => <experience.Content />)
           }
         </div>
       </div>
@@ -231,20 +323,23 @@ const featuredExperiences = experiences.filter((experience) => experience.frontm
         </div>
         <div class="col-span-12 md:col-span-8 lg:col-span-9 pt-4">
           <div class="md:hidden mb-6">
-            <h1 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight">Contact</h1>
+            <h1 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight">
+              Contact
+            </h1>
           </div>
           <div class="grid grid-cols-12 pb-3 mb-3">
             <div class="col-span-12 lg:col-span-8 xl:col-span-6 space-y-1">
               <h2 class="text-3xl lg:text-4xl">Get In Touch</h2>
               <p class="pb-3">
                 Whether you have a question or would just like to reach out, my
-                inbox is always open! 
-                <br />Contact me via my social media below and
-                I'll get back to you as soon as possible.
+                inbox is always open!
+                <br />Contact me via my social media below and I'll get back to
+                you as soon as possible.
               </p>
               <div class="flex gap-3 flex-wrap">
-                <Button href="mailto:adamo.orsini01@gmail.com"
-                className="max-md:w-full"
+                <Button
+                  href="mailto:adamo.orsini01@gmail.com"
+                  className="max-md:w-full"
                   ><Mail
                     size="20"
                     class="mr-2"
@@ -271,9 +366,9 @@ const featuredExperiences = experiences.filter((experience) => experience.frontm
             >
               <h2 class="text-3xl lg:text-4xl">Resume</h2>
               <p class="pb-3">
-                Looking for more information? 
-                <br />Check out my resume below for a
-                brief layout of my career, projects, and skills.
+                Looking for more information?
+                <br />Check out my resume below for a brief layout of my career,
+                projects, and skills.
               </p>
               <div class="flex flex-row gap-3 flex-wrap">
                 <Button
@@ -304,10 +399,7 @@ const featuredExperiences = experiences.filter((experience) => experience.frontm
                 newTab
                 title="adamo-orsini on LinkedIn"
               >
-                <Linkedin
-                  size="35"
-                  title="adamo-orsini on LinkedIn"
-                /></Button
+                <Linkedin size="35" title="adamo-orsini on LinkedIn" /></Button
               >
               <Button
                 href="mailto:adamo.orsini01@gmail.com"
@@ -346,7 +438,9 @@ const featuredExperiences = experiences.filter((experience) => experience.frontm
     </div>
   </main>
   <footer>
-    <div class="flex flex-col justify-center items-center text-center bg-primaryBlue/90 align-middle p-2 min-h-32 max-md:pb-24">
+    <div
+      class="flex flex-col justify-center items-center text-center bg-primaryBlue/90 align-middle p-2 min-h-32 max-md:pb-24"
+    >
       <p class="max-w-md">
         Built and designed by me, Adamo Orsini! View the source code on my
         GitHub below.
@@ -357,7 +451,8 @@ const featuredExperiences = experiences.filter((experience) => experience.frontm
         size={"icon"}
         newTab
         title="Adamo's Portfolio Website on GitHub"
-        ><Github size="30" title="Adamo Portfolio Website on GitHub" /></Button>
+        ><Github size="30" title="Adamo Portfolio Website on GitHub" /></Button
+      >
       <p>Thanks for stopping by! 👋</p>
     </div>
   </footer>
