@@ -10,7 +10,7 @@ skills:
   - Firebase
   - Cypress
   - TypeScript
-github: https://github.com/JR-prog/Interlinked_SOEN390_Team11
+github: https://github.com/jay-roe/Interlinked_SOEN390_Team11
 subtitle: WEB APP DESIGN
 ---
 Developed LinkedIn clone designed for IT and tech

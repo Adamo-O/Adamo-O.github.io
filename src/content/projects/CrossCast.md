@@ -8,7 +8,7 @@ skills:
   - Project Planning
   - Next.js
   - TypeScript
-github: https://github.com/JR-prog/Cross-Cast
+github: https://github.com/jay-roe/Cross-Cast
 subtitle: WEB APP DESIGN
 ---
 Created as part of ConUHacks VII in 24 hours!
