@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import { ExternalLink, Github } from "lucide-astro";
 import Skill from "./Skill.astro";
+import ProjectReact from "./Project.tsx";
 
 export interface ProjectProps {
   frontmatter: {
@@ -23,45 +24,57 @@ export interface ProjectProps {
 }
 
 const {
-  frontmatter: { title, img, dates, skills, link, github, secondLink, href },
+  frontmatter: { title, href, img, dates, skills, link, github, secondLink },
 } = Astro.props as ProjectProps;
+// const {
+//   frontmatter,
+// } = Astro.props as ProjectProps;
 ---
 
 <div
   id={href}
-  class="grid grid-cols-12 col-span-12 md:col-span-10 lg:col-span-11 gap-3 pt-3 p-4 max-md:bg-primaryBlueDark/10 rounded-xl mb-4"
+  class="grid grid-cols-12 col-span-12 md:col-span-10 lg:col-span-11 gap-3 p-6 bg-primaryBlueDark/10 rounded-xl mb-10"
 >
-  <div
-    class="flex flex-col gap-2 col-span-12 lg:col-span-6"
-  >
-  <h2 class="text-3xl lg:text-4xl">{title}</h2>
-  <h3 class="text-xl lg:text-2xl">{dates}</h3>
-    <h3 class="text-2xl lg:text-3xl">Summary</h3>
-    <div class="text-md mb-3">
-      <slot />
+  <div class="flex flex-col justify-between gap-4 col-span-12 lg:col-span-6">
+    <div>
+      <h2 class="text-3xl lg:text-4xl mb-0.5">{title}</h2>
+      <h3 class="text-xl">{dates}</h3>
     </div>
-    <h3 class="text-2xl lg:text-3xl">Skills</h3>
-    <div class="flex gap-1.5 flex-wrap text-md mb-3">
-      {
-        skills.map((skill) => (
-          <Skill skill={skill} />
-        ))
-      }
+    <div>
+      <h3 class="text-2xl lg:text-3xl mb-2">Summary</h3>
+      <div class="text-base">
+        <slot />
+      </div>
+    </div>
+    <div>
+      <h3 class="text-2xl lg:text-3xl mb-2">Skills</h3>
+      <div class="flex gap-1.5 flex-wrap text-md">
+        {skills.map((skill, i) => <Skill skill={skill} key={i} />)}
+      </div>
     </div>
     <div class="flex gap-3 flex-wrap">
       {
         link && (
-          <Button className="max-md:w-full" href={link} newTab><ExternalLink size="20" class="mr-2" /> Visit Website</Button>
+          <Button className="max-md:w-full" href={link} newTab>
+            <ExternalLink size="20" class="mr-2" /> Visit Website
+          </Button>
         )
       }
       {
         github && (
-          <Button className="max-md:w-full" href={github} newTab><Github size="20" class="mr-2" /> View on GitHub</Button>
+          <Button className="max-md:w-full" href={github} newTab>
+            <Github size="20" class="mr-2" /> View on GitHub
+          </Button>
         )
       }
       {
         secondLink && (
-          <Button className="max-md:w-full" href={secondLink.link} newTab variant={"outline"}>
+          <Button
+            className="max-md:w-full"
+            href={secondLink.link}
+            newTab
+            variant={"outline"}
+          >
             {secondLink.text}
           </Button>
         )
@@ -74,9 +87,11 @@ const {
     <Image
       class="max-w-[750px] w-full object-contain aspect-video rounded-md"
       src={img}
-      alt={`${title} Adamo Orsini`}
+      alt={`${title}`}
       width={750}
       height={300}
     />
   </div>
 </div>
+
+<!-- <ProjectReact frontmatter={frontmatter} client:load /> -->

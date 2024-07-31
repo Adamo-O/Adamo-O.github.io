@@ -5,7 +5,7 @@ company: Genetec Inc.
 href: genetec
 type: Internship
 dates: September - December 2021
-img: https://compliance.genetec.com/api/share/e3cdc3e7-598a-4346-97b2-376e2722eaeb/logo.png
+img: /Images/Genetec.png
 skills:
   - Azure DevOps
   - YAML
@@ -14,6 +14,7 @@ skills:
   - Bash
 link: https://www.genetec.com/
 ---
+
 Increased modularity, flexibility, and speed of software
 deployment using custom Azure Pipelines YAML template.
 
