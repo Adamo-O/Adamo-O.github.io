@@ -1,4 +1,4 @@
-import { skillIcons } from "./Skill.astro";
+import { skillIcons } from "../lib/skillIcons";
 import { cn } from "../lib/utils";
 
 interface SkillProps {

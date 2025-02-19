@@ -2,7 +2,7 @@
 layout: ../../components/Project.astro
 title: Independent Traversal Arduino Robot
 href: arduino-robot
-img: https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzN3MWp5eDhmaWh6Y3Izamx6c2I1dzM4YTYyMGl1aXVodjQ5b3J4NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HH6Cz8XACJpuzt9iUg/giphy-downsized-large.gif
+img: /Images/arduino-robot.gif
 dates: September - December 2019
 skills:
   - C++

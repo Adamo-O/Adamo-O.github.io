@@ -2,7 +2,7 @@
 layout: ../../components/Project.astro
 title: CommunityGrid
 href: CommunityGrid
-img: https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdG90ejh4ZDB4ZDVhNXJpZzdidmt0Mmh0aHpveW1oanE0a29lbDA4OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6Gp5IzXiGksyCDOswj/giphy.gif
+img: /Images/communitygrid.gif
 dates: September 2023 - April 2024
 skills:
   - Project Management

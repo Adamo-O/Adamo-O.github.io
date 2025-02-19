@@ -1,48 +1,12 @@
 ---
 import { cn } from "@/lib/utils";
+import { skillIcons } from "@/lib/skillIcons";
 
 interface SkillProps {
   skill: string;
 }
 
 const { skill } = Astro.props as SkillProps;
-
-export const skillIcons = {
-  '.NET': 'devicon-dot-net-plain colored',
-  '.NET Core': 'devicon-dotnetcore-plain',
-  'Arduino': 'devicon-arduino-plain colored',
-  'Azure DevOps': 'devicon-azuredevops-plain colored',
-  'Bash': 'devicon-bash-plain',
-  'C#': 'devicon-csharp-plain',
-  'C++': 'devicon-cplusplus-plain',
-  'CSS': 'devicon-css3-plain colored',
-  'Cypress': 'devicon-cypressio-plain colored',
-  'Docker': 'devicon-docker-plain colored',
-  'FastAPI': 'devicon-fastapi-plain colored',
-  'Firebase': 'devicon-firebase-plain colored',
-  'HTML': 'devicon-html5-plain colored',
-  'JavaScript': 'devicon-javascript-plain colored',
-  'jQuery': 'devicon-jquery-plain colored',
-  'Matplotlib': 'devicon-matplotlib-plain',
-  'MongoDB': 'devicon-mongodb-plain colored',
-  'MySQL': 'devicon-mysql-original',
-  'Next.js': 'devicon-nextjs-plain',
-  'Photoshop': 'devicon-photoshop-plain colored',
-  'Tailwind': 'devicon-tailwindcss-original colored',
-  'Tensorflow': 'devicon-tensorflow-original colored',
-  'PostgreSQL': 'devicon-postgresql-plain',
-  'Prisma': 'devicon-prisma-original',
-  'PySpark': 'devicon-apachespark-original colored',
-  'Python': 'devicon-python-plain colored',
-  'React': 'devicon-react-original colored',
-  'tRPC': 'devicon-trpc-plain colored',
-  'TypeScript': 'devicon-typescript-plain colored',
-  'Unity': 'devicon-unity-plain',
-  'Vite': 'devicon-vitejs-plain colored',
-  'WooCommerce': 'devicon-woocommerce-plain colored',
-  'WordPress': 'devicon-wordpress-plain',
-  'YAML': 'devicon-yaml-plain colored',
-}
 ---
 <p class={cn("py-0.5 px-2 rounded-full bg-primaryBlueDark", skillIcons[skill] ? 'flex items-center gap-x-1.5' : 'inline')}>
   {skillIcons[skill] && <i class={skillIcons[skill]}></i>}

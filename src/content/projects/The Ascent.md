@@ -2,7 +2,7 @@
 layout: ../../components/Project.astro
 title: The Ascent
 href: the-ascent
-img: https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemJhMTFkbHdyMWU5eHhtY2xpY28xZWp2cTk5aWdtazl2b3ZwMHcwYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/laDZKZqHTee1p8D0Lw/giphy.gif
+img: /Images/ascent.gif
 dates: June - August 2017
 skills:
   - Unity

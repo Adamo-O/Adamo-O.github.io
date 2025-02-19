@@ -2,7 +2,7 @@
 layout: ../../components/Project.astro
 title: CrossCast
 href: CrossCast
-img: https://media.giphy.com/media/dsYOWiR5j13TJjqoMF/giphy.gif
+img: /Images/cross-cast.gif
 dates: January 2023
 skills:
   - Project Planning
