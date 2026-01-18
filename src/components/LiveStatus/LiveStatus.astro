@@ -1,0 +1,11 @@
+---
+import { LiveStatusWidget } from "./LiveStatusWidget";
+
+const discordUserId = import.meta.env.PUBLIC_DISCORD_USER_ID;
+---
+
+{discordUserId && (
+  <div class="flex justify-center pb-4 max-md:px-6">
+    <LiveStatusWidget client:visible discordUserId={discordUserId} />
+  </div>
+)}
