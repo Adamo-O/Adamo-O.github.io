@@ -86,9 +86,9 @@ export function SpotifyStatus({ spotify, isListening }: SpotifyStatusProps) {
   if (!isListening || !spotify) {
     return (
       <div className="flex flex-col items-center gap-1">
-        <div className="relative flex items-center gap-2.5 px-4 py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-[52px]">
-          <SpotifyIcon className="w-5 h-5 text-white/40" />
-          <span className="text-base text-white/40">Not listening</span>
+        <div className="relative flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-10 sm:h-[52px]">
+          <SpotifyIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white/40" />
+          <span className="text-sm sm:text-base text-white/40">Not listening</span>
           <SleepingZzz />
         </div>
       </div>
@@ -99,7 +99,7 @@ export function SpotifyStatus({ spotify, isListening }: SpotifyStatusProps) {
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <span className="relative text-sm text-white/50 hidden sm:inline">
+      <span className="relative text-sm text-white/50">
         Now listening 🎧
         <MusicNotes />
       </span>
@@ -109,19 +109,21 @@ export function SpotifyStatus({ spotify, isListening }: SpotifyStatusProps) {
         rel="noopener noreferrer"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="group flex items-center gap-2.5 px-3 py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full transition-colors hover:bg-primaryBlueDark/20 h-[52px]"
+        className="group flex items-center gap-2 sm:gap-2.5 px-2.5 sm:px-3 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full transition-colors hover:bg-primaryBlueDark/20 h-auto sm:h-[52px]"
       >
         <img
           src={spotify.album_art_url}
           alt={spotify.album}
-          className="w-8 h-8 rounded-md object-cover"
+          className="w-6 h-6 sm:w-8 sm:h-8 rounded-md object-cover"
         />
-        <span className="text-base text-white group-hover:text-[#1DB954] transition-colors max-w-[150px] truncate">
-          {spotify.song}
-        </span>
-        <span className="text-base text-white/50 max-w-[100px] truncate hidden sm:inline">
-          {spotify.artist}
-        </span>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2.5">
+          <span className="text-sm sm:text-base text-white group-hover:text-[#1DB954] transition-colors max-w-[150px] truncate">
+            {spotify.song}
+          </span>
+          <span className="text-xs sm:text-base text-white/50 max-w-[150px] sm:max-w-[100px] truncate">
+            {spotify.artist}
+          </span>
+        </div>
       </motion.a>
     </div>
   );

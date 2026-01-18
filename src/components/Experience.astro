@@ -31,7 +31,7 @@ const {
     class="grid grid-cols-12 col-span-12 md:col-span-10 lg:col-span-11 gap-3 p-6 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 shadow-lg hover:shadow-xl hover:bg-primaryBlueDark/15 transition-all duration-300 rounded-xl mb-10"
   >
     <div class="flex flex-col justify-between gap-3 col-span-12">
-      <div class="flex justify-between items-start gap-4">
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
         <div>
           <h2 class="text-3xl lg:text-4xl mb-0.5">{position}</h2>
           <h3 class="text-xl lg:text-2xl font-bold text-white mb-0.5">{company}</h3>
@@ -43,7 +43,7 @@ const {
           </p>
         </div>
         <Image
-          class="h-20 w-auto object-contain rounded-lg shrink-0"
+          class="h-20 w-auto object-contain rounded-lg shrink-0 order-first sm:order-last"
           src={img}
           alt={`${company} logo`}
           width={200}

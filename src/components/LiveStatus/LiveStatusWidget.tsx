@@ -13,7 +13,7 @@ export function LiveStatusWidget({ discordUserId }: LiveStatusWidgetProps) {
 
   if (loading) {
     return (
-      <div className="flex flex-wrap justify-center gap-2">
+      <div className="flex flex-wrap justify-center items-end gap-2">
         <StatusSkeleton />
         <StatusSkeleton />
       </div>
@@ -63,7 +63,7 @@ export function LiveStatusWidget({ discordUserId }: LiveStatusWidgetProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-wrap justify-center gap-2"
+      className="flex flex-wrap justify-center items-end gap-2"
     >
       <SpotifyStatus
         spotify={data.spotify}
