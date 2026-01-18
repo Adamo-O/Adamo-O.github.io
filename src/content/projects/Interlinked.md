@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Project.astro
 title: Interlinked
 href: Interlinked
 img: /Images/Interlinked.png

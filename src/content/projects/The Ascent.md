@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Project.astro
 title: The Ascent
 href: the-ascent
 img: /Images/ascent.gif

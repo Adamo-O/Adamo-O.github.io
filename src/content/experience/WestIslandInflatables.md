@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Experience.astro
 position: Web Developer
 company: West Island Inflatables
 href: west-island-inflatables

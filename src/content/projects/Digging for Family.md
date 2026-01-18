@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Project.astro
 title: Digging for Family
 href: digging-for-family
 # img: https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzhvdDFybDkwamV5bjNkbzJtbXFoaXFqMHRhazJjbmJ6dXhyYXltZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AZ9ayjT5UC7cTKNmNt/giphy.gif

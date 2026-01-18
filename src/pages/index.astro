@@ -13,20 +13,39 @@ import {
 import Button from "@/components/Button.astro";
 import { cn, sortContent } from "../lib/utils";
 import Card from "@/components/Card.astro";
+import Project from "@/components/Project.astro";
+import Experience from "@/components/Experience.astro";
+import { getCollection, render } from "astro:content";
 
-const projects = await Astro.glob("../content/projects/*.md");
-const experiences = await Astro.glob("../content/experience/*.md");
+const projectsRaw = await getCollection("projects");
+const experiencesRaw = await getCollection("experience");
+
+// Pre-render content for all entries (required in Astro 5 content layer)
+const projects = await Promise.all(
+  projectsRaw.map(async (project) => {
+    const { Content } = await render(project);
+    return { ...project, Content };
+  })
+);
+
+const experiences = await Promise.all(
+  experiencesRaw.map(async (experience) => {
+    const { Content } = await render(experience);
+    return { ...experience, Content };
+  })
+);
+
 const featuredProjects = projects.filter(
   (project) =>
-    project.frontmatter.highlight &&
-    !project.frontmatter.hidden &&
-    project.frontmatter.highlightSummary
+    project.data.highlight &&
+    !project.data.hidden &&
+    project.data.highlightSummary
 );
 const featuredExperiences = experiences.filter(
   (experience) =>
-    experience.frontmatter.highlight &&
-    !experience.frontmatter.hidden &&
-    experience.frontmatter.highlightSummary
+    experience.data.highlight &&
+    !experience.data.hidden &&
+    experience.data.highlightSummary
 );
 ---
 
@@ -39,7 +58,7 @@ const featuredExperiences = experiences.filter(
         class="navSection grid px-3 grid-cols-12 gap-4 min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-3.5rem)]"
       >
         <div class="max-md:hidden md:col-span-2">
-          <h1 class="section sticky py-3 z-0 top-0 md:top-14">ABOUT</h1>
+          <div class="section sticky py-3 z-0 top-0 md:top-14" aria-hidden="true">ABOUT</div>
         </div>
         <div class="col-span-12 md:col-span-10">
           <div class="grid grid-cols-12 h-full gap-4">
@@ -55,18 +74,13 @@ const featuredExperiences = experiences.filter(
                 </h1>&nbsp;<span class="text-5xl lg:text-6xl">✌️</span>
               </div>
               <h2 class="text-3xl lg:text-4xl">
-                I'm an aspiring Software Engineer based in Montreal.&nbsp;🍁
+                I'm a PhD Student in Computer Science studying AI Agents.&nbsp;📚
               </h2>
               <h3>
-                I'm pursuing a Master's of Computer Science with a focus on
-                Computer Vision and Deep Learning.&nbsp;🤖
+                My current research projects are focused on Mobile GUI Agents, Mobile App Navigation, and Human Avatar Generation.&nbsp;🤖
               </h3>
               <h3>
-                My background is mainly in full-stack web development with
-                modern technologies including Next.js.&nbsp;🧑‍💻
-              </h3>
-              <h3>
-                If you have a project in mind, feel free to reach out!&nbsp;🚀
+                I do side projects in full-stack web development, so feel free to reach out if you have a project in mind!&nbsp;🧑‍💻
               </h3>
               <div class="text-start flex flex-row gap-3 flex-wrap pt-2">
                 <Button
@@ -82,7 +96,7 @@ const featuredExperiences = experiences.filter(
                   Contact Me</Button
                 >
                 <Button
-                  href="Adamo Orsini Resume 2024.pdf"
+                  href="Adamo_Orsini_Resume_2026.pdf"
                   newTab
                   className="w-full"
                   variant={"outline"}
@@ -135,17 +149,6 @@ const featuredExperiences = experiences.filter(
               >
                 <Github class="w-8 h-8" title="Adamo-O on GitHub" />
               </Button>
-              <Button
-                href="https://www.instagram.com/adamoorsini/"
-                display="block"
-                variant={"ghost"}
-                size={"icon"}
-                staticSize
-                newTab
-                title="@adamoorsini"
-              >
-                <Instagram class="w-8 h-8" title="@adamoorsini" />
-              </Button>
             </div>
           </div>
         </div>
@@ -154,7 +157,7 @@ const featuredExperiences = experiences.filter(
         class="grid grid-cols-12 px-4 sm:px-6 md:px-3 gap-4 min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-3.5rem)]"
       >
         <div class="max-md:hidden col-span-2">
-          <h1 class="section sticky pb-3 z-0 top-3 md:top-16">FEATURED</h1>
+          <div class="section sticky pb-3 z-0 top-3 md:top-16" aria-hidden="true">FEATURED</div>
         </div>
         <div
           id="featured"
@@ -166,28 +169,28 @@ const featuredExperiences = experiences.filter(
             <div
               class="md:hidden col-span-12 md:col-span-10 lg:col-span-11 flex gap-2 mb-4"
             >
-              <h1
+              <h2
                 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight mx-4"
               >
                 Featured
-              </h1>
+              </h2>
             </div>
             <div
               class="col-span-12 md:col-span-10 lg:col-span-11 flex flex-col gap-4 mb-8"
             >
-              <h1
+              <h2
                 class="text-3xl lg:text-4xl font-bold text-primaryBlueLight mx-4"
               >
                 Featured Projects
-              </h1>
+              </h2>
               <div class="grid 2xl:grid-flow-col gap-4">
                 {
                   featuredProjects.map((project) => (
                     <Card
-                      title={project.frontmatter.title}
-                      body={project.frontmatter.highlightSummary}
-                      href={`#${project.frontmatter.href}`}
-                      image={project.frontmatter.img}
+                      title={project.data.title}
+                      body={project.data.highlightSummary}
+                      href={`#${project.data.href}`}
+                      image={project.data.img}
                     />
                   ))
                 }
@@ -196,20 +199,20 @@ const featuredExperiences = experiences.filter(
             <div
               class="col-span-12 md:col-span-10 lg:col-span-11 flex flex-col gap-4"
             >
-              <h1
+              <h2
                 class="text-3xl lg:text-4xl font-bold text-primaryBlueLight mx-4"
               >
                 Featured Experience
-              </h1>
+              </h2>
               <div class="grid 2xl:grid-flow-col gap-4">
                 {
                   featuredExperiences.map((experience) => (
                     <Card
-                      title={experience.frontmatter.position}
-                      subtitle={experience.frontmatter.company}
-                      body={experience.frontmatter.highlightSummary}
-                      href={`#${experience.frontmatter.href}`}
-                      image={experience.frontmatter.img}
+                      title={experience.data.position}
+                      subtitle={experience.data.company}
+                      body={experience.data.highlightSummary}
+                      href={`#${experience.data.href}`}
+                      image={experience.data.img}
                     />
                   ))
                 }
@@ -224,7 +227,7 @@ const featuredExperiences = experiences.filter(
       </div>
       <div class="grid grid-cols-12 px-4 sm:px-6 md:px-3 gap-4">
         <div class="max-md:hidden col-span-2 pt-3">
-          <h1 class="section sticky pb-3 z-0 top-3 md:top-16">PROJECTS</h1>
+          <div class="section sticky pb-3 z-0 top-3 md:top-16" aria-hidden="true">PROJECTS</div>
         </div>
         <div
           id="projects"
@@ -232,11 +235,11 @@ const featuredExperiences = experiences.filter(
         >
           <div class="md:hidden grid grid-cols-12 gap-4 mb-6">
             <div class="col-span-12 md:col-span-10 lg:col-span-11 flex gap-2">
-              <h1
+              <h2
                 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight mx-4"
               >
                 Projects
-              </h1>
+              </h2>
             </div>
             <div
               class="col-span-2 lg:col-span-1 max-md:hidden md:flex pt-3 pl-1 border-s"
@@ -245,25 +248,22 @@ const featuredExperiences = experiences.filter(
           </div>
           {
             projects
-              .filter((project) => !project.frontmatter.hidden)
-              .sort((a, b) =>
-                sortContent(a.frontmatter.dates, b.frontmatter.dates)
-              )
+              .filter((project) => !project.data.hidden)
+              .sort((a, b) => sortContent(a.data.dates, b.data.dates))
               .map((project, i, pkts) => {
                 const nextSameSubtitle =
                   i < pkts.length - 1 &&
-                  project.frontmatter.subtitle ===
-                    pkts[i + 1].frontmatter.subtitle;
+                  project.data.subtitle === pkts[i + 1].data.subtitle;
                 const prevSameSubtitle =
-                  i > 0 &&
-                  project.frontmatter.subtitle ===
-                    pkts[i - 1].frontmatter.subtitle;
+                  i > 0 && project.data.subtitle === pkts[i - 1].data.subtitle;
                 const next = pkts[i + 1];
 
                 if (prevSameSubtitle) return;
                 return (
                   <div class="grid grid-cols-12 gap-4">
-                    <project.Content />
+                    <Project data={project.data} frontmatter={project.data}>
+                      <project.Content />
+                    </Project>
                     <div
                       class={cn(
                         "col-span-2 lg:col-span-1 max-md:hidden md:flex pt-3 pl-1 border-s",
@@ -271,12 +271,16 @@ const featuredExperiences = experiences.filter(
                       )}
                     >
                       <div>
-                        <h1 class="subtitle text-3xl sticky top-3 md:top-16">
-                          {project.frontmatter.subtitle}
-                        </h1>
+                        <div class="subtitle text-3xl sticky top-3 md:top-16" aria-hidden="true">
+                          {project.data.subtitle}
+                        </div>
                       </div>
                     </div>
-                    {nextSameSubtitle && <next.Content />}
+                    {nextSameSubtitle && (
+                      <Project frontmatter={next.data}>
+                        <next.Content />
+                      </Project>
+                    )}
                   </div>
                 );
               })
@@ -285,7 +289,7 @@ const featuredExperiences = experiences.filter(
       </div>
       <div class="grid grid-cols-12 px-4 sm:px-6 md:px-3 gap-4">
         <div class="max-md:hidden col-span-2 pt-3 md:border-r">
-          <h1 class="section sticky pb-3 z-0 top-3 md:top-16">EXPERIENCE</h1>
+          <div class="section sticky pb-3 z-0 top-3 md:top-16" aria-hidden="true">EXPERIENCE</div>
         </div>
         <div
           id="experience"
@@ -293,11 +297,11 @@ const featuredExperiences = experiences.filter(
         >
           <div class="md:hidden grid grid-cols-12 gap-4 mb-6">
             <div class="col-span-12 md:col-span-10 lg:col-span-11 flex gap-2">
-              <h1
+              <h2
                 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight mx-4"
               >
                 Experience
-              </h1>
+              </h2>
             </div>
             <div
               class="col-span-2 lg:col-span-1 max-md:hidden md:flex pt-3 pl-1 border-s"
@@ -306,11 +310,13 @@ const featuredExperiences = experiences.filter(
           </div>
           {
             experiences
-              .filter((experience) => !experience.frontmatter.hidden)
-              .sort((a, b) =>
-                sortContent(a.frontmatter.dates, b.frontmatter.dates)
-              )
-              .map((experience) => <experience.Content />)
+              .filter((experience) => !experience.data.hidden)
+              .sort((a, b) => sortContent(a.data.dates, b.data.dates))
+              .map((experience) => (
+                <Experience frontmatter={experience.data}>
+                  <experience.Content />
+                </Experience>
+              ))
           }
         </div>
       </div>
@@ -319,13 +325,13 @@ const featuredExperiences = experiences.filter(
         class="px-7 md:px-3 scroll-m-2 md:-scroll-m-2 navSection grid grid-cols-12 h-[calc(100vh-5.5rem)] md:h-[calc(100vh-3.5rem)]"
       >
         <div class="max-md:hidden col-span-2">
-          <h1 class="section sticky z-0 top-3 md:top-16">CONTACT</h1>
+          <div class="section sticky z-0 top-3 md:top-16" aria-hidden="true">CONTACT</div>
         </div>
         <div class="col-span-12 md:col-span-8 lg:col-span-9 pt-4">
           <div class="md:hidden mb-6">
-            <h1 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight">
+            <h2 class="text-5xl lg:text-6xl font-bold text-primaryBlueLight">
               Contact
-            </h1>
+            </h2>
           </div>
           <div class="grid grid-cols-12 pb-3 mb-3">
             <div class="col-span-12 lg:col-span-8 xl:col-span-6 space-y-1">
@@ -372,7 +378,7 @@ const featuredExperiences = experiences.filter(
               </p>
               <div class="flex flex-row gap-3 flex-wrap">
                 <Button
-                  href="Adamo Orsini Resume 2024.pdf"
+                  href="Adamo_Orsini_Resume_2026.pdf"
                   newTab
                   className="w-full"
                 >
@@ -420,16 +426,6 @@ const featuredExperiences = experiences.filter(
                 title="Adamo-O on GitHub"
               >
                 <Github size="35" title="Adamo-O on GitHub" />
-              </Button>
-              <Button
-                href="https://www.instagram.com/adamoorsini/"
-                variant={"ghost"}
-                size={"icon"}
-                staticSize
-                newTab
-                title="@adamoorsini"
-              >
-                <Instagram size="35" title="@adamoorsini" />
               </Button>
             </div>
           </div>

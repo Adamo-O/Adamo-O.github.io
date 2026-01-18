@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Experience.astro
 position: Machine Learning Consultant
 company: MECP
 href: MECP

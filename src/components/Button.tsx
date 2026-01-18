@@ -8,6 +8,7 @@ interface Props extends ButtonProps {
   className?: string;
   display?: "block" | "inline-block" | "flex" | "inline" | "inline-flex";
   staticSize?: boolean;
+  children?: React.ReactNode;
 }
 
 const Button = ({
@@ -18,18 +19,20 @@ const Button = ({
   display = "inline",
   variant = "default",
   staticSize,
+  children,
   ...props
 }: Props) => (
   <a
     href={href}
     target={newTab ? "_blank" : "_self"}
+    rel={newTab ? "noopener noreferrer" : undefined}
     className={cn("w-fit h-fit", !staticSize && "max-md:w-full")}
     style={{ display }}
     title={title}
     aria-label={title}
   >
     <ShadcnButton variant={variant} {...props} className={className}>
-      <slot />
+      {children}
     </ShadcnButton>
   </a>
 );

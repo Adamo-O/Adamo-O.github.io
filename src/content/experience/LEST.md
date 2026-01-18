@@ -1,11 +1,11 @@
 ---
-layout: ../../components/Experience.astro
 position: Software Engineer Intern
 company: Laboratory of Energy Policy (LEST)
 href: LEST
 type: Internship
 dates: May - August 2023
-img: /Images/value-tool.gif
+img: /Images/LestLogo.jfif
+# img: /Images/value-tool.gif
 skills:
   - Software Architecture
   - Next.js

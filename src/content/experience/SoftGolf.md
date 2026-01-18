@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Experience.astro
 position: Chief Technology Officer
 company: SoftGolf
 href: SoftGolf

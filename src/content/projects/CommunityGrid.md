@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Project.astro
 title: CommunityGrid
 href: CommunityGrid
 img: /Images/communitygrid.gif

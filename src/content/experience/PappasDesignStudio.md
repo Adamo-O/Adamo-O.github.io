@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Experience.astro
 position: Web Developer
 company: Pappas Design Studio Inc.
 href: pappas-design-studio

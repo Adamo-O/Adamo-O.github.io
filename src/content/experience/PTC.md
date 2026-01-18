@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Experience.astro
 position: Software Engineer Intern
 company: PTC Inc.
 href: PTC

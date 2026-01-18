@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Experience.astro
 position: Customer Experience Representative
 company: Indigo Books and Music Inc.
 href: indigo

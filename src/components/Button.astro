@@ -12,7 +12,7 @@ interface Props extends ButtonProps {
 
 const { href, title, newTab=false, className, display='inline', variant='default', staticSize, ...props } = Astro.props;
 ---
-<a href={href} target={newTab ? "_blank" : "_self"} class={cn('w-fit h-fit', !staticSize && 'max-md:w-full')} style={`display: ${display}`} title={title} aria-label={title}>
+<a href={href} target={newTab ? "_blank" : "_self"} rel={newTab ? "noopener noreferrer" : undefined} class={cn('w-fit h-fit', !staticSize && 'max-md:w-full')} style={`display: ${display}`} title={title} aria-label={title}>
   <ShadcnButton variant={variant} {...props} className={className}>
     <slot />
   </ShadcnButton>

@@ -13,7 +13,7 @@ const { href, title, subtitle, image, body } = Astro.props;
 ---
 
 <div
-  class="group link-card flex max-md:flex-col bg-primaryBlueBackground drop-shadow-md rounded-md transition md:h-full items-center justify-center hover:bg-primaryBlueDark/30 hover:drop-shadow-none"
+  class="group link-card flex max-md:flex-col bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 shadow-lg rounded-xl transition-all duration-300 md:h-full items-center justify-center hover:bg-primaryBlueDark/15 hover:shadow-xl"
 >
   <a
     href={href}
@@ -40,7 +40,7 @@ const { href, title, subtitle, image, body } = Astro.props;
         </p>
       </div>
     </div>
-    <div class="max-lg:hidden">
+    <div class="max-lg:hidden" aria-hidden="true">
       <MoveUpRight size="40" class="group-hover:animate-bounce transition" />
     </div>
   </a>

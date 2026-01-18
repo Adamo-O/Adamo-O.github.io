@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Project.astro
 title: Independent Traversal Arduino Robot
 href: arduino-robot
 img: /Images/arduino-robot.gif

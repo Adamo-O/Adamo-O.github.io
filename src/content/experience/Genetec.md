@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Experience.astro
 position: Software Developer Intern
 company: Genetec Inc.
 href: genetec

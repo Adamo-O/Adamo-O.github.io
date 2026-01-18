@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import { ExternalLink } from "lucide-astro";
 import Skill from "./Skill.astro";
-import { motion } from "framer-motion";
 
 export interface ExperienceProps {
   frontmatter: {
@@ -27,43 +26,35 @@ const {
 } = Astro.props as ExperienceProps;
 ---
 
-<motion.div id={href} className="grid grid-cols-12 gap-4">
+<div id={href} class="snap-card grid grid-cols-12 gap-4">
   <div
-    class="grid grid-cols-12 col-span-12 md:col-span-10 lg:col-span-11 gap-3 p-6 bg-primaryBlueDark/10 rounded-xl mb-10"
+    class="grid grid-cols-12 col-span-12 md:col-span-10 lg:col-span-11 gap-3 p-6 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 shadow-lg hover:shadow-xl hover:bg-primaryBlueDark/15 transition-all duration-300 rounded-xl mb-10"
   >
-    <div class="col-span-12">
-      <h2 class="text-3xl lg:text-4xl mb-1">{position}</h2>
-      <h3 class="text-2xl font-bold lg:text-3xl text-white mb-2">{company}</h3>
-      <h4 class="text-xl mb-2">{dates}</h4>
-      <p
-        class="py-0.5 text-lg px-2 rounded-full border-2 border-primaryBlueDark inline"
-      >
-        {type}
-      </p>
-    </div>
-    <div
-      class="col-span-12 lg:col-span-6 mb-3 flex flex-col place-content-center text-center"
-    >
-      <Image
-        class="w-1/2 md:max-w-[750px] md:w-full object-contain object-left aspect-video max-h-64"
-        src={img}
-        alt={`${position} ${company} Adamo Orsini`}
-        width={750}
-        height={300}
-      />
-    </div>
-    <div class="flex flex-col justify-between gap-4 col-span-12 lg:col-span-6 mb-3">
-      <div>
-        <h3 class="text-2xl lg:text-3xl mb-2">Summary</h3>
-        <div class="text-md mb-3">
-          <slot />
+    <div class="flex flex-col justify-between gap-3 col-span-12">
+      <div class="flex justify-between items-start gap-4">
+        <div>
+          <h2 class="text-3xl lg:text-4xl mb-0.5">{position}</h2>
+          <h3 class="text-xl lg:text-2xl font-bold text-white mb-0.5">{company}</h3>
+          <p class="text-sm text-gray-400 mb-2">{dates}</p>
+          <p
+            class="py-0.5 text-sm px-2 -ml-2 rounded-full border-2 border-primaryBlueDark inline"
+          >
+            {type}
+          </p>
         </div>
+        <Image
+          class="h-20 w-auto object-contain rounded-lg shrink-0"
+          src={img}
+          alt={`${company} logo`}
+          width={200}
+          height={80}
+        />
       </div>
-      <div>
-        <h3 class="text-2xl lg:text-3xl mb-2">Skills</h3>
-        <div class="flex gap-1.5 flex-wrap text-md mb-3">
-          {skills.map((skill) => <Skill skill={skill} />)}
-        </div>
+      <div class="text-base">
+        <slot />
+      </div>
+      <div class="flex gap-1.5 flex-wrap">
+        {skills.map((skill) => <Skill skill={skill} />)}
       </div>
       <div class="flex gap-3 flex-wrap">
         {
@@ -76,4 +67,4 @@ const {
       </div>
     </div>
   </div>
-</motion.div>
+</div>

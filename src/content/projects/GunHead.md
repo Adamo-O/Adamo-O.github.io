@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Project.astro
 title: GunHead
 href: GunHead
 img: /Images/GunHead.png

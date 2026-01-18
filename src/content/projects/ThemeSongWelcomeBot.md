@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Project.astro
 title: Theme Song Welcome Bot
 href: theme-song-welcome-bot
 img: /Images/theme-song-bot.gif

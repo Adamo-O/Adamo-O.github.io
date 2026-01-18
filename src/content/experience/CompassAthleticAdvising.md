@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Experience.astro
 position: Web Developer
 company: Compass Athletic Advising
 href: compass-athletic-advising

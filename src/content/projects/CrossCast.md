@@ -1,5 +1,4 @@
 ---
-layout: ../../components/Project.astro
 title: CrossCast
 href: CrossCast
 img: /Images/cross-cast.gif

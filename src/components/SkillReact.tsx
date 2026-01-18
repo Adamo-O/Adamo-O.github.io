@@ -6,15 +6,15 @@ interface SkillProps {
 }
 
 const Skill = ({ skill }: SkillProps) => (
-  <p
+  <span
     className={cn(
-      "py-0.5 px-2 rounded-full bg-primaryBlueDark",
-      skillIcons[skill] ? "flex items-center gap-x-1.5" : "inline"
+      "py-0.5 px-1.5 text-xs rounded-full bg-primaryBlueDark/60 border border-white/10",
+      skillIcons[skill] ? "inline-flex items-center gap-x-1" : "inline"
     )}
   >
-    {skillIcons[skill] && <i className={skillIcons[skill]}></i>}
+    {skillIcons[skill] && <i className={cn(skillIcons[skill], "text-[0.7rem]")} aria-hidden="true"></i>}
     {skill}
-  </p>
+  </span>
 );
 
 export default Skill;

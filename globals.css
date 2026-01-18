@@ -1,7 +1,21 @@
 @tailwind base;
   @tailwind components;
   @tailwind utilities;
-  
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+.navSection {
+    scroll-snap-align: start;
+}
+
+.snap-card {
+    scroll-snap-align: start;
+    scroll-margin-top: 1rem;
+}
+
 ::-moz-selection {
     color: white;
     background-color: #344f97;
@@ -113,5 +127,22 @@ h5 {
     }
     100% {
         background-position: 150% 50%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+        scroll-snap-type: none;
+    }
+
+    .animate-gradient {
+        animation: none;
+    }
+
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
