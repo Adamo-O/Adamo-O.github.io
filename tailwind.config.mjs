@@ -13,6 +13,10 @@ export default {
         "2xl": "1400px",
       },
     },
+    screens: {
+      xs: "480px",
+      ...defaultTheme.screens,
+    },
     extend: {
       fontFamily: {
         sans: ['Inter Tight Variable', ...defaultTheme.fontFamily.sans],
