@@ -4,7 +4,17 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
+    /* Use proximity instead of mandatory - less aggressive, works better with anchor links */
+    scroll-snap-type: y proximity;
+}
+
+/* On mobile, disable scroll-snap entirely to fix anchor navigation */
+@media (max-width: 767px) {
+    html {
+        scroll-snap-type: none;
+        /* Account for fixed bottom nav (~72px) */
+        scroll-padding-bottom: 5rem;
+    }
 }
 
 .navSection {
