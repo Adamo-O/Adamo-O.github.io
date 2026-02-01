@@ -4,7 +4,7 @@ company: Laboratory of Energy Policy (LEST)
 href: LEST
 type: Internship
 dates: May - August 2023
-img: /Images/LestLogo.jfif
+img: /Images/LestLogo.jpg
 # img: /Images/value-tool.gif
 skills:
   - Software Architecture
