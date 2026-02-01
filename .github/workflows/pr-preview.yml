@@ -35,7 +35,10 @@ jobs:
         run: npm install -g surge
 
       - name: Deploy to Surge
-        run: surge ./dist https://adamo-portfolio-pr-${{ github.event.number }}.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        run: surge ./dist https://adamo-portfolio-pr-${{ github.event.number }}.surge.sh
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
       - name: Comment PR with preview URL
         uses: actions/github-script@v7
