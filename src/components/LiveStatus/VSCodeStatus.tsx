@@ -136,12 +136,10 @@ export function VSCodeStatus({ activities }: VSCodeStatusProps) {
 
   if (!vscodeActivity) {
     return (
-      <div className="flex flex-col items-center gap-1">
-        <div className="relative flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-10 sm:h-[52px]">
-          <VSCodeIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white/40" />
-          <span className="text-sm sm:text-base text-white/40">Not coding</span>
-          <SleepingZzz />
-        </div>
+      <div className="relative flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-12 sm:h-[52px]">
+        <VSCodeIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white/50" />
+        <span className="text-sm sm:text-base text-white/50">Not coding</span>
+        <SleepingZzz />
       </div>
     );
   }
@@ -157,35 +155,32 @@ export function VSCodeStatus({ activities }: VSCodeStatusProps) {
       : null;
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <TypewriterLabel />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="flex items-center gap-2 sm:gap-2.5 px-2.5 sm:px-3 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-auto sm:h-[52px]"
-      >
-        {fileIconUrl ? (
-          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-md overflow-hidden bg-[#1e1e1e] flex items-center justify-center">
-            <img
-              src={fileIconUrl}
-              alt=""
-              className="w-8 h-8 sm:w-10 sm:h-10 scale-150 object-contain"
-            />
-          </div>
-        ) : (
-          <VSCodeIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#007ACC]" />
-        )}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2.5">
-          <span className="text-sm sm:text-base text-white max-w-[200px] truncate">
-            {filename}
-          </span>
-          {workspace && (
-            <span className="text-xs sm:text-base text-white/50 max-w-[150px] sm:max-w-[180px] truncate">
-              {workspace}
-            </span>
-          )}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-12 sm:h-[52px]"
+    >
+      {fileIconUrl ? (
+        <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-md overflow-hidden bg-[#1e1e1e] flex items-center justify-center">
+          <img
+            src={fileIconUrl}
+            alt=""
+            className="w-8 h-8 sm:w-10 sm:h-10 scale-150 object-contain"
+          />
         </div>
-      </motion.div>
-    </div>
+      ) : (
+        <VSCodeIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#007ACC]" />
+      )}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2.5">
+        <span className="text-sm sm:text-base text-white max-w-[200px] truncate">
+          {filename}
+        </span>
+        {workspace && (
+          <span className="text-xs sm:text-base text-white/50 max-w-[150px] sm:max-w-[180px] truncate">
+            {workspace}
+          </span>
+        )}
+      </div>
+    </motion.div>
   );
 }

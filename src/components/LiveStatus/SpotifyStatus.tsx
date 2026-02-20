@@ -85,12 +85,10 @@ function SpotifyIcon({ className }: { className?: string }) {
 export function SpotifyStatus({ spotify, isListening }: SpotifyStatusProps) {
   if (!isListening || !spotify) {
     return (
-      <div className="flex flex-col items-center gap-1">
-        <div className="relative flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-10 sm:h-[52px]">
-          <SpotifyIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white/40" />
-          <span className="text-sm sm:text-base text-white/40">Not listening</span>
-          <SleepingZzz />
-        </div>
+      <div className="relative flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-12 sm:h-[52px]">
+        <SpotifyIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white/50" />
+        <span className="text-sm sm:text-base text-white/50">Not listening</span>
+        <SleepingZzz />
       </div>
     );
   }
@@ -98,33 +96,28 @@ export function SpotifyStatus({ spotify, isListening }: SpotifyStatusProps) {
   const trackUrl = `https://open.spotify.com/track/${spotify.track_id}`;
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <span className="relative text-sm text-white/50">
-        Now listening 🎧
-        <MusicNotes />
-      </span>
-      <motion.a
-        href={trackUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="group flex items-center gap-2 sm:gap-2.5 px-2.5 sm:px-3 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full transition-colors hover:bg-primaryBlueDark/20 h-auto sm:h-[52px]"
-      >
-        <img
-          src={spotify.album_art_url}
-          alt={spotify.album}
-          className="w-6 h-6 sm:w-8 sm:h-8 rounded-md object-cover"
-        />
-        <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2.5">
-          <span className="text-sm sm:text-base text-white group-hover:text-[#1DB954] transition-colors max-w-[150px] truncate">
-            {spotify.song}
-          </span>
-          <span className="text-xs sm:text-base text-white/50 max-w-[150px] sm:max-w-[100px] truncate">
-            {spotify.artist}
-          </span>
-        </div>
-      </motion.a>
-    </div>
+    <motion.a
+      href={trackUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="relative group flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full transition-colors hover:bg-primaryBlueDark/20 h-12 sm:h-[52px]"
+    >
+      <img
+        src={spotify.album_art_url}
+        alt={spotify.album}
+        className="w-7 h-7 sm:w-8 sm:h-8 rounded-md object-cover"
+      />
+      <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2.5">
+        <span className="text-sm sm:text-base text-white group-hover:text-[#1DB954] transition-colors max-w-[150px] truncate">
+          {spotify.song}
+        </span>
+        <span className="text-xs sm:text-base text-white/50 max-w-[150px] sm:max-w-[100px] truncate">
+          {spotify.artist}
+        </span>
+      </div>
+      <MusicNotes />
+    </motion.a>
   );
 }

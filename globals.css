@@ -22,7 +22,6 @@ html {
 }
 
 .snap-card {
-    scroll-snap-align: start;
     scroll-margin-top: 1rem;
 }
 

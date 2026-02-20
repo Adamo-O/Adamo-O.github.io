@@ -56,13 +56,13 @@ const featuredExperiences = experiences.filter(
     <div class="w-full">
       <div
         id="about"
-        class="navSection grid grid-cols-12 gap-4 min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-3.5rem)]"
+        class="navSection grid grid-cols-12 md:px-3 gap-4 min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-3.5rem)]"
       >
         <div class="max-md:hidden md:col-span-2">
           <div class="section sticky py-3 z-0 top-0 md:top-14" aria-hidden="true">ABOUT</div>
         </div>
         <div class="col-span-12 md:col-span-10 flex flex-col">
-          <div class="grid grid-cols-12 px-1 xs:grid-rows-3 flex-1 gap-2">
+          <div class="grid grid-cols-12 px-1 md:px-0 grid-rows-[1fr_auto] xs:grid-rows-3 flex-1 gap-x-4 gap-y-2">
             <div
               class="space-y-3 xs:row-span-2 col-span-12 max-md:px-6 md:col-span-10 lg:col-span-11 text-start self-center xs:self-end"
             >
@@ -111,11 +111,11 @@ const featuredExperiences = experiences.filter(
                 >
               </div>
             </div>
-            <div class="hidden xs:flex xs:row-span-1 col-span-12 max-md:px-6 md:col-span-10 lg:col-span-11 text-start self-center xs:self-end justify-center sm:pb-0">
+            <div class="flex xs:row-span-1 col-span-12 max-md:px-6 md:col-span-10 lg:col-span-11 text-start self-end justify-center pb-4 xs:pb-0 sm:pb-0">
               <LiveStatus />
             </div>    
             <div
-              class="flex flex-col gap-4 max-md:hidden md:inline self-end border-s aboutIcons"
+              class="flex flex-col gap-4 max-md:hidden md:inline col-span-1 self-end pl-1 border-s aboutIcons"
             >
               <Button
                 href="https://www.linkedin.com/in/adamo-orsini/"
