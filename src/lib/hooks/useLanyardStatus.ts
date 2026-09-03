@@ -1,5 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import type { LanyardData, LanyardResponse } from "@/components/LiveStatus/types";
+import type {
+  LanyardData,
+  LanyardErrorResponse,
+  LanyardResponse,
+} from "@/components/LiveStatus/types";
 
 const LANYARD_API_URL = "https://api.lanyard.rest/v1/users";
 const POLL_INTERVAL = 30000; // 30 seconds
@@ -30,13 +34,14 @@ export function useLanyardStatus(userId: string): UseLanyardStatusReturn {
         throw new Error(`Failed to fetch status: ${response.statusText}`);
       }
 
-      const json: LanyardResponse = await response.json();
+      const json = (await response.json()) as LanyardResponse;
 
-      if (!json.success) {
-        if (json.error.code === "user_not_monitored") {
+      if (json.success === false) {
+        const apiError: LanyardErrorResponse["error"] = json.error;
+        if (apiError.code === "user_not_monitored") {
           throw new Error("Join discord.gg/lanyard to enable status");
         }
-        throw new Error(json.error.message || "Lanyard API error");
+        throw new Error(apiError.message || "Lanyard API error");
       }
 
       setData(json.data);

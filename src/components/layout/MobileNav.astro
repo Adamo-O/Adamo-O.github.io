@@ -1,0 +1,36 @@
+---
+/**
+ * Fixed bottom tab bar below md: About, Research, Projects, Experience, CV.
+ * aria-current is driven by scrollSpy.ts via data-nav-link.
+ */
+import { MOBILE_ITEMS } from "./nav";
+import NavIcon from "./NavIcon.astro";
+---
+
+<nav
+  aria-label="Mobile navigation"
+  class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg/95 pb-[env(safe-area-inset-bottom)] md:hidden"
+>
+  <ul class="grid grid-cols-5">
+    {
+      MOBILE_ITEMS.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            data-nav-link
+            class="group flex flex-col items-center gap-1 py-2 text-[11px] font-medium text-muted transition-colors duration-fast aria-[current=true]:text-accent"
+          >
+            <span class="flex h-7 w-11 items-center justify-center rounded-pill transition-colors duration-fast group-aria-[current=true]:bg-accent-soft/80 dark:group-aria-[current=true]:bg-accent-soft/15">
+              {item.icon && <NavIcon name={item.icon} size={18} />}
+            </span>
+            <span>{item.label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  import "@/scripts/scrollSpy";
+</script>

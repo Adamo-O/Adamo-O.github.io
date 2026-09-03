@@ -1,5 +1,8 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { LanyardSpotify } from "./types";
+
+const PILL =
+  "relative flex h-12 items-center gap-2 rounded-pill border border-line bg-surface px-3 py-1.5 shadow-card sm:h-[52px] sm:gap-2.5 sm:px-4 sm:py-2";
 
 function SleepingZzz() {
   const shouldReduceMotion = useReducedMotion();
@@ -9,11 +12,11 @@ function SleepingZzz() {
   }
 
   return (
-    <div className="absolute -top-1 -right-3 w-6 h-5 pointer-events-none">
+    <div className="pointer-events-none absolute -right-3 -top-1 h-5 w-6">
       {[0, 1, 2].map((i) => (
-        <motion.span
+        <m.span
           key={i}
-          className="absolute text-white/40 font-bold"
+          className="absolute font-bold text-muted/60"
           style={{
             left: `${i * 6}px`,
             fontSize: `${8 + i * 2}px`,
@@ -28,7 +31,7 @@ function SleepingZzz() {
           }}
         >
           z
-        </motion.span>
+        </m.span>
       ))}
     </div>
   );
@@ -42,11 +45,11 @@ function MusicNotes() {
   }
 
   return (
-    <div className="absolute -top-2 -right-1 w-4 h-5 pointer-events-none">
+    <div className="pointer-events-none absolute -right-1 -top-2 h-5 w-4">
       {[0, 1, 2].map((i) => (
-        <motion.span
+        <m.span
           key={i}
-          className="absolute text-[#1DB954] text-[10px] font-bold"
+          className="absolute text-[10px] font-bold text-[#1DB954]"
           style={{ left: `${i * 4}px` }}
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: [0, 1, 1, 0], y: -16 }}
@@ -58,7 +61,7 @@ function MusicNotes() {
           }}
         >
           ♪
-        </motion.span>
+        </m.span>
       ))}
     </div>
   );
@@ -85,9 +88,9 @@ function SpotifyIcon({ className }: { className?: string }) {
 export function SpotifyStatus({ spotify, isListening }: SpotifyStatusProps) {
   if (!isListening || !spotify) {
     return (
-      <div className="relative flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-12 sm:h-[52px]">
-        <SpotifyIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white/50" />
-        <span className="text-sm sm:text-base text-white/50">Not listening</span>
+      <div className={PILL}>
+        <SpotifyIcon className="h-4 w-4 text-muted sm:h-5 sm:w-5" />
+        <span className="text-sm text-muted sm:text-base">Not listening</span>
         <SleepingZzz />
       </div>
     );
@@ -96,28 +99,28 @@ export function SpotifyStatus({ spotify, isListening }: SpotifyStatusProps) {
   const trackUrl = `https://open.spotify.com/track/${spotify.track_id}`;
 
   return (
-    <motion.a
+    <m.a
       href={trackUrl}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="relative group flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full transition-colors hover:bg-primaryBlueDark/20 h-12 sm:h-[52px]"
+      className={`${PILL} group pl-3.5 transition-colors hover:border-[#1DB954]/60`}
     >
       <img
         src={spotify.album_art_url}
         alt={spotify.album}
-        className="w-7 h-7 sm:w-8 sm:h-8 rounded-md object-cover"
+        className="h-7 w-7 rounded-sm object-cover sm:h-8 sm:w-8"
       />
       <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2.5">
-        <span className="text-sm sm:text-base text-white group-hover:text-[#1DB954] transition-colors max-w-[150px] truncate">
+        <span className="max-w-[150px] truncate text-sm text-fg transition-colors group-hover:text-[#1DB954] sm:text-base">
           {spotify.song}
         </span>
-        <span className="text-xs sm:text-base text-white/50 max-w-[150px] sm:max-w-[100px] truncate">
+        <span className="max-w-[150px] truncate text-xs text-muted sm:max-w-[100px] sm:text-base">
           {spotify.artist}
         </span>
       </div>
       <MusicNotes />
-    </motion.a>
+    </m.a>
   );
 }

@@ -4,51 +4,53 @@ import defaultTheme from "tailwindcss/defaultTheme";
 export default {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-  prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     screens: {
       xs: "480px",
       ...defaultTheme.screens,
     },
     extend: {
-      fontFamily: {
-        sans: ['Inter Tight Variable', ...defaultTheme.fontFamily.sans],
-      },
       colors: {
-        primaryBlue: '#344f97',
-        primaryBlueDark: '#324372',
-        primaryBlueLight: '#7690d6',
-        primaryBlueBackground: '#23262d',
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        bg: "rgb(var(--c-bg) / <alpha-value>)",
+        surface: "rgb(var(--c-surface) / <alpha-value>)",
+        fg: "rgb(var(--c-fg) / <alpha-value>)",
+        muted: "rgb(var(--c-muted) / <alpha-value>)",
+        line: "rgb(var(--c-line) / <alpha-value>)",
+        accent: {
+          DEFAULT: "rgb(var(--c-accent) / <alpha-value>)",
+          strong: "rgb(var(--c-accent-strong) / <alpha-value>)",
+          soft: "rgb(var(--c-accent-soft) / <alpha-value>)",
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        animatedgradient: {
-          to: { backgroundPosition: '150% 50%'},
+        badge: {
+          review: "rgb(var(--c-badge-review) / <alpha-value>)",
+          accepted: "rgb(var(--c-badge-accepted) / <alpha-value>)",
         },
       },
-      backgroundSize: {
-        '300%': '300%',
+      fontFamily: {
+        sans: ['"Inter Tight Variable"', ...defaultTheme.fontFamily.sans],
+        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        gradient: 'animatedgradient 6s linear infinite',
+      fontSize: {
+        display: ["var(--text-display)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
+        h2: ["var(--text-h2)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
+      },
+      borderRadius: {
+        sm: "var(--radius-sm)",
+        DEFAULT: "var(--radius)",
+        pill: "var(--radius-pill)",
+      },
+      transitionDuration: {
+        fast: "var(--dur-fast)",
+        DEFAULT: "var(--dur)",
+        slow: "var(--dur-slow)",
+      },
+      transitionTimingFunction: {
+        DEFAULT: "var(--ease)",
+      },
+      boxShadow: {
+        card: "var(--shadow-card)",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [],
+};

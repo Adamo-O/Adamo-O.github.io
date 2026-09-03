@@ -4,12 +4,15 @@ company: Pappas Design Studio Inc.
 href: pappas-design-studio
 type: On-Call
 dates: December 2021 - May 2023
-img: https://media.licdn.com/dms/image/C4D1BAQGmD9HPdjkGKw/company-background_10000/0/1583755303181/pappas_design_studio_inc_cover?e=2147483647&v=beta&t=ughNC1b6BYF9dLJdNU__6-0poA28vuKWeE9R-tenQLc
+# TODO(adamo): supply a local logo at src/assets/experience/pappas.png (was hotlinked from the LinkedIn CDN); monogram fallback until then.
 skills:
   - HTML
   - CSS
   - jQuery
 link: http://pdstudioinc.com/
+collapsed: true
+# Not on the 2026 CV PDF; set cv: true to list it on /cv.
+cv: false
 ---
 Showcased new projects and edited any content by request on company website.
 

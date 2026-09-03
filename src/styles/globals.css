@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Design tokens. Colours are RGB triplets so Tailwind opacity modifiers
+   work (bg-accent/10). Tailwind names: bg, surface, fg, muted, line,
+   accent, accent-strong, accent-soft (see tailwind.config.mjs).
+   ------------------------------------------------------------------ */
+:root {
+  --c-bg: 251 250 247; /* warm paper */
+  --c-surface: 255 255 255;
+  --c-fg: 22 25 43;
+  --c-muted: 91 96 114;
+  --c-line: 226 228 236;
+  --c-accent: 52 79 151; /* #344f97 */
+  --c-accent-strong: 38 60 122;
+  --c-accent-soft: 232 237 249;
+  --c-grid: 52 79 151;
+  --grid-alpha: 0.07;
+  --grid-size: 32px;
+  --c-badge-review: 180 83 9; /* amber: "Under review" */
+  --c-badge-accepted: 21 128 61;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-pill: 999px;
+
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 320ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --shadow-card: 0 1px 2px rgb(22 25 43 / 0.06),
+    0 8px 24px -12px rgb(52 79 151 / 0.18);
+
+  --text-display: clamp(2.25rem, 1.4rem + 2.8vw, 3.5rem);
+  --text-h2: 1.75rem;
+
+  color-scheme: light;
+}
+
+.dark {
+  --c-bg: 15 17 23;
+  --c-surface: 23 26 36;
+  --c-fg: 230 231 238;
+  --c-muted: 154 160 180;
+  --c-line: 38 42 58;
+  --c-accent: 118 144 214;
+  --c-accent-strong: 169 185 255;
+  --c-accent-soft: 118 144 214; /* use with /15 */
+  --grid-alpha: 0.08;
+  --c-badge-review: 245 158 11;
+  --c-badge-accepted: 74 222 128;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* MobileHeader is sticky below lg; MobileNav bottom bar exists below md. */
+@media (max-width: 1023.98px) {
+  html {
+    scroll-padding-top: 4rem;
+  }
+}
+@media (max-width: 767.98px) {
+  html {
+    scroll-padding-bottom: 5rem;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  color: rgb(var(--c-fg));
+  background-color: rgb(var(--c-bg));
+  background-image: linear-gradient(
+      rgb(var(--c-grid) / var(--grid-alpha)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgb(var(--c-grid) / var(--grid-alpha)) 1px,
+      transparent 1px
+    );
+  background-size: var(--grid-size) var(--grid-size);
+  font-family: "Inter Tight Variable", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  color: rgb(var(--c-bg));
+  background-color: rgb(var(--c-accent));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--c-bg));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-line));
+  border-radius: var(--radius-pill);
+  border: 2px solid rgb(var(--c-bg));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--c-muted) / 0.6);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--c-accent));
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.15em;
+}
+
+/* Small caps metadata voice: dates, badges, labels */
+.meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--c-muted));
+}
+
+/* ------------------------------------------------------------------
+   Vertical rails (the site's signature)
+   ------------------------------------------------------------------ */
+.v-heading {
+  writing-mode: vertical-lr;
+  font-size: clamp(3.5rem, 9vmin, 7rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  color: rgb(var(--c-accent) / 0.7);
+  margin-left: -0.12em;
+  user-select: none;
+  white-space: nowrap;
+}
+@media (max-width: 1023.98px) {
+  .v-heading {
+    font-size: clamp(3rem, 8vmin, 5.5rem);
+  }
+}
+.dark .v-heading {
+  color: rgb(var(--c-accent) / 0.6);
+}
+
+.v-subtitle {
+  writing-mode: vertical-lr;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(var(--c-muted));
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ------------------------------------------------------------------
+   Skip link
+   ------------------------------------------------------------------ */
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  background: rgb(var(--c-accent));
+  color: #fff;
+  transform: translateY(-200%);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.skip-link:focus {
+  transform: none;
+}
+
+/* ------------------------------------------------------------------
+   View transitions (project filter reflow, section 6.2). Only cards
+   with a view-transition-name move; the page never cross-fades.
+   ------------------------------------------------------------------ */
+::view-transition-group(*) {
+  animation-duration: var(--dur-slow);
+  animation-timing-function: var(--ease);
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

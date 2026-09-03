@@ -4,7 +4,7 @@ company: PTC Inc.
 href: PTC
 type: Internship
 dates: June - August 2022
-img: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/PTC_logo.svg/1200px-PTC_logo.svg.png
+# TODO(adamo): supply a local logo at src/assets/experience/ptc.svg (was hotlinked from Wikimedia); monogram fallback until then.
 skills:
   - JavaScript
   - Polymer.js
@@ -12,6 +12,8 @@ skills:
   - Scrum
   - IoT
 link: https://www.ptc.com/
+# Not on the 2026 CV PDF; set cv: true to list it on /cv.
+cv: false
 ---
 Developed hierarchy graph web component as part of a new
 company initiative. My work confirmed that this initiative
@@ -36,4 +38,4 @@ Montreal office.
 
 Collaborated in a scrum team with daily meetings for task
 grooming and allocation. Represented the interns in
-meetings on multiple occaisons.
+meetings on multiple occasions.

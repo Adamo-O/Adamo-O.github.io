@@ -1,0 +1,67 @@
+---
+/**
+ * Pill navigation. Props:
+ *  items: NavItem[] (href, label, icon?, outline?)
+ *  orientation: "vertical" | "horizontal"
+ *  showIcons?: boolean (default true)
+ *  class?: string
+ * Every anchor carries `data-nav-link`; scrollSpy.ts sets aria-current="true".
+ */
+import { cn } from "@/lib/utils";
+import type { NavItem } from "./nav";
+import NavIcon from "./NavIcon.astro";
+
+interface Props {
+  items: NavItem[];
+  orientation?: "vertical" | "horizontal";
+  showIcons?: boolean;
+  class?: string;
+  label?: string;
+}
+
+const {
+  items,
+  orientation = "vertical",
+  showIcons = true,
+  class: className,
+  label = "Site",
+} = Astro.props;
+---
+
+<nav aria-label={label} class={className}>
+  <ul
+    class={cn(
+      "flex gap-1",
+      orientation === "vertical" ? "flex-col" : "flex-row flex-wrap items-center",
+    )}
+  >
+    {
+      items.map((item) => (
+        <li class={cn(orientation === "vertical" && item.outline && "mt-2")}>
+          <a
+            href={item.href}
+            data-nav-link
+            class={cn(
+              "group flex items-center gap-2.5 rounded-pill px-3.5 py-2 text-sm font-medium",
+              "transition-colors duration-fast",
+              "text-fg/85 hover:bg-accent-soft/70 hover:text-accent dark:hover:bg-accent-soft/15",
+              "aria-[current=true]:bg-accent aria-[current=true]:text-white dark:aria-[current=true]:text-bg",
+              item.outline &&
+                "border border-line bg-surface hover:border-accent",
+              orientation === "horizontal" && "px-3 py-1.5",
+            )}
+          >
+            {showIcons && item.icon && (
+              <NavIcon
+                name={item.icon}
+                size={16}
+                class="shrink-0 opacity-70 group-hover:opacity-100 group-aria-[current=true]:opacity-100"
+              />
+            )}
+            <span>{item.label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

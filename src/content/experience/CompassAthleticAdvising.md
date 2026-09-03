@@ -4,7 +4,7 @@ company: Compass Athletic Advising
 href: compass-athletic-advising
 type: Contract
 dates: December 2020 - April 2021
-img: /Images/Compass-Athletic-Advising-Logo-Square.png
+img: ../../assets/experience/compass-athletic-advising.png
 skills:
   - WordPress
   - Elementor
@@ -13,6 +13,8 @@ skills:
   - CSS
   - SEO
 link: https://compassathleticadvising.com/
+# Not on the 2026 CV PDF; set cv: true to list it on /cv.
+cv: false
 ---
 Researched modern web design and SEO standards to attract
 target customer base.

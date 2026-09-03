@@ -1,15 +1,21 @@
 ---
 title: Handle
 href: Handle
-img: /Images/HandleDemoPic.png
+subtitle: WEB APP DESIGN
 dates: March - April 2023
+tags: [web, ml]
+img: ../../assets/projects/handle.png
 skills:
   - Tensorflow
   - React
   - Vite
 link: https://adamoorsini.com/Handle/
 github: https://github.com/Adamo-O/Handle/
-subtitle: WEB APP DESIGN
+cv: true
+cvBullets:
+  - Designed interactive ASL Wordle game to promote ASL learning and communication.
+  - Used Tensorflow.js hand-tracking model to track hand joint movements.
+  - Surveyed test population of inexperienced ASL users, resulting in a 70% accuracy improvement after using our app.
 ---
 Designed interactive ASL Wordle game to promote ASL
 learning and communication.

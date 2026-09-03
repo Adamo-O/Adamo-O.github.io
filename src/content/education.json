@@ -1,0 +1,65 @@
+[
+  {
+    "id": "phd-cs",
+    "degree": "Doctor of Philosophy",
+    "field": "Computer Science",
+    "institution": "Concordia University",
+    "location": "Montreal, Canada",
+    "start": "2026-01",
+    "end": "2029-05",
+    "expected": true,
+    "gpa": "4.3",
+    "notes": [
+      "Research Topics: Mobile GUI Agents, Computer Vision"
+    ],
+    "order": 1
+  },
+  {
+    "id": "msc-cs",
+    "degree": "Master of Science",
+    "field": "Computer Science",
+    "institution": "Concordia University",
+    "location": "Montreal, Canada",
+    "start": "2024-09",
+    "end": "2025-12",
+    "expected": false,
+    "gpa": "4.3",
+    "notes": [
+      "NSERC CGS Master's Recipient",
+      "Relevant Courses: Representation Learning, Advanced Robotic Vision, Robust and Federated Learning"
+    ],
+    "order": 2
+  },
+  {
+    "id": "beng-software",
+    "degree": "Bachelor of Engineering",
+    "field": "Software Engineering",
+    "institution": "Concordia University",
+    "location": "Montreal, Canada",
+    "start": "2020-09",
+    "end": "2024-05",
+    "expected": false,
+    "gpa": "3.92",
+    "notes": [
+      "Dean's List (2020 - 2024)",
+      "Graduated with Distinction",
+      "Member of the Institute for Co-operative Education"
+    ],
+    "order": 3
+  },
+  {
+    "id": "dec-sciences",
+    "degree": "DEC",
+    "field": "Sciences",
+    "institution": "John Abbott College",
+    "location": "Sainte-Anne-de-Bellevue, Canada",
+    "start": "2018-09",
+    "end": "2020-06",
+    "expected": false,
+    "notes": [
+      "Honour Roll Student (2018 - 2020)",
+      "Graduated in the top 10% of the Sciences program"
+    ],
+    "order": 4
+  }
+]

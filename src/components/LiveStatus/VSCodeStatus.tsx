@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { LanyardActivity } from "./types";
+
+const PILL =
+  "relative flex h-12 items-center gap-2 rounded-pill border border-line bg-surface px-3 py-1.5 shadow-card sm:h-[52px] sm:gap-2.5 sm:px-4 sm:py-2";
 
 function SleepingZzz() {
   const shouldReduceMotion = useReducedMotion();
@@ -10,11 +13,11 @@ function SleepingZzz() {
   }
 
   return (
-    <div className="absolute -top-1 -right-3 w-6 h-5 pointer-events-none">
+    <div className="pointer-events-none absolute -right-3 -top-1 h-5 w-6">
       {[0, 1, 2].map((i) => (
-        <motion.span
+        <m.span
           key={i}
-          className="absolute text-white/40 font-bold"
+          className="absolute font-bold text-muted/60"
           style={{
             left: `${i * 6}px`,
             fontSize: `${8 + i * 2}px`,
@@ -29,7 +32,7 @@ function SleepingZzz() {
           }}
         >
           z
-        </motion.span>
+        </m.span>
       ))}
     </div>
   );
@@ -90,16 +93,16 @@ function TypewriterLabel() {
   }, [text, isDeleting, wordIndex, isPaused, shouldReduceMotion]);
 
   return (
-    <span className="text-sm text-white/50">
+    <span className="text-sm text-muted">
       Now {text}
       {!shouldReduceMotion && (
-        <motion.span
-          className="inline-block ml-[1px]"
+        <m.span
+          className="ml-[1px] inline-block"
           animate={{ opacity: [1, 0] }}
           transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
         >
           |
-        </motion.span>
+        </m.span>
       )}
     </span>
   );
@@ -136,9 +139,9 @@ export function VSCodeStatus({ activities }: VSCodeStatusProps) {
 
   if (!vscodeActivity) {
     return (
-      <div className="relative flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-12 sm:h-[52px]">
-        <VSCodeIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white/50" />
-        <span className="text-sm sm:text-base text-white/50">Not coding</span>
+      <div className={PILL}>
+        <VSCodeIcon className="h-4 w-4 text-muted sm:h-5 sm:w-5" />
+        <span className="text-sm text-muted sm:text-base">Not coding</span>
         <SleepingZzz />
       </div>
     );
@@ -155,32 +158,32 @@ export function VSCodeStatus({ activities }: VSCodeStatusProps) {
       : null;
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 rounded-full h-12 sm:h-[52px]"
+      className={`${PILL} pl-3.5`}
     >
       {fileIconUrl ? (
-        <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-md overflow-hidden bg-[#1e1e1e] flex items-center justify-center">
+        <div className="flex h-6 w-6 items-center justify-center overflow-hidden rounded-sm bg-[#1e1e1e] sm:h-8 sm:w-8">
           <img
             src={fileIconUrl}
             alt=""
-            className="w-8 h-8 sm:w-10 sm:h-10 scale-150 object-contain"
+            className="h-8 w-8 scale-150 object-contain sm:h-10 sm:w-10"
           />
         </div>
       ) : (
-        <VSCodeIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#007ACC]" />
+        <VSCodeIcon className="h-4 w-4 text-[#007ACC] sm:h-5 sm:w-5" />
       )}
       <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2.5">
-        <span className="text-sm sm:text-base text-white max-w-[200px] truncate">
+        <span className="max-w-[200px] truncate text-sm text-fg sm:text-base">
           {filename}
         </span>
         {workspace && (
-          <span className="text-xs sm:text-base text-white/50 max-w-[150px] sm:max-w-[180px] truncate">
+          <span className="max-w-[150px] truncate text-xs text-muted sm:max-w-[180px] sm:text-base">
             {workspace}
           </span>
         )}
       </div>
-    </motion.div>
+    </m.div>
   );
 }

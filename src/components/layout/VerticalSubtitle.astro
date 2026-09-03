@@ -1,0 +1,15 @@
+---
+/**
+ * Small rotated mono label for the right rail. Props: label, id?, class?
+ * `id` lets scripts (e.g. the project filter) update the text live.
+ */
+import { cn } from "@/lib/utils";
+interface Props {
+  label: string;
+  id?: string;
+  class?: string;
+}
+const { label, id, class: className } = Astro.props;
+---
+
+<div id={id} class={cn("v-subtitle", className)} aria-hidden="true">{label}</div>

@@ -1,0 +1,70 @@
+---
+/**
+ * Outer page structure.
+ * Props: variant: "home" | "page" (default "home"), portrait?: ImageMetadata, backHref?, backLabel?
+ *  home: skip link, MobileHeader, [Sidebar | main], MobileNav
+ *  page: skip link, slim top bar (Back link, slot "actions", ThemeToggle), centred main
+ * Slots: default (page content), actions (page variant top bar, right side).
+ */
+import { ArrowLeft } from "lucide-astro";
+import type { ImageMetadata } from "astro";
+import { cn } from "@/lib/utils";
+import Sidebar from "./Sidebar.astro";
+import MobileHeader from "./MobileHeader.astro";
+import MobileNav from "./MobileNav.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+interface Props {
+  variant?: "home" | "page";
+  portrait?: ImageMetadata;
+  backHref?: string;
+  backLabel?: string;
+  class?: string;
+}
+
+const {
+  variant = "home",
+  portrait,
+  backHref = "/",
+  backLabel = "Back",
+  class: className,
+} = Astro.props;
+---
+
+<a href="#content" class="skip-link">Skip to content</a>
+
+{
+  variant === "home" ? (
+    <>
+      <MobileHeader />
+      <div class="mx-auto max-w-[1440px] lg:grid lg:grid-cols-[260px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)]">
+        <Sidebar portrait={portrait} />
+        <main id="content" class={cn("min-w-0", className)}>
+          <slot />
+        </main>
+      </div>
+      <MobileNav />
+    </>
+  ) : (
+    <>
+      <header class="no-print sticky top-0 z-40 border-b border-line bg-bg/95">
+        <div class="mx-auto flex h-14 max-w-[52rem] items-center justify-between px-5 md:px-8">
+          <a
+            href={backHref}
+            class="inline-flex items-center gap-2 rounded-pill px-3 py-1.5 text-sm font-medium text-fg/85 transition-colors duration-fast hover:bg-accent-soft/70 hover:text-accent dark:hover:bg-accent-soft/15"
+          >
+            <ArrowLeft size={16} aria-hidden="true" />
+            {backLabel}
+          </a>
+          <div class="flex items-center gap-2">
+            <slot name="actions" />
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+      <main id="content" class={cn("mx-auto w-full max-w-[52rem] px-5 py-10 md:px-8", className)}>
+        <slot />
+      </main>
+    </>
+  )
+}

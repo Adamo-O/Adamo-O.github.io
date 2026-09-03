@@ -1,4 +1,4 @@
-export const skillIcons = {
+export const skillIcons: Record<string, string> = {
   '.NET': 'devicon-dot-net-plain colored',
   '.NET Core': 'devicon-dotnetcore-plain',
   'Arduino': 'devicon-arduino-plain colored',
@@ -6,6 +6,7 @@ export const skillIcons = {
   'Bash': 'devicon-bash-plain',
   'C#': 'devicon-csharp-plain',
   'C++': 'devicon-cplusplus-plain',
+  'Course Design': 'devicon-markdown-original',
   'CSS': 'devicon-css3-plain colored',
   'Cypress': 'devicon-cypressio-plain colored',
   'Docker': 'devicon-docker-plain colored',
@@ -18,8 +19,11 @@ export const skillIcons = {
   'MongoDB': 'devicon-mongodb-plain colored',
   'MySQL': 'devicon-mysql-original',
   'Next.js': 'devicon-nextjs-plain',
+  'NumPy': 'devicon-numpy-plain colored',
   'Photoshop': 'devicon-photoshop-plain colored',
+  'PyTorch': 'devicon-pytorch-original colored',
   'Tailwind': 'devicon-tailwindcss-original colored',
+  'Teaching': 'devicon-devicon-plain',
   'Tensorflow': 'devicon-tensorflow-original colored',
   'PostgreSQL': 'devicon-postgresql-plain',
   'Prisma': 'devicon-prisma-original',

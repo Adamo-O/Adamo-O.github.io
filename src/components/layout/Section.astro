@@ -1,0 +1,71 @@
+---
+/**
+ * One page section with the three-column rail grid.
+ * Props:
+ *  id        anchor / scroll-spy key (e.g. "projects")
+ *  heading   vertical rail text (e.g. "PROJECTS")
+ *  title     accessible h2 text; visible below md, sr-only from md
+ *  rail?     right-rail subtitle text (xl only); or pass slot "rail"
+ *  railId?   id for the VerticalSubtitle (live updates)
+ *  class?    extra classes on <section>
+ *  contentClass?  extra classes on the content column
+ * Slots: default (content), rail (replaces the VerticalSubtitle).
+ */
+import { cn } from "@/lib/utils";
+import VerticalHeading from "./VerticalHeading.astro";
+import VerticalSubtitle from "./VerticalSubtitle.astro";
+
+interface Props {
+  id: string;
+  heading: string;
+  title: string;
+  rail?: string;
+  railId?: string;
+  class?: string;
+  contentClass?: string;
+}
+
+const {
+  id,
+  heading,
+  title,
+  rail,
+  railId,
+  class: className,
+  contentClass,
+} = Astro.props;
+
+const hasRail = rail !== undefined || Astro.slots.has("rail");
+---
+
+<section
+  id={id}
+  class={cn(
+    "section-grid grid gap-x-6 px-5 scroll-mt-6 md:px-8",
+    "md:grid-cols-[auto_minmax(0,1fr)]",
+    hasRail && "xl:grid-cols-[auto_minmax(0,1fr)_3rem]",
+    className,
+  )}
+  aria-labelledby={`${id}-title`}
+>
+  <div class="rail rail-heading max-md:hidden">
+    <VerticalHeading label={heading} class="sticky top-6" />
+  </div>
+
+  <div class={cn("min-w-0 py-10 md:py-14", contentClass)}>
+    <h2 id={`${id}-title`} class="mb-6 text-h2 font-bold tracking-tight md:sr-only">
+      {title}
+    </h2>
+    <slot />
+  </div>
+
+  {
+    hasRail && (
+      <div class="rail rail-subtitle border-l border-line pl-3 max-xl:hidden">
+        <slot name="rail">
+          <VerticalSubtitle label={rail ?? ""} id={railId} class="sticky top-6" />
+        </slot>
+      </div>
+    )
+  }
+</section>

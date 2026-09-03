@@ -1,0 +1,11 @@
+---
+/** Giant rotated section label. Props: label, class?. Decorative (aria-hidden). */
+import { cn } from "@/lib/utils";
+interface Props {
+  label: string;
+  class?: string;
+}
+const { label, class: className } = Astro.props;
+---
+
+<div class={cn("v-heading", className)} aria-hidden="true">{label}</div>

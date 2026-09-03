@@ -1,15 +1,15 @@
 ---
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import Button from "./Button.astro";
 import { ExternalLink, Github } from "lucide-astro";
 import Skill from "./Skill.astro";
-import ProjectReact from "./Project.tsx";
 
 export interface ProjectProps {
   frontmatter: {
     title: string;
     href: string;
-    img: string;
+    img: ImageMetadata;
     dates: string;
     skills: string[];
     link?: string;
@@ -88,4 +88,3 @@ const {
   </div>
 </div>
 
-<!-- <ProjectReact frontmatter={frontmatter} client:load /> -->

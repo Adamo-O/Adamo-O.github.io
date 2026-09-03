@@ -1,10 +1,12 @@
 ---
 import { MoveUpRight } from "lucide-astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface Props {
   title: string;
   subtitle?: string;
-  image?: string;
+  image?: ImageMetadata;
   body: string;
   href: string;
 }
@@ -22,7 +24,7 @@ const { href, title, subtitle, image, body } = Astro.props;
     <div class="flex max-lg:flex-col gap-4 lg:items-center w-full">
       {
         image && (
-          <img src={image} alt={title} class="rounded-lg w-full md:w-52 lg:w-auto aspect-video lg:h-32 object-contain" />
+          <Image src={image} alt={title} width={208} class="rounded-lg w-full md:w-52 lg:w-auto aspect-video lg:h-32 object-contain" />
         )
       }
       <div>

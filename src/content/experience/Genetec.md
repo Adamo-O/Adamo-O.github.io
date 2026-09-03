@@ -4,7 +4,7 @@ company: Genetec Inc.
 href: genetec
 type: Internship
 dates: September - December 2021
-img: /Images/Genetec.png
+img: ../../assets/experience/genetec.png
 skills:
   - Azure DevOps
   - YAML
@@ -12,6 +12,8 @@ skills:
   - .NET Core
   - Bash
 link: https://www.genetec.com/
+# Not on the 2026 CV PDF; set cv: true to list it on /cv.
+cv: false
 ---
 
 Increased modularity, flexibility, and speed of software

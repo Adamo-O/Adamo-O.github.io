@@ -1,11 +1,24 @@
 ---
+/**
+ * Live Discord presence (Spotify + VS Code) via Lanyard. Renders nothing
+ * without PUBLIC_DISCORD_USER_ID. `class` controls the outer flex row
+ * (default: centred); pass "justify-start" to left-align.
+ */
 import { LiveStatusWidget } from "./LiveStatusWidget";
 
+interface Props {
+  class?: string;
+}
+
+const { class: className = "justify-center" } = Astro.props;
 const discordUserId = import.meta.env.PUBLIC_DISCORD_USER_ID;
+const align = className.includes("justify-start") ? "start" : "center";
 ---
 
-{discordUserId && (
-  <div class="flex justify-center pb-4 max-md:px-6">
-    <LiveStatusWidget client:visible discordUserId={discordUserId} />
-  </div>
-)}
+{
+  discordUserId && (
+    <div class:list={["flex", className]}>
+      <LiveStatusWidget client:visible discordUserId={discordUserId} align={align} />
+    </div>
+  )
+}

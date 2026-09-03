@@ -1,14 +1,21 @@
 ---
 title: CrossCast
 href: CrossCast
-img: /Images/cross-cast.gif
+subtitle: WEB APP DESIGN
 dates: January 2023
+tags: [web, hackathon]
+img: ../../assets/projects/cross-cast.png
+video: /media/cross-cast.webm
 skills:
   - Project Planning
   - Next.js
   - TypeScript
 github: https://github.com/jay-roe/Cross-Cast
-subtitle: WEB APP DESIGN
+cv: true
+cvBullets:
+  - Designed centralized application for cross-platform company updates and news across various social media platforms.
+  - Directed development of full-stack Next.js and TypeScript web application.
+  - Won Mirego sponsorship challenge at ConUHacks VII.
 ---
 Created as part of ConUHacks VII in 24 hours!
 

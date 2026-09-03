@@ -1,14 +1,20 @@
 ---
 title: Theme Song Welcome Bot
 href: theme-song-welcome-bot
-img: /Images/theme-song-bot.gif
+subtitle: DISCORD BOT DESIGN
 dates: October - November 2021
+tags: [bot]
+img: ../../assets/projects/theme-song-bot.gif
 skills:
   - Python
   - Discord.py
   - MongoDB
 github: https://github.com/Adamo-O/Theme-Song-Discord-Bot
-subtitle: DISCORD BOT DESIGN
+cv: true
+cvBullets:
+  - Designed Discord bot to play a unique theme song for each user.
+  - Handled asynchronous commands and events for over 1200 users.
+  - Developed bot using Discord.py API in Python. It is hosted by Heroku and uses a MongoDB database.
 ---
 Designed a Discord bot to play a unique theme song on
 YouTube for each user when they enter a voice channel.
@@ -16,9 +22,7 @@ YouTube for each user when they enter a voice channel.
 <br />
 
 The bot was built using the 
-<a
-  class="text-primaryBlueLight hover:text-primaryBlueLight/70 underline transition"
-  href="https://discordpy.readthedocs.io/en/stable/api.html">Discord.py API</a> in Python.
+[Discord.py API](https://discordpy.readthedocs.io/en/stable/api.html) in Python.
 
 <br />
 

@@ -1,14 +1,15 @@
 ---
 title: Handwriting Recognition using Accelerometers
 href: accelerometers-lab
-img: /Images/L Acceleration.png
+subtitle: RESEARCH
 dates: February - April 2020
+tags: [research, ml]
+img: ../../assets/projects/l-acceleration.png
 skills:
   - Python
   - Matplotlib
   - Data manipulation
 github: https://github.com/Adamo-O/Handwriting-Recognition-using-Accelerometers
-subtitle: RESEARCH
 ---
 An automated method of obtaining graphs of letters or
 numbers using accelerometers.

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "coen-243",
+    "code": "COEN 243",
+    "title": "TODO(adamo): course title",
+    "role": "Teaching Assistant",
+    "institution": "Concordia University",
+    "terms": ["Fall 2025"]
+  },
+  {
+    "id": "comp-6321",
+    "code": "COMP 6321",
+    "title": "TODO(adamo): course title",
+    "role": "Teaching Assistant",
+    "institution": "Concordia University",
+    "terms": ["TODO(adamo): term"]
+  }
+]

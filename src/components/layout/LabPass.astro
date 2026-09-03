@@ -1,0 +1,70 @@
+---
+/**
+ * "Lab pass" identity card at the top of the sidebar.
+ * Props: name, role, affiliations[], initials?, portrait?: ImageMetadata, idLine?
+ * Without a portrait it renders an accent-soft square with the initials.
+ */
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  name: string;
+  role: string;
+  affiliations: string[];
+  initials?: string;
+  portrait?: ImageMetadata;
+  idLine?: string;
+}
+
+const {
+  name,
+  role,
+  affiliations,
+  initials = name
+    .split(/\s+/)
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase(),
+  portrait,
+  idLine = "ID · PHD-2026",
+} = Astro.props;
+---
+
+<a
+  href="/"
+  class="block rounded border border-dashed border-line bg-surface p-3 shadow-card transition-colors duration-fast hover:border-accent"
+  aria-label={`${name}, home`}
+>
+  <div class="flex items-start gap-3">
+    <div class="w-16 shrink-0 overflow-hidden rounded-sm border border-line bg-accent-soft/70 dark:bg-accent-soft/15">
+      {
+        portrait ? (
+          <Image
+            src={portrait}
+            alt={`Portrait of ${name}`}
+            width={240}
+            densities={[1, 2]}
+            class="aspect-[3/4] h-auto w-full object-cover"
+            loading="eager"
+          />
+        ) : (
+          <div
+            class="flex aspect-[3/4] w-full items-center justify-center font-sans text-xl font-extrabold tracking-tight text-accent"
+            aria-hidden="true"
+          >
+            {initials}
+          </div>
+        )
+      }
+    </div>
+    <div class="min-w-0 flex-1">
+      <p class="meta">{idLine}</p>
+      <p class="mt-1 text-base font-bold leading-tight tracking-tight text-fg">{name}</p>
+      <p class="mt-0.5 text-[13px] leading-snug text-muted">{role}</p>
+      <p class="mt-1 text-[12px] leading-snug text-muted">
+        {affiliations.join(" / ")}
+      </p>
+    </div>
+  </div>
+</a>

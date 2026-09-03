@@ -1,0 +1,85 @@
+[
+  {
+    "id": "doctoral-graduate-fellowship-2026",
+    "title": "Doctoral Graduate Fellowship",
+    "issuer": "Concordia University",
+    "date": "2026-01",
+    "kind": "scholarship"
+  },
+  {
+    "id": "jang-hwan-kwon-award-2026",
+    "title": "Jang-Hwan Kwon Graduate Award in Computer Science",
+    "issuer": "Concordia University",
+    "date": "2026-01",
+    "kind": "award"
+  },
+  {
+    "id": "nserc-cgs-m-2025",
+    "title": "NSERC Canada Graduate Scholarship (Master's)",
+    "issuer": "NSERC",
+    "date": "2025-05",
+    "kind": "scholarship"
+  },
+  {
+    "id": "italian-association-bursary-2025",
+    "title": "Italian Association Bursary",
+    "issuer": "Associazione Italo-Canadese Del West Island",
+    "date": "2025-02",
+    "kind": "bursary"
+  },
+  {
+    "id": "quebec-mobility-bursary-2023",
+    "title": "Quebec Mobility Bursary",
+    "issuer": "Ministère de l'Éducation et de l'Enseignement supérieur",
+    "date": "2023-08",
+    "kind": "bursary"
+  },
+  {
+    "id": "bursary-excellence-engineering-2021",
+    "title": "Bursary for Excellence in Engineering",
+    "issuer": "Concordia University",
+    "date": "2021-01",
+    "kind": "bursary"
+  },
+  {
+    "id": "conuhacks-vii-mirego-2023",
+    "title": "Mirego Sponsor Challenge Winner, ConUHacks VII",
+    "issuer": "Concordia University",
+    "date": "2023-01",
+    "kind": "competition",
+    "placement": "Winner"
+  },
+  {
+    "id": "engcomm-2022-best-national-team",
+    "title": "Best National Team, ENGCOMM 2022",
+    "issuer": "ENGCOMM",
+    "date": "2022-02",
+    "kind": "competition",
+    "placement": "Best National Team"
+  },
+  {
+    "id": "englympics-programming-2021",
+    "title": "3rd Place, Englympics: Programming",
+    "issuer": "Concordia University",
+    "date": "2021-11",
+    "kind": "competition",
+    "placement": "3rd Place"
+  },
+  {
+    "id": "engcomm-x-concordia-2021",
+    "title": "1st Place Winner, ENGCOMM x Concordia",
+    "issuer": "Concordia University",
+    "date": "2021-10",
+    "kind": "competition",
+    "placement": "1st Place"
+  },
+  {
+    "id": "genetec-challenge-2021",
+    "title": "Participant, Genetec Challenge",
+    "issuer": "Genetec Inc.",
+    "date": "2021-03",
+    "kind": "competition",
+    "placement": "Participant",
+    "logo": "genetec"
+  }
+]

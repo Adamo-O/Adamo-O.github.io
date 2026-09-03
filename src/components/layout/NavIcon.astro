@@ -1,0 +1,33 @@
+---
+import {
+  UserRound,
+  FlaskConical,
+  PencilRuler,
+  Briefcase,
+  GraduationCap,
+  Award,
+  Send,
+  FileText,
+} from "lucide-astro";
+import type { NavIcon } from "./nav";
+
+interface Props {
+  name: NavIcon;
+  size?: number | string;
+  class?: string;
+}
+const { name, size = 16, class: className } = Astro.props;
+const icons = {
+  user: UserRound,
+  flask: FlaskConical,
+  "pencil-ruler": PencilRuler,
+  briefcase: Briefcase,
+  "graduation-cap": GraduationCap,
+  award: Award,
+  send: Send,
+  "file-text": FileText,
+};
+const Icon = icons[name];
+---
+
+<Icon size={size} class={className} aria-hidden="true" />
