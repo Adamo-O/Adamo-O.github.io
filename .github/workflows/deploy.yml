@@ -66,6 +66,9 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
+      - name: Check Astro and TypeScript
+        run: npm run check
+        working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
@@ -74,6 +77,9 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
         env:
           PUBLIC_DISCORD_USER_ID: ${{ secrets.PUBLIC_DISCORD_USER_ID }}
+      - name: Verify generated routes and assets
+        run: npm run verify:dist
+        working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

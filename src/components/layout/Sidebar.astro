@@ -21,7 +21,9 @@ const { portrait, class: className } = Astro.props;
 const socials = [
   { href: profile.links.github, label: "GitHub", Icon: Github },
   { href: profile.links.linkedin, label: "LinkedIn", Icon: Linkedin },
-  { href: profile.links.scholar, label: "Google Scholar", Icon: GraduationCap },
+  ...(profile.links.scholar
+    ? [{ href: profile.links.scholar, label: "Google Scholar", Icon: GraduationCap }]
+    : []),
   { href: `mailto:${profile.email}`, label: "Email", Icon: Mail },
 ];
 ---
@@ -47,8 +49,7 @@ const socials = [
   <div class="mt-auto pt-8">
     <ul class="flex flex-wrap items-center gap-1" aria-label="Profiles">
       {
-        socials.map(({ href, label, Icon }) =>
-          href ? (
+        socials.map(({ href, label, Icon }) => (
             <li>
               <a
                 href={href}
@@ -61,18 +62,7 @@ const socials = [
                 <Icon size={18} aria-hidden="true" />
               </a>
             </li>
-          ) : (
-            <li>
-              <span
-                title={`${label} (TODO: URL)`}
-                class="inline-flex h-9 w-9 cursor-not-allowed items-center justify-center rounded-pill text-muted/40"
-                aria-hidden="true"
-              >
-                <Icon size={18} />
-              </span>
-            </li>
-          ),
-        )
+          ))
       }
       <li class="ml-auto">
         <ThemeToggle />

@@ -1,0 +1,37 @@
+---
+interface Props {
+  award: {
+    title: string;
+    issuer: string;
+    date: string;
+    kind: "award" | "scholarship" | "bursary" | "competition";
+    placement?: string;
+    url?: string;
+  };
+}
+
+const { award } = Astro.props as Props;
+const [year, month] = award.date.split("-").map(Number);
+const date = new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(
+  new Date(Date.UTC(year, month - 1, 1)),
+);
+---
+
+<article class="min-h-36 bg-surface p-5">
+  <div class="flex items-center justify-between gap-3">
+    <span class="meta text-accent">{award.kind}</span>
+    <time class="meta" datetime={award.date}>{date}</time>
+  </div>
+  <h3 class="mt-3 text-base font-bold leading-snug text-fg">
+    {
+      award.url ? (
+        <a class="hover:text-accent" href={award.url} target="_blank" rel="noopener noreferrer">
+          {award.title} <span aria-hidden="true">↗</span>
+        </a>
+      ) : (
+        award.title
+      )
+    }
+  </h3>
+  <p class="mt-1 text-sm leading-relaxed text-muted">{award.issuer}</p>
+</article>

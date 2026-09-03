@@ -1,0 +1,77 @@
+---
+import { ArrowUpRight, Code2, FileText } from "lucide-astro";
+
+interface Props {
+  publication: {
+    title: string;
+    authors: string[];
+    venue?: string;
+    year: number;
+    status: "under-review" | "accepted" | "preprint" | "workshop";
+    summary: string;
+    links: {
+      pdf?: string;
+      arxiv?: string;
+      code?: string;
+      project?: string;
+    };
+    topics: string[];
+  };
+}
+
+const { publication } = Astro.props as Props;
+const statusLabels = {
+  "under-review": "Under review",
+  accepted: "Accepted",
+  preprint: "Preprint",
+  workshop: "Workshop",
+};
+const links = [
+  { href: publication.links.pdf, label: "PDF", Icon: FileText },
+  { href: publication.links.arxiv, label: "arXiv", Icon: FileText },
+  { href: publication.links.code, label: "Code", Icon: Code2 },
+  { href: publication.links.project, label: "Project", Icon: ArrowUpRight },
+].filter((link) => link.href);
+---
+
+<article class="rounded border border-line bg-surface p-5 shadow-card md:p-6">
+  <div class="flex flex-wrap items-center gap-2">
+    <span class="meta">{publication.year}</span>
+    <span aria-hidden="true" class="text-line">/</span>
+    <span
+      class:list={[
+        "meta rounded-pill px-2 py-1 tracking-[0.08em]",
+        publication.status === "accepted"
+          ? "bg-badge-accepted/10 text-badge-accepted"
+          : "bg-badge-review/10 text-badge-review",
+      ]}
+    >
+      {statusLabels[publication.status]}
+    </span>
+    {publication.topics.length > 0 && <span class="meta ml-auto">{publication.topics.join(" · ")}</span>}
+  </div>
+  <h3 class="mt-4 text-xl font-bold leading-snug tracking-tight text-fg md:text-2xl">
+    {publication.title}
+  </h3>
+  <p class="mt-2 text-sm leading-relaxed text-muted">
+    {publication.authors.map((author, index) => (
+      <>
+        <span class:list={[author === "Adamo Orsini" && "font-semibold text-fg"]}>{author}</span>
+        {index < publication.authors.length - 1 && ", "}
+      </>
+    ))}
+  </p>
+  {publication.venue && <p class="meta mt-2">{publication.venue}</p>}
+  <p class="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">{publication.summary}</p>
+  {
+    links.length > 0 && (
+      <div class="mt-5 flex flex-wrap gap-4 border-t border-line pt-4">
+        {links.map(({ href, label, Icon }) => (
+          <a class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-strong" href={href} target="_blank" rel="noopener noreferrer">
+            <Icon size="15" aria-hidden="true" /> {label}
+          </a>
+        ))}
+      </div>
+    )
+  }
+</article>

@@ -1,27 +1,37 @@
-# Portfolio website
-Personal portfolio website used to present past projects, work experience, and links to contact me!
+# Adamo Orsini's portfolio
 
-🔗 Visit the website at [adamoorsini.com](https://adamoorsini.com)
+Source for [adamoorsini.com](https://adamoorsini.com), a research and engineering portfolio built with Astro, React islands, Tailwind CSS, and Astro content collections.
 
-🛠️ The website was originally designed using static HTML and CSS with Bootstrap, but I recently converted it to Astro with Tailwind for styling.
+## Local development
 
-## Design 🖌
-This website's goal is to allow for a more interactive and visual presentation of my projects and experience. 
+```bash
+npm ci
+npm run dev
+```
 
-To keep the focus on the content, a simple and clean design was chosen.
+Before opening a pull request or deploying:
 
-### Colour 🎨
-On a material dark grey background, colours were specifically chosen to allow for sufficient contrast according to material UI standards. A blue/purple accent colour (#344f97) was chosen for its contrast and for being a calming, simple colour. Otherwise, standard text colour was used since it had sufficient contrast and readability.
+```bash
+npm run build
+```
 
-### Layout 📏
-The three-column layout seen on larger screens was built using Tailwind to allow for a lightweight grid system. It was also chosen to have consistency when scrolling through the website, with the first column being the section name, the second column being the content, and the third column being the project name.
+The build command runs Astro and TypeScript checks, generates the static site, and verifies the required routes, section anchors, PDFs, and sitemap.
 
-## Content 📜
-Each Project and Experience is defined using a Markdown file, and rendered in the DOM using a layout defined in Astro. The Markdown files can be found in the [content folder](src/content) if you're interested.
+## Structure
 
-The Projects and Experience sections have brief descriptions of each of their items. This consists of 5-6 sentences describing the item, goal, and method of working on the project. 
+- `src/pages/index.astro` composes the portfolio homepage.
+- `src/pages/cv.astro` renders the web and print-friendly CV.
+- `src/content/` stores projects, experience, publications, education, awards, and teaching data.
+- `src/data/profile.ts` is the shared source for profile and contact details.
+- `src/components/layout/` contains the responsive sidebar, mobile navigation, section rails, and page shell.
+- `src/components/hero/` contains the homepage introduction and live-status presentation.
+- `src/styles/globals.css` defines the light/dark design tokens and global interaction styles.
+- `public/files/` contains downloadable portfolio documents.
 
-Each Project or Experience item has a GIF or image showcasing it. GIFs allowed for 15-second videos that are very lightweight on the website, and will keep the attention of the viewer. It is the perfect way to introduce an item quickly.
+## Content conventions
 
-The skills subsection lists any programming languages, technical skills, and/or soft skills used in the project or work experience. This makes it easy to quickly screen the skills obtained throughout my career. Each skill has the name and a possible logo representing it (usually just for technologies used).
+Content entries are validated by `src/content.config.ts`. Incomplete or private entries should use their collection's `hidden` flag rather than publishing placeholder text. Project media should include an optimized poster image; optional MP4/WebM clips live in `public/media/`.
 
+## Deployment
+
+Pushes to `main` deploy through GitHub Pages using `.github/workflows/deploy.yml`. The workflow performs the same type, build, and generated-output checks as local development before uploading the site.

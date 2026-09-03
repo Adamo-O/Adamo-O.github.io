@@ -12,7 +12,11 @@ export default defineConfig({
     }),
     react(),
     sitemap({
-      filter: (page) => !page.endsWith("/404/"),
+      // Keep error pages and any future development-only routes out of search.
+      filter: (page) => {
+        const { pathname } = new URL(page);
+        return pathname !== "/404/" && !pathname.startsWith("/dev-");
+      },
     }),
   ],
 });

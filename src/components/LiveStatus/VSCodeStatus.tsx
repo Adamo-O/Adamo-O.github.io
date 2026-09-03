@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { m, useReducedMotion } from "framer-motion";
 import type { LanyardActivity } from "./types";
 
@@ -35,76 +34,6 @@ function SleepingZzz() {
         </m.span>
       ))}
     </div>
-  );
-}
-
-const typewriterWords = ["coding ⌨️", "working 💪", "developing 🧑‍💻", "researching 🔬"];
-
-// Splits string into grapheme clusters (handles emojis correctly)
-const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" });
-const toGraphemes = (str: string) => [...segmenter.segment(str)].map((s) => s.segment);
-
-function TypewriterLabel() {
-  const shouldReduceMotion = useReducedMotion();
-  const [wordIndex, setWordIndex] = useState(0);
-  const [text, setText] = useState(typewriterWords[0]);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    if (shouldReduceMotion) {
-      setText(typewriterWords[0]);
-      return;
-    }
-
-    if (isPaused) {
-      const pauseTimeout = setTimeout(() => {
-        setIsPaused(false);
-        setIsDeleting(true);
-      }, 2000);
-      return () => clearTimeout(pauseTimeout);
-    }
-
-    const timeout = setTimeout(
-      () => {
-        if (isDeleting) {
-          const graphemes = toGraphemes(text);
-          if (graphemes.length === 0) {
-            setIsDeleting(false);
-            setWordIndex((prev) => (prev + 1) % typewriterWords.length);
-          } else {
-            setText(graphemes.slice(0, -1).join(""));
-          }
-        } else {
-          const targetWord = typewriterWords[wordIndex];
-          if (text === targetWord) {
-            setIsPaused(true);
-          } else {
-            const targetGraphemes = toGraphemes(targetWord);
-            const currentLength = toGraphemes(text).length;
-            setText(targetGraphemes.slice(0, currentLength + 1).join(""));
-          }
-        }
-      },
-      isDeleting ? 80 : 120
-    );
-
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, wordIndex, isPaused, shouldReduceMotion]);
-
-  return (
-    <span className="text-sm text-muted">
-      Now {text}
-      {!shouldReduceMotion && (
-        <m.span
-          className="ml-[1px] inline-block"
-          animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-        >
-          |
-        </m.span>
-      )}
-    </span>
   );
 }
 

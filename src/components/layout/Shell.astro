@@ -31,7 +31,7 @@ const {
 } = Astro.props;
 ---
 
-<a href="#content" class="skip-link">Skip to content</a>
+<a href="#content" class="skip-link !fixed">Skip to content</a>
 
 {
   variant === "home" ? (
@@ -39,7 +39,7 @@ const {
       <MobileHeader />
       <div class="mx-auto max-w-[1440px] lg:grid lg:grid-cols-[260px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)]">
         <Sidebar portrait={portrait} />
-        <main id="content" class={cn("min-w-0", className)}>
+        <main id="content" tabindex="-1" class={cn("min-w-0", className)}>
           <slot />
         </main>
       </div>
@@ -51,18 +51,22 @@ const {
         <div class="mx-auto flex h-14 max-w-[52rem] items-center justify-between px-5 md:px-8">
           <a
             href={backHref}
-            class="inline-flex items-center gap-2 rounded-pill px-3 py-1.5 text-sm font-medium text-fg/85 transition-colors duration-fast hover:bg-accent-soft/70 hover:text-accent dark:hover:bg-accent-soft/15"
+            class="inline-flex min-h-11 items-center gap-2 rounded-pill px-3 py-2 text-sm font-medium text-fg/85 transition-colors duration-fast hover:bg-accent-soft/70 hover:text-accent dark:hover:bg-accent-soft/15"
           >
             <ArrowLeft size={16} aria-hidden="true" />
             {backLabel}
           </a>
           <div class="flex items-center gap-2">
             <slot name="actions" />
-            <ThemeToggle />
+            <ThemeToggle class="h-11 w-11" />
           </div>
         </div>
       </header>
-      <main id="content" class={cn("mx-auto w-full max-w-[52rem] px-5 py-10 md:px-8", className)}>
+      <main
+        id="content"
+        tabindex="-1"
+        class={cn("mx-auto w-full max-w-[52rem] px-5 py-10 md:px-8", className)}
+      >
         <slot />
       </main>
     </>

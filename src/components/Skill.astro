@@ -8,7 +8,12 @@ interface SkillProps {
 
 const { skill } = Astro.props as SkillProps;
 ---
-<span class={cn("py-1 px-2.5 sm:py-0.5 sm:px-1.5 text-xs rounded-full bg-primaryBlueDark/50 backdrop-blur-sm border border-white/10 shadow-sm max-w-full sm:max-w-fit", skillIcons[skill] ? 'inline-flex items-center gap-x-1' : 'inline')}>
-  {skillIcons[skill] && <i class={cn(skillIcons[skill], "text-[0.7rem]")} aria-hidden="true"></i>}
+
+<span
+  class={cn(
+    "inline-flex max-w-full items-center gap-1.5 rounded-pill border border-line bg-bg/70 px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-muted",
+  )}
+>
+  {skillIcons[skill] && <i class={cn(skillIcons[skill], "text-[0.72rem] text-accent")} aria-hidden="true"></i>}
   {skill}
 </span>

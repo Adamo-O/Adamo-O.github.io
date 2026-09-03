@@ -12,7 +12,11 @@ import ThemeToggle from "./ThemeToggle.astro";
 
 <header class="sticky top-0 z-40 border-b border-line bg-bg/95 lg:hidden">
   <div class="flex h-14 items-center justify-between px-5 md:px-8">
-    <a href="/" class="flex items-center gap-2.5" aria-label={`${profile.name}, home`}>
+    <a
+      href="/"
+      class="flex min-h-11 items-center gap-2.5"
+      aria-label={`${profile.name}, home`}
+    >
       <span
         class="flex h-8 w-8 items-center justify-center rounded-sm border border-line bg-accent-soft/70 text-xs font-extrabold tracking-tight text-accent dark:bg-accent-soft/15"
         aria-hidden="true"
@@ -26,11 +30,11 @@ import ThemeToggle from "./ThemeToggle.astro";
         href={`mailto:${profile.email}`}
         title="Email"
         aria-label="Email"
-        class="inline-flex h-9 w-9 items-center justify-center rounded-pill border border-line bg-surface text-muted transition-colors duration-fast hover:border-accent hover:text-accent"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-pill border border-line bg-surface text-muted transition-colors duration-fast hover:border-accent hover:text-accent"
       >
         <Mail size={16} aria-hidden="true" />
       </a>
-      <ThemeToggle />
+      <ThemeToggle class="h-11 w-11" />
     </div>
   </div>
   <div class="hidden border-t border-line px-6 py-2 md:block">

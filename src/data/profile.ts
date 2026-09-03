@@ -1,6 +1,6 @@
 /**
  * Single source of truth for personal facts shown on the site.
- * Nothing here is invented; TODO(adamo) marks what still needs confirmation.
+ * Nothing here is invented; absent values stay hidden until they are confirmed.
  */
 export interface Profile {
   name: string;
@@ -35,7 +35,7 @@ export const profile: Profile = {
   role: "PhD student, Computer Science",
   affiliations: ["Concordia University", "Mila"],
   location: "Montreal, Canada",
-  // TODO(adamo): confirm canonical email (site uses the gmail address, CV uses adamo.orsini@mail.concordia.ca)
+  // Pending confirmation: the CV currently uses adamo.orsini@mail.concordia.ca.
   email: "adamo.orsini01@gmail.com",
   site: "https://adamoorsini.com",
   description:
@@ -43,11 +43,11 @@ export const profile: Profile = {
   links: {
     github: "https://github.com/Adamo-O",
     linkedin: "https://www.linkedin.com/in/adamo-orsini/",
-    scholar: undefined, // TODO(adamo): Google Scholar profile URL
+    scholar: undefined,
     source: "https://github.com/Adamo-O/Adamo-O.github.io",
   },
   now: {
-    text: "TODO(adamo): one line on what you are working on",
+    text: "",
     updated: "2026-09",
   },
   heroLines: [
@@ -57,7 +57,7 @@ export const profile: Profile = {
   skills: {
     languages: ["Python", "TypeScript", "JavaScript", "HTML", "CSS", "Java", "C++"],
     frameworks: ["PyTorch", "NumPy", "Next.js", "React", "Astro", "Express"],
-    tools: [], // TODO(adamo): tools block from the CV, if any
+    tools: [],
     spoken: ["English (Native)", "French (Intermediate)"],
   },
   cvPdf: "/files/Adamo_Orsini_CV.pdf",

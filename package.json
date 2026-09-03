@@ -1,11 +1,13 @@
 {
-  "name": "",
+  "name": "adamo-orsini-portfolio",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "check": "astro check",
+    "build": "npm run check && astro build && npm run verify:dist",
+    "verify:dist": "node scripts/verify-dist.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

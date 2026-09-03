@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import { ArrowUpRight, ExternalLink, Github } from "lucide-astro";
 import Button from "./Button.astro";
-import { ExternalLink, Github } from "lucide-astro";
 import Skill from "./Skill.astro";
 
 export interface ProjectProps {
@@ -10,81 +10,121 @@ export interface ProjectProps {
     title: string;
     href: string;
     img: ImageMetadata;
+    video?: string;
     dates: string;
     skills: string[];
     link?: string;
     github?: string;
     secondLink?: { text: string; link: string };
     subtitle: string;
-    order?: number;
-    hidden?: boolean;
-    highlight?: boolean;
-    highlightSummary?: string;
   };
 }
 
 const {
-  frontmatter: { title, href, img, dates, skills, link, github, secondLink },
+  frontmatter: { title, href, img, video, dates, skills, link, github, secondLink, subtitle },
 } = Astro.props as ProjectProps;
-// const {
-//   frontmatter,
-// } = Astro.props as ProjectProps;
+const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : undefined;
 ---
 
-<div
+<article
   id={href}
-  class="snap-card grid grid-cols-12 col-span-12 md:col-span-10 lg:col-span-11 gap-3 p-6 bg-primaryBlueDark/10 backdrop-blur-sm border border-white/5 shadow-lg hover:shadow-xl hover:bg-primaryBlueDark/15 transition-all duration-300 rounded-xl mb-10"
+  class="snap-card group scroll-mt-20 overflow-hidden rounded border border-line bg-surface shadow-card transition-colors duration-fast hover:border-accent/45"
 >
-  <div class="flex flex-col justify-between gap-3 col-span-12 lg:col-span-6">
-    <div>
-      <h2 class="text-3xl lg:text-4xl mb-0.5">{title}</h2>
-      <p class="text-sm text-gray-400">{dates}</p>
-    </div>
-    <div class="text-base">
-      <slot />
-    </div>
-    <div class="flex gap-1.5 flex-wrap">
-      {skills.map((skill, i) => <Skill skill={skill} key={i} />)}
-    </div>
-    <div class="flex gap-3 flex-wrap">
-      {
-        link && (
-          <Button className="max-md:w-full" href={link} newTab>
-            <ExternalLink size="20" class="mr-2" /> Visit Website
-          </Button>
-        )
-      }
-      {
-        github && (
-          <Button className="max-md:w-full" href={github} newTab>
-            <Github size="20" class="mr-2" /> View on GitHub
-          </Button>
-        )
-      }
-      {
-        secondLink && (
-          <Button
-            className="max-md:w-full"
-            href={secondLink.link}
-            newTab
-            variant={"outline"}
-          >
-            {secondLink.text}
-          </Button>
-        )
-      }
-    </div>
-  </div>
-  <div
-    class="col-span-12 lg:col-span-6 order-first lg:order-none flex flex-col place-content-center text-center items-center overflow-hidden rounded-lg"
-  >
-    <Image
-      class="max-w-[750px] w-full object-contain aspect-video rounded-lg"
-      src={img}
-      alt={`${title}`}
-      width={750}
-      height={300}
-    />
-  </div>
-</div>
+  <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)]">
+    <div class="flex min-w-0 flex-col p-5 md:p-7">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p class="meta text-accent">{subtitle}</p>
+          <h3 class="mt-2 text-2xl font-bold leading-tight tracking-tight text-fg md:text-3xl">{title}</h3>
+        </div>
+        <time class="meta pt-1">{dates}</time>
+      </div>
 
+      <div class="project-copy mt-5 text-[15px] leading-relaxed text-muted">
+        <slot />
+      </div>
+
+      <div class="mt-auto flex flex-wrap gap-1.5 pt-6">
+        {skills.map((skill) => <Skill skill={skill} />)}
+      </div>
+
+      {(link || github || secondLink) && (
+        <div class="mt-5 flex flex-wrap gap-2 border-t border-line pt-5">
+          {link && (
+            <Button href={link} newTab variant="outline" size="sm" staticSize>
+              <ExternalLink size="14" aria-hidden="true" /> Website
+            </Button>
+          )}
+          {github && (
+            <Button href={github} newTab variant="outline" size="sm" staticSize>
+              <Github size="14" aria-hidden="true" /> GitHub
+            </Button>
+          )}
+          {secondLink && (
+            <Button href={secondLink.link} newTab variant="ghost" size="sm" staticSize>
+              {secondLink.text} <ArrowUpRight size="14" aria-hidden="true" />
+            </Button>
+          )}
+        </div>
+      )}
+    </div>
+
+    <div class="relative order-first min-h-52 overflow-hidden border-b border-line bg-accent-soft/35 lg:order-none lg:min-h-full lg:border-b-0 lg:border-l dark:bg-accent-soft/5">
+      {
+        video ? (
+          <video
+            data-project-video
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.015]"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster={img.src}
+            aria-hidden="true"
+          >
+            <source src={video} type="video/webm" />
+            {mp4Video && <source src={mp4Video} type="video/mp4" />}
+            <Image src={img} alt="" width={750} height={420} class="h-full w-full object-cover" />
+          </video>
+        ) : (
+          <Image
+            src={img}
+            alt={`${title} project preview`}
+            width={750}
+            height={420}
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.015]"
+          />
+        )
+      }
+      <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-fg/5"></div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .project-copy :global(p) { margin-top: 0.7rem; }
+  .project-copy :global(p:first-child) { margin-top: 0; }
+  .project-copy :global(br) { display: none; }
+</style>
+
+<script>
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const videos = document.querySelectorAll<HTMLVideoElement>("[data-project-video]");
+
+  if (reduceMotion.matches) {
+    videos.forEach((video) => video.pause());
+  } else if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) video.play().catch(() => undefined);
+          else video.pause();
+        });
+      },
+      { rootMargin: "160px 0px" },
+    );
+    videos.forEach((video) => observer.observe(video));
+  }
+</script>

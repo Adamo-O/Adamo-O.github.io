@@ -52,8 +52,9 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? profile.site);
     <link rel="canonical" href={canonical.href} />
     {noindex && <meta name="robots" content="noindex" />}
 
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <!-- TODO(stream-B): add /apple-touch-icon.png (180px export of Favicon196) and /favicon.svg, then link them here. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fbfaf7" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1117" />
