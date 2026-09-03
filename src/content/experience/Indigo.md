@@ -5,6 +5,7 @@ href: indigo
 type: Part-Time
 dates: October 2017 - September 2020
 img: ../../assets/experience/indigo.png
+logoTone: dark
 skills:
   - Customer service
   - Communication

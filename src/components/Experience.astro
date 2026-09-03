@@ -13,6 +13,7 @@ export interface ExperienceProps {
     dates: string;
     location?: string;
     img?: ImageMetadata;
+    logoTone?: "light" | "dark";
     skills: string[];
     link?: string;
   };
@@ -20,7 +21,7 @@ export interface ExperienceProps {
 }
 
 const {
-  frontmatter: { position, company, type, img, dates, skills, link, href, location },
+  frontmatter: { position, company, type, img, logoTone = "light", dates, skills, link, href, location },
   compact = false,
 } = Astro.props as ExperienceProps;
 const monogram = company
@@ -68,7 +69,12 @@ const monogram = company
     <div class="order-first sm:order-none">
       {
         img ? (
-          <div class="flex h-16 w-20 items-center justify-center rounded border border-line bg-white p-2.5">
+          <div
+            class:list={[
+              "flex h-16 w-20 items-center justify-center rounded border border-line p-2.5",
+              logoTone === "dark" ? "bg-[#1f1f1f]" : "bg-white",
+            ]}
+          >
             <Image src={img} alt={`${company} logo`} width={160} height={80} class="max-h-full w-auto object-contain" />
           </div>
         ) : (

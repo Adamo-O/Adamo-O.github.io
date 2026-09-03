@@ -4,6 +4,7 @@ import {
   Download,
   ExternalLink,
   Github,
+  GraduationCap,
   Linkedin,
   Mail,
   MapPin,
@@ -116,9 +117,9 @@ const initialsFor = (name: string) =>
       </header>
 
       <div class="cv-contact" aria-label="Contact details">
-        <a href={`mailto:${profile.email}`}>
+        <a href={`mailto:${profile.academicEmail}`}>
           <Mail size={14} aria-hidden="true" />
-          {profile.email}
+          {profile.academicEmail}
         </a>
         <span>
           <MapPin size={14} aria-hidden="true" />
@@ -132,6 +133,12 @@ const initialsFor = (name: string) =>
           <Linkedin size={14} aria-hidden="true" />
           LinkedIn
         </a>
+        {profile.links.scholar && (
+          <a href={profile.links.scholar} target="_blank" rel="noopener noreferrer">
+            <GraduationCap size={14} aria-hidden="true" />
+            Scholar
+          </a>
+        )}
       </div>
 
       <section class="cv-section cv-summary" aria-labelledby="summary-heading">

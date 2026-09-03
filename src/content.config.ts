@@ -44,6 +44,7 @@ export const publicationStatuses = [
   'accepted',
   'preprint',
   'workshop',
+  'withdrawn',
 ] as const;
 
 export const awardKinds = ['award', 'scholarship', 'bursary', 'competition'] as const;
@@ -86,6 +87,8 @@ const experience = defineCollection({
       location: z.string().optional(),
       /** Company logo; when absent the component renders a monogram fallback. */
       img: image().optional(),
+      /** Switches the logo tile to a dark surface for light/white wordmarks. */
+      logoTone: z.enum(['light', 'dark']).default('light'),
       skills: z.array(z.string()),
       link: z.string().url().optional(),
       highlightSummary: z.string().optional(),
@@ -117,6 +120,13 @@ const publications = defineCollection({
             arxiv: z.string().optional(),
             code: z.string().optional(),
             project: z.string().optional(),
+            openreview: z.string().url().optional(),
+            secondary: z
+              .object({
+                label: z.string(),
+                url: z.string().url(),
+              })
+              .optional(),
           })
           .default({}),
         /** First topic drives the right-rail grouping. */

@@ -3,8 +3,7 @@ position: Machine Learning Consultant
 company: MECP
 href: MECP
 type: Contract
-# TODO(adamo): the 2026 CV lists "Jan 2024 - Apr 2024"; the site had "January 2023 - April 2024". Kept the site value; confirm.
-dates: January 2023 - April 2024
+dates: January 2024 - April 2024
 location: Montreal, Canada
 # TODO(adamo): supply a local logo at src/assets/experience/mecp.png (was hotlinked from mecp.ca); monogram fallback until then.
 skills:

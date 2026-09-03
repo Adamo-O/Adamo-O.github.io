@@ -7,13 +7,15 @@ interface Props {
     authors: string[];
     venue?: string;
     year: number;
-    status: "under-review" | "accepted" | "preprint" | "workshop";
+    status: "under-review" | "accepted" | "preprint" | "workshop" | "withdrawn";
     summary: string;
     links: {
       pdf?: string;
       arxiv?: string;
       code?: string;
       project?: string;
+      openreview?: string;
+      secondary?: { label: string; url: string };
     };
     topics: string[];
   };
@@ -25,12 +27,19 @@ const statusLabels = {
   accepted: "Accepted",
   preprint: "Preprint",
   workshop: "Workshop",
+  withdrawn: "Withdrawn submission",
 };
 const links = [
+  { href: publication.links.openreview, label: "OpenReview", Icon: ArrowUpRight },
   { href: publication.links.pdf, label: "PDF", Icon: FileText },
   { href: publication.links.arxiv, label: "arXiv", Icon: FileText },
   { href: publication.links.code, label: "Code", Icon: Code2 },
   { href: publication.links.project, label: "Project", Icon: ArrowUpRight },
+  {
+    href: publication.links.secondary?.url,
+    label: publication.links.secondary?.label ?? "Related link",
+    Icon: ArrowUpRight,
+  },
 ].filter((link) => link.href);
 ---
 
@@ -43,7 +52,9 @@ const links = [
         "meta rounded-pill px-2 py-1 tracking-[0.08em]",
         publication.status === "accepted"
           ? "bg-badge-accepted/10 text-badge-accepted"
-          : "bg-badge-review/10 text-badge-review",
+          : publication.status === "withdrawn"
+            ? "bg-line/60 text-muted"
+            : "bg-badge-review/10 text-badge-review",
       ]}
     >
       {statusLabels[publication.status]}

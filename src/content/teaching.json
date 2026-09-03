@@ -2,17 +2,19 @@
   {
     "id": "coen-243",
     "code": "COEN 243",
-    "title": "TODO(adamo): course title",
+    "title": "Programming Methodology I",
     "role": "Teaching Assistant",
     "institution": "Concordia University",
-    "terms": ["Fall 2025"]
+    "terms": ["Fall 2025", "Fall 2026"],
+    "description": "Introduction to C++ under Professor Xinxin Zuo."
   },
   {
     "id": "comp-6321",
     "code": "COMP 6321",
-    "title": "TODO(adamo): course title",
-    "role": "Teaching Assistant",
+    "title": "Machine Learning",
+    "role": "Lab Coordinator",
     "institution": "Concordia University",
-    "terms": ["TODO(adamo): term"]
+    "terms": ["Fall 2026"],
+    "description": "Lab coordinator under Professor Yang Wang."
   }
 ]

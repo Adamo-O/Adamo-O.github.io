@@ -14,12 +14,15 @@ link: https://www.concordia.ca/
 highlight: true
 cv: true
 cvBullets:
-  - Prepared lesson plan, slides, and practice questions for over 40 students.
-  - Taught C++ fundamentals, object-oriented programming, and data structures.
+  - Taught COEN 243, Programming Methodology I, under Professor Xinxin Zuo in Fall 2025 and returning for Fall 2026.
+  - Prepared lesson plans, slides, and practice questions on C++ fundamentals, object-oriented programming, and data structures for over 40 students.
+  - Preparing to coordinate the labs for COMP 6321, Machine Learning, under Professor Yang Wang in Fall 2026.
   - Updated legacy course content to ensure students keep up with modern standards.
 ---
-Prepared lesson plan, slides, and practice questions for over 40 students.
+Taught COEN 243, Programming Methodology I, under Professor Xinxin Zuo in Fall 2025 and returning for Fall 2026.
 
-Taught C++ fundamentals, object-oriented programming, and data structures.
+Prepared lesson plans, slides, and practice questions on C++ fundamentals, object-oriented programming, and data structures for over 40 students.
+
+Preparing to coordinate the labs for COMP 6321, Machine Learning, under Professor Yang Wang in Fall 2026.
 
 Updated legacy course content to ensure students keep up with modern standards.

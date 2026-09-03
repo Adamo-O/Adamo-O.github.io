@@ -11,7 +11,6 @@ skills:
   - Arduino
   - TinkerCad
   - Project management
-# TODO(adamo): correct repo URL (the old value pointed at the Handwriting-Recognition-using-Accelerometers repo)
 # github: https://github.com/Adamo-O/...
 ---
 An Arduino robot built to traverse a random obstacle
