@@ -89,6 +89,8 @@ const experience = defineCollection({
       img: image().optional(),
       /** Switches the logo tile to a dark surface for light/white wordmarks. */
       logoTone: z.enum(['light', 'dark']).default('light'),
+      /** Allows long wordmarks to retain a legible aspect ratio. */
+      logoWide: z.boolean().default(false),
       skills: z.array(z.string()),
       link: z.string().url().optional(),
       highlightSummary: z.string().optional(),

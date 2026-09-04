@@ -5,7 +5,7 @@ href: MECP
 type: Contract
 dates: January 2024 - April 2024
 location: Montreal, Canada
-# TODO(adamo): supply a local logo at src/assets/experience/mecp.png (was hotlinked from mecp.ca); monogram fallback until then.
+img: ../../assets/experience/mecp.png
 skills:
   - PySpark
   - Python

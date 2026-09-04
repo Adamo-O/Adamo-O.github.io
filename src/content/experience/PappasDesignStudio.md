@@ -4,7 +4,8 @@ company: Pappas Design Studio Inc.
 href: pappas-design-studio
 type: On-Call
 dates: December 2021 - May 2023
-# TODO(adamo): supply a local logo at src/assets/experience/pappas.png (was hotlinked from the LinkedIn CDN); monogram fallback until then.
+img: ../../assets/experience/pappas.png
+logoWide: true
 skills:
   - HTML
   - CSS
