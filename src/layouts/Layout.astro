@@ -36,12 +36,20 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? profile.site);
     <script is:inline>
       (function () {
         try {
+          var root = document.documentElement;
           var t = localStorage.getItem("theme");
           var dark =
             t === "dark" ||
             (t !== "light" &&
               window.matchMedia("(prefers-color-scheme: dark)").matches);
-          if (dark) document.documentElement.classList.add("dark");
+          if (dark) root.classList.add("dark");
+
+          var sidebar = localStorage.getItem("sidebar");
+          var compact =
+            sidebar === "compact" ||
+            (sidebar !== "expanded" &&
+              window.matchMedia("(min-width: 1024px) and (max-width: 1279px)").matches);
+          if (compact) root.classList.add("sidebar-compact");
         } catch (e) {}
       })();
     </script>

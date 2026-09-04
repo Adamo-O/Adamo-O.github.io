@@ -37,7 +37,7 @@ const {
   variant === "home" ? (
     <>
       <MobileHeader />
-      <div class="mx-auto max-w-[1440px] lg:grid lg:grid-cols-[260px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)]">
+      <div class="sidebar-shell mx-auto max-w-[1440px] lg:grid">
         <Sidebar portrait={portrait} />
         <main id="content" tabindex="-1" class={cn("min-w-0", className)}>
           <slot />

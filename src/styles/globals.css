@@ -131,6 +131,100 @@ a {
   text-underline-offset: 0.15em;
 }
 
+/* ------------------------------------------------------------------
+   Desktop sidebar: a stable reading rail with an explicit compact mode.
+   Compact mode never expands on hover, so the page does not reflow while
+   navigating. Labels remain available through native hover/focus titles.
+   ------------------------------------------------------------------ */
+@media (min-width: 1024px) {
+  .sidebar-shell {
+    grid-template-columns: 220px minmax(0, 1fr);
+    transition: grid-template-columns var(--dur) var(--ease);
+  }
+
+  .sidebar {
+    transition: padding var(--dur) var(--ease);
+  }
+
+  .sidebar-copy,
+  .sidebar-nav-label,
+  .sidebar-source {
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+
+  .sidebar-expand-icon {
+    display: none;
+  }
+
+  html.sidebar-compact .sidebar-shell {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  html.sidebar-compact .sidebar {
+    padding-inline: 0.75rem;
+  }
+
+  html.sidebar-compact .sidebar-identity,
+  html.sidebar-compact .sidebar-nav-link {
+    justify-content: center;
+    padding-inline: 0.5rem;
+  }
+
+  html.sidebar-compact .sidebar-nav-link::after {
+    position: absolute;
+    left: calc(100% + 0.75rem);
+    z-index: 60;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid rgb(var(--c-line));
+    border-radius: var(--radius-sm);
+    background: rgb(var(--c-surface));
+    box-shadow: var(--shadow-card);
+    color: rgb(var(--c-fg));
+    content: attr(data-label);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-0.25rem);
+    transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+  }
+
+  html.sidebar-compact .sidebar-nav-link:hover::after,
+  html.sidebar-compact .sidebar-nav-link:focus-visible::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  html.sidebar-compact .sidebar-copy,
+  html.sidebar-compact .sidebar-nav-label,
+  html.sidebar-compact .sidebar-source {
+    display: none;
+  }
+
+  html.sidebar-compact .sidebar-utilities {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  html.sidebar-compact .sidebar-social-item {
+    display: none;
+  }
+
+  html.sidebar-compact .sidebar-utilities > li {
+    margin-left: 0;
+  }
+
+  html.sidebar-compact .sidebar-collapse-icon {
+    display: none;
+  }
+
+  html.sidebar-compact .sidebar-expand-icon {
+    display: block;
+  }
+}
+
 /* Small caps metadata voice: dates, badges, labels */
 .meta {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;

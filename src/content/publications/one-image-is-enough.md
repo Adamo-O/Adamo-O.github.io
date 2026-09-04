@@ -11,8 +11,6 @@ authors:
 year: 2026
 status: under-review
 summary: "Synthesizes pose-diverse supervision from one reference image to improve identity preservation in personalized human video diffusion."
-links:
-  openreview: https://openreview.net/forum?id=VnU8jl0AsY
 topics:
   - Human Video Diffusion
 ---

@@ -12,8 +12,6 @@ authors:
 year: 2026
 status: withdrawn
 summary: "Evaluates whether mobile GUI agents selectively use preference information when it is relevant to user-conditioned tasks."
-links:
-  openreview: https://openreview.net/forum?id=o2SeVFM12q#discussion
 topics:
   - GUI Agents
 ---

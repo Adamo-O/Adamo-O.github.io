@@ -30,8 +30,39 @@ const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : u
   id={href}
   class="snap-card group scroll-mt-20 overflow-hidden rounded border border-line bg-surface shadow-card transition-colors duration-fast hover:border-accent/45"
 >
-  <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)]">
-    <div class="flex min-w-0 flex-col p-5 md:p-7">
+  <div class="relative aspect-video overflow-hidden border-b border-line bg-bg/75">
+    {
+      video ? (
+        <video
+          data-project-video
+          class="absolute inset-0 h-full w-full object-contain transition-transform duration-slow group-hover:scale-[1.005]"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster={img.src}
+          aria-hidden="true"
+        >
+          <source src={video} type="video/webm" />
+          {mp4Video && <source src={mp4Video} type="video/mp4" />}
+          <Image src={img} alt="" width={1200} height={675} class="h-full w-full object-contain" />
+        </video>
+      ) : (
+        <Image
+          src={img}
+          alt={`${title} project preview`}
+          width={1200}
+          height={675}
+          class="absolute inset-0 h-full w-full object-contain transition-transform duration-slow group-hover:scale-[1.005]"
+        />
+      )
+    }
+    <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-fg/5"></div>
+  </div>
+
+  <div class="grid gap-6 p-5 md:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.38fr)] lg:gap-8">
+    <div class="min-w-0">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p class="meta text-accent">{subtitle}</p>
@@ -43,13 +74,18 @@ const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : u
       <div class="project-copy mt-5 text-[15px] leading-relaxed text-muted">
         <slot />
       </div>
+    </div>
 
-      <div class="mt-auto flex flex-wrap gap-1.5 pt-6">
-        {skills.map((skill) => <Skill skill={skill} />)}
+    <div class="flex flex-col justify-between gap-6 lg:border-l lg:border-line lg:pl-7">
+      <div>
+        <p class="meta mb-3 text-accent">Tools</p>
+        <div class="flex flex-wrap gap-1.5">
+          {skills.map((skill) => <Skill skill={skill} />)}
+        </div>
       </div>
 
       {(link || github || secondLink) && (
-        <div class="mt-5 flex flex-wrap gap-2 border-t border-line pt-5">
+        <div class="flex flex-wrap gap-2 border-t border-line pt-5">
           {link && (
             <Button href={link} newTab variant="outline" size="sm" staticSize>
               <ExternalLink size="14" aria-hidden="true" /> Website
@@ -67,37 +103,6 @@ const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : u
           )}
         </div>
       )}
-    </div>
-
-    <div class="relative order-first min-h-52 overflow-hidden border-b border-line bg-accent-soft/35 lg:order-none lg:min-h-full lg:border-b-0 lg:border-l dark:bg-accent-soft/5">
-      {
-        video ? (
-          <video
-            data-project-video
-            class="absolute inset-0 h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.015]"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            poster={img.src}
-            aria-hidden="true"
-          >
-            <source src={video} type="video/webm" />
-            {mp4Video && <source src={mp4Video} type="video/mp4" />}
-            <Image src={img} alt="" width={750} height={420} class="h-full w-full object-cover" />
-          </video>
-        ) : (
-          <Image
-            src={img}
-            alt={`${title} project preview`}
-            width={750}
-            height={420}
-            class="absolute inset-0 h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.015]"
-          />
-        )
-      }
-      <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-fg/5"></div>
     </div>
   </div>
 </article>

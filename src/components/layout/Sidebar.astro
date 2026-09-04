@@ -3,7 +3,7 @@
  * Persistent left column at lg+. Contains LabPass, NavPills, social row,
  * ThemeToggle and a footer line. Props: portrait?: ImageMetadata, class?
  */
-import { Github, Linkedin, Mail, GraduationCap } from "lucide-astro";
+import { Github, Linkedin, Mail, GraduationCap, PanelLeftClose, PanelLeftOpen } from "lucide-astro";
 import type { ImageMetadata } from "astro";
 import { cn } from "@/lib/utils";
 import { profile } from "@/data/profile";
@@ -30,8 +30,8 @@ const socials = [
 
 <aside
   class={cn(
-    "hidden lg:flex lg:sticky lg:top-0 lg:h-dvh lg:flex-col lg:self-start lg:overflow-y-auto",
-    "border-r border-line bg-bg/60 p-6",
+    "sidebar hidden lg:sticky lg:top-0 lg:flex lg:h-dvh lg:flex-col lg:self-start lg:overflow-visible",
+    "border-r border-line bg-bg/60 p-4",
     className,
   )}
   aria-label="Sidebar"
@@ -47,10 +47,10 @@ const socials = [
   <NavPills items={[...NAV_ITEMS, CV_ITEM]} orientation="vertical" class="mt-6" label="Sections" />
 
   <div class="mt-auto pt-8">
-    <ul class="flex flex-wrap items-center gap-1" aria-label="Profiles">
+    <ul class="sidebar-utilities flex flex-wrap items-center gap-1" aria-label="Profiles and display settings">
       {
         socials.map(({ href, label, Icon }) => (
-            <li>
+            <li class="sidebar-social-item">
               <a
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
@@ -67,10 +67,21 @@ const socials = [
       <li class="ml-auto">
         <ThemeToggle />
       </li>
+      <li>
+        <button
+          type="button"
+          data-sidebar-toggle
+          aria-label="Collapse sidebar"
+          aria-expanded="true"
+          title="Collapse sidebar"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-pill text-muted transition-colors duration-fast hover:bg-accent-soft/70 hover:text-accent dark:hover:bg-accent-soft/15"
+        >
+          <PanelLeftClose class="sidebar-collapse-icon" size={18} aria-hidden="true" />
+          <PanelLeftOpen class="sidebar-expand-icon hidden" size={18} aria-hidden="true" />
+        </button>
+      </li>
     </ul>
-    <p class="meta mt-4 flex items-center gap-2 normal-case tracking-normal">
-      <span>Built with Astro</span>
-      <span aria-hidden="true">·</span>
+    <p class="sidebar-source meta mt-4 normal-case tracking-normal">
       <a href={profile.links.source} class="hover:text-accent" target="_blank" rel="noopener noreferrer">Source</a>
     </p>
   </div>
@@ -78,4 +89,30 @@ const socials = [
 
 <script>
   import "@/scripts/scrollSpy";
+
+  const root = document.documentElement;
+  const toggle = document.querySelector<HTMLButtonElement>("[data-sidebar-toggle]");
+  const media = window.matchMedia("(min-width: 1024px) and (max-width: 1279px)");
+
+  const updateToggle = () => {
+    if (!toggle) return;
+    const compact = root.classList.contains("sidebar-compact");
+    toggle.setAttribute("aria-expanded", String(!compact));
+    toggle.setAttribute("aria-label", compact ? "Expand sidebar" : "Collapse sidebar");
+    toggle.title = compact ? "Expand sidebar" : "Collapse sidebar";
+  };
+
+  toggle?.addEventListener("click", () => {
+    const compact = root.classList.toggle("sidebar-compact");
+    localStorage.setItem("sidebar", compact ? "compact" : "expanded");
+    updateToggle();
+  });
+
+  media.addEventListener("change", (event) => {
+    if (localStorage.getItem("sidebar")) return;
+    root.classList.toggle("sidebar-compact", event.matches);
+    updateToggle();
+  });
+
+  updateToggle();
 </script>

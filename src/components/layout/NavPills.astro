@@ -37,20 +37,25 @@ const {
   >
     {
       items.map((item) => (
-        <li class={cn(orientation === "vertical" && item.outline && "mt-2")}>
+        <li class={cn(orientation === "vertical" && item.outline && "mt-3 border-t border-line pt-3")}>
           <a
             href={item.href}
             data-nav-link
+            data-label={item.label}
+            aria-label={item.label}
+            title={orientation === "vertical" ? item.label : undefined}
             class={cn(
-              "group flex items-center gap-2.5 rounded-pill px-3.5 py-2 text-sm font-medium",
+              "sidebar-nav-link group relative flex min-h-10 items-center gap-2.5 rounded-sm px-3 py-2 text-sm font-medium",
               "transition-colors duration-fast",
-              "text-fg/85 hover:bg-accent-soft/70 hover:text-accent dark:hover:bg-accent-soft/15",
-              "aria-[current=true]:bg-accent aria-[current=true]:text-white dark:aria-[current=true]:text-bg",
-              item.outline &&
-                "border border-line bg-surface hover:border-accent",
+              "text-fg/75 hover:bg-accent-soft/60 hover:text-accent dark:hover:bg-accent-soft/10",
+              "aria-[current=true]:bg-accent-soft/80 aria-[current=true]:text-accent-strong dark:aria-[current=true]:bg-accent-soft/15 dark:aria-[current=true]:text-accent-strong",
               orientation === "horizontal" && "min-h-11 px-3 py-2",
             )}
           >
+            <span
+              aria-hidden="true"
+              class="absolute inset-y-2 left-0 w-px bg-accent opacity-0 transition-opacity duration-fast group-aria-[current=true]:opacity-100"
+            ></span>
             {showIcons && item.icon && (
               <NavIcon
                 name={item.icon}
@@ -58,7 +63,7 @@ const {
                 class="shrink-0 opacity-70 group-hover:opacity-100 group-aria-[current=true]:opacity-100"
               />
             )}
-            <span>{item.label}</span>
+            <span class={orientation === "vertical" ? "sidebar-nav-label" : undefined}>{item.label}</span>
           </a>
         </li>
       ))

@@ -12,11 +12,6 @@ authors:
 year: 2026
 status: under-review
 summary: "Builds reusable, task-agnostic destination memory from autonomous app exploration to improve navigation by mobile GUI agents."
-links:
-  openreview: https://openreview.net/forum?id=VjBWmU05B3
-  secondary:
-    label: OpenReview · EMNLP submission
-    url: https://openreview.net/forum?id=VewSFlvbwn
 topics:
   - GUI Agents
 highlight: true

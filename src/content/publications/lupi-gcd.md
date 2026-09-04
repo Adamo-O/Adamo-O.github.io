@@ -12,8 +12,6 @@ authors:
 year: 2026
 status: under-review
 summary: "Uses structure-preserving multimodal supervision to improve generalized category discovery while keeping inference entirely unimodal."
-links:
-  openreview: https://openreview.net/forum?id=thzdN1nn8m
 topics:
   - Multimodal Learning
 ---
