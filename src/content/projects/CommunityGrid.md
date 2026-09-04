@@ -14,7 +14,6 @@ skills:
   - FastAPI
   - Cypress
   - TypeScript
-link: https://communitygrid.app/
 secondLink:
   text: View Poster
   link: /files/CommunityGrid_Poster.pdf

@@ -11,7 +11,7 @@ skills:
   - Firebase
   - Cypress
   - TypeScript
-github: https://github.com/jay-roe/Interlinked_SOEN390_Team11
+github: https://github.com/jay-roe/Interlinked
 cv: true
 cvBullets:
   - Led frontend development by recording React and Next.js tutorials for teammates, pair programming, and showing clear communication.

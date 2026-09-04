@@ -145,9 +145,7 @@
   }
 
   .cv-footer {
-    padding: 0.08in 0 0 !important;
-    background: transparent !important;
-    font-size: 6.3pt !important;
+    display: none !important;
   }
 
   .cv-footer a,
