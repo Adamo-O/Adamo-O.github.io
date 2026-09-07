@@ -40,7 +40,7 @@ export const profile: Profile = {
   academicEmail: "adamo.orsini@mila.quebec",
   site: "https://adamoorsini.com",
   description:
-    "Adamo Orsini - PhD student in Computer Science at Concordia University / Mila working on mobile GUI agents, human image animation and latent world models.",
+    "Adamo Orsini - PhD student in Computer Science at Concordia University / Mila working on mobile GUI agents and world models.",
   links: {
     github: "https://github.com/Adamo-O",
     linkedin: "https://www.linkedin.com/in/adamo-orsini/",
@@ -53,7 +53,7 @@ export const profile: Profile = {
   },
   heroLines: [
     "I'm a PhD Student in Computer Science studying AI Agents.",
-    "My current research projects are focused on Mobile GUI Agents, Mobile App Navigation, and Human Avatar Generation.",
+    "My current research focuses on Mobile GUI Agents and World Models.",
   ],
   skills: {
     languages: ["Python", "TypeScript", "JavaScript", "HTML", "CSS", "Java", "C++"],

@@ -9,30 +9,30 @@ img: ../../assets/experience/softgolf.png
 skills:
   - Software Architecture
   - Next.js
+  - React Native
+  - Expo
   - Tailwind
   - PostgreSQL
   - tRPC
   - Prisma
   - PlanetScale
+  - App Store Connect
   - SEO
 link: https://softgolf.io/
 highlight: true
-highlightSummary: Planned, developed, and managed full-stack web application platform for creating, browsing, and managing golf tournaments.
+highlightSummary: Leading SoftGolf's web and mobile product engineering, releases, search visibility, and live-tournament support.
 cv: true
 cvBullets:
-  - Led re-architecture and re-development of the SoftGolf platform into a modern full-stack web application.
-  - Collaborate regularly with CEOs and customers to continuously deliver new requirements.
-  - Developed responsive web application using Next.js, tRPC, Prisma, and PlanetScale with scaling and SEO at the forefront.
+  - Lead architecture and delivery across SoftGolf's full-stack web platform and React Native mobile app, including App Store submissions.
+  - Provide 24/7 on-call support to organizers and players during live charity golf tournaments while continuously delivering new requirements with the founders.
+  - Lead technical SEO and AI-search visibility initiatives alongside platform performance and reliability work.
 ---
-Led re-architecture and re-development of the SoftGolf platform into a modern full-stack web application for creating, managing, and browsing charity golf tournaments.
+Lead architecture and delivery across SoftGolf's full-stack web platform and React Native mobile app for creating, managing, and playing charity golf tournaments, including App Store submissions.
 
 <br />
 
-Collaborate regularly with CEOs and customers to
-continuously deliver new requirements.
+Provide 24/7 on-call support to organizers and players during live tournaments while continuously delivering new requirements with the founders.
 
 <br />
 
-Developed responsive web application using Next.js, tRPC,
-Prisma, and PlanetScale with scaling and SEO at the
-forefront.
+Lead technical SEO and AI-search visibility initiatives alongside platform performance, reliability, and product-development work.

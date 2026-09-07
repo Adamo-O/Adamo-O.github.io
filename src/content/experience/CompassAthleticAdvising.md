@@ -13,6 +13,7 @@ skills:
   - CSS
   - SEO
 link: https://compassathleticadvising.com/
+collapsed: true
 # Not on the 2026 CV PDF; set cv: true to list it on /cv.
 cv: false
 ---

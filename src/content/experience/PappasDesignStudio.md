@@ -1,9 +1,9 @@
 ---
-position: Web Developer
+position: On-Call Web Developer
 company: Pappas Design Studio Inc.
 href: pappas-design-studio
 type: On-Call
-dates: December 2021 - May 2023
+dates: December 2021 - Present
 img: ../../assets/experience/pappas.png
 logoWide: true
 skills:

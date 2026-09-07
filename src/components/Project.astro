@@ -24,6 +24,7 @@ const {
   frontmatter: { title, href, img, video, dates, skills, link, github, secondLink, subtitle },
 } = Astro.props as ProjectProps;
 const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : undefined;
+const lowResolutionPreview = img.width <= 640;
 ---
 
 <article
@@ -35,7 +36,7 @@ const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : u
       video ? (
         <video
           data-project-video
-          class="absolute inset-0 h-full w-full object-contain transition-transform duration-slow group-hover:scale-[1.005]"
+          class="absolute inset-0 m-auto h-full w-full max-w-[40rem] object-contain transition-transform duration-slow group-hover:scale-[1.005]"
           autoplay
           muted
           loop
@@ -46,7 +47,7 @@ const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : u
         >
           <source src={video} type="video/webm" />
           {mp4Video && <source src={mp4Video} type="video/mp4" />}
-          <Image src={img} alt="" width={1200} height={675} class="h-full w-full object-contain" />
+          <Image src={img} alt="" width={960} height={540} class="h-full w-full object-contain" />
         </video>
       ) : (
         <Image
@@ -54,7 +55,10 @@ const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : u
           alt={`${title} project preview`}
           width={1200}
           height={675}
-          class="absolute inset-0 h-full w-full object-contain transition-transform duration-slow group-hover:scale-[1.005]"
+          class:list={[
+            "absolute inset-0 m-auto h-full w-full object-contain transition-transform duration-slow group-hover:scale-[1.005]",
+            lowResolutionPreview && "max-w-[40rem]",
+          ]}
         />
       )
     }

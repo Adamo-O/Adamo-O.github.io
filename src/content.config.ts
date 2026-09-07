@@ -116,6 +116,9 @@ const publications = defineCollection({
         /** 15-20 words. */
         summary: z.string().min(40).max(220),
         thumbnail: image().optional(),
+        /** Concise description of the diagram's meaning, not its appearance. */
+        thumbnailAlt: z.string().min(20).max(240).optional(),
+        thumbnailCaption: z.string().max(160).optional(),
         links: z
           .object({
             pdf: z.string().optional(),
@@ -138,6 +141,10 @@ const publications = defineCollection({
       .refine((p) => p.status !== 'under-review' || !p.venue, {
         message: 'under-review entries must not list a venue',
         path: ['venue'],
+      })
+      .refine((p) => !p.thumbnail || Boolean(p.thumbnailAlt), {
+        message: 'publication thumbnails require descriptive alt text',
+        path: ['thumbnailAlt'],
       }),
 });
 
