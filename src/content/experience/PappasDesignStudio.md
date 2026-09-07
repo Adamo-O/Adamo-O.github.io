@@ -1,5 +1,5 @@
 ---
-position: On-Call Web Developer
+position: Web Developer
 company: Pappas Design Studio Inc.
 href: pappas-design-studio
 type: On-Call
