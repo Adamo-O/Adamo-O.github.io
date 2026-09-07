@@ -75,7 +75,7 @@
   .cv-section {
     grid-template-columns: 0.9in minmax(0, 1fr) !important;
     gap: 0.18in !important;
-    padding: 0.16in 0 !important;
+    padding: 0.15in 0 !important;
   }
 
   .cv-section > h2 {

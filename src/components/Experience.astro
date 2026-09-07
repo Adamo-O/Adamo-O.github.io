@@ -17,6 +17,7 @@ export interface ExperienceProps {
     logoWide?: boolean;
     skills: string[];
     link?: string;
+    impactStats?: Array<{ value: string; label: string }>;
   };
   compact?: boolean;
 }
@@ -34,6 +35,7 @@ const {
     link,
     href,
     location,
+    impactStats = [],
   },
   compact = false,
 } = Astro.props as ExperienceProps;
@@ -103,6 +105,17 @@ const monogram = company
   <div class="experience-copy mt-5 max-w-3xl text-[15px] leading-relaxed text-muted">
     <slot />
   </div>
+
+  {impactStats.length > 0 && (
+    <dl class="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded border border-line bg-line sm:grid-cols-4">
+      {impactStats.map(({ value, label }) => (
+        <div class="min-w-0 bg-bg/55 px-3 py-3 md:px-4">
+          <dd class="text-lg font-bold tabular-nums tracking-tight text-fg">{value}</dd>
+          <dt class="mt-1 text-[11px] leading-snug text-muted">{label}</dt>
+        </div>
+      ))}
+    </dl>
+  )}
 
   {skills.length > 0 && (
     <div class="mt-5 flex flex-wrap gap-1.5 border-t border-line pt-4">

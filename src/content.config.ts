@@ -94,6 +94,16 @@ const experience = defineCollection({
       skills: z.array(z.string()),
       link: z.string().url().optional(),
       highlightSummary: z.string().optional(),
+      /** Optional public-facing impact figures displayed as a compact metric row. */
+      impactStats: z
+        .array(
+          z.object({
+            value: z.string(),
+            label: z.string(),
+          }),
+        )
+        .max(4)
+        .optional(),
       /** Rendered inside the collapsed "earlier roles" group. */
       collapsed: z.boolean().default(false),
       cvBullets: z.array(z.string()).optional(),
