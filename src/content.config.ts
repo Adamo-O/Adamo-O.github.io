@@ -129,6 +129,8 @@ const publications = defineCollection({
         /** Concise description of the diagram's meaning, not its appearance. */
         thumbnailAlt: z.string().min(20).max(240).optional(),
         thumbnailCaption: z.string().max(160).optional(),
+        /** Crops source-page caption fragments while preserving the full diagram width. */
+        thumbnailCrop: z.boolean().default(false),
         links: z
           .object({
             pdf: z.string().optional(),

@@ -14,6 +14,7 @@ interface Props {
     thumbnail?: ImageMetadata;
     thumbnailAlt?: string;
     thumbnailCaption?: string;
+    thumbnailCrop?: boolean;
     links: {
       pdf?: string;
       arxiv?: string;
@@ -52,13 +53,20 @@ const links = [
   {
     publication.thumbnail && publication.thumbnailAlt && (
       <figure class="border-b border-line bg-bg/70 p-3 md:p-4">
-        <Image
-          src={publication.thumbnail}
-          alt={publication.thumbnailAlt}
-          width={1200}
-          height={675}
-          class="mx-auto max-h-[28rem] w-full object-contain"
-        />
+        <div class:list={["mx-auto overflow-hidden bg-white", publication.thumbnailCrop && "relative aspect-[2.1/1]"]}>
+          <Image
+            src={publication.thumbnail}
+            alt={publication.thumbnailAlt}
+            width={1200}
+            height={750}
+            class:list={[
+              "w-full",
+              publication.thumbnailCrop
+                ? "absolute inset-x-0 top-0 h-auto -translate-y-[6.5%]"
+                : "max-h-[28rem] object-contain",
+            ]}
+          />
+        </div>
         {publication.thumbnailCaption && (
           <figcaption class="mt-2 text-xs leading-relaxed text-muted">
             {publication.thumbnailCaption}
