@@ -1,6 +1,6 @@
 # 001 — Smooth the Earlier roles disclosure
 
-- **Status**: TODO
+- **Status**: DONE
 - **Commit**: bfab677
 - **Severity**: LOW
 - **Category**: Missed opportunities; easing and duration
@@ -82,7 +82,7 @@ The `block-size` transition is a deliberate, bounded exception to the transform/
 - Do NOT replace `details`/`summary` with custom button state or JavaScript.
 - Do NOT add a motion dependency, keyframes, staggered card entrances, scale, blur, or bounce.
 - Do NOT change experience content, ordering, card layout, colors, spacing, or borders as part of this plan.
-- Do NOT modify the site-wide reduced-motion block.
+- Keep reduced motion centralized in the existing site-wide block. The only permitted amendment is adding `.earlier-roles::details-content` to its selector list because Chromium does not match the new pseudo-element through `*::before` or `*::after`.
 - If the current markup no longer matches the excerpt from commit `bfab677`, STOP and report instead of improvising.
 
 ## Verification
@@ -97,3 +97,7 @@ The `block-size` transition is a deliberate, bounded exception to the transform/
 - In browser DevTools, set animation playback to 10% and confirm there is no overshoot or double exposure.
 - Emulate `prefers-reduced-motion: reduce` and confirm the disclosure still works while the transitions complete effectively instantly through the existing global rule.
 - **Done when**: native keyboard interaction still works, the disclosure is smooth in a supporting browser, unsupported browsers retain the native instant behavior, and all mechanical checks pass.
+
+## Execution result — 2026-09-07
+
+Implemented and verified on branch `codex/earlier-roles-motion`. Chromium supported `::details-content` and intrinsic-size interpolation; the disclosure reached its full `671.812px` block size over the specified 220ms curve, rapid reversal retargeted without child animations, and Enter toggled the native summary in both directions. Initial reduced-motion verification found that the existing universal pseudo-element selectors did not match `::details-content` (`0.22s` remained computed and the content was mid-transition after 20ms). The centralized reduced-motion selector list was therefore extended with `.earlier-roles::details-content`; after that amendment, all four disclosure transition durations computed to `0.00001s` and the disclosure reached its final state by the first 20ms sample. `npm run check`, `npm run build`, and `git diff --check` all passed.

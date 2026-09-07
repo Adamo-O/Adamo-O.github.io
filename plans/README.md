@@ -2,7 +2,7 @@
 
 | Plan | Title | Severity | Status |
 | --- | --- | --- | --- |
-| 001 | Smooth the Earlier roles disclosure | LOW | TODO |
+| 001 | Smooth the Earlier roles disclosure | LOW | DONE |
 
 ## Recommended execution order
 

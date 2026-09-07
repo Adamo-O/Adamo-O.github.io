@@ -164,10 +164,10 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
 
         {
           earlierExperiences.length > 0 && (
-            <details class="group rounded border border-line bg-surface/60">
+            <details class="earlier-roles group rounded border border-line bg-surface/60">
               <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 text-sm font-semibold text-fg marker:hidden">
                 Earlier roles
-                <span class="meta transition-transform duration-fast group-open:rotate-45" aria-hidden="true">+</span>
+                <span class="meta transition-transform duration-[200ms] ease-[var(--ease-in-out)] group-open:rotate-45" aria-hidden="true">+</span>
               </summary>
               <div class="grid gap-4 border-t border-line p-4 md:p-5">
                 {earlierExperiences.map((experience) => (

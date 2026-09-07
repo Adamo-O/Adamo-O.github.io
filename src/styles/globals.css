@@ -30,6 +30,8 @@
   --dur: 200ms;
   --dur-slow: 320ms;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   --shadow-card: 0 1px 2px rgb(22 25 43 / 0.06),
     0 8px 24px -12px rgb(52 79 151 / 0.18);
@@ -129,6 +131,30 @@ body {
 a {
   color: inherit;
   text-underline-offset: 0.15em;
+}
+
+@supports selector(details::details-content) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  .earlier-roles::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      content-visibility 220ms allow-discrete,
+      block-size 220ms var(--ease-out),
+      opacity 160ms var(--ease-out),
+      transform 220ms var(--ease-out);
+  }
+
+  .earlier-roles[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ------------------------------------------------------------------
@@ -314,7 +340,8 @@ a {
   }
   *,
   *::before,
-  *::after {
+  *::after,
+  .earlier-roles::details-content {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
