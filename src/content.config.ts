@@ -129,7 +129,7 @@ const publications = defineCollection({
       .object({
         title: z.string(),
         /** Component bolds entries equal to profile.name. */
-        authors: z.array(z.string()).min(1),
+        authors: z.array(z.string().trim().min(1)).min(1),
         venue: z.string().optional(),
         year: z.number().int(),
         status: z.enum(publicationStatuses),

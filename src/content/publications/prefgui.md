@@ -6,7 +6,7 @@ authors:
   - Seyed Mehdi Ayyoubzadeh
   - Adamo Orsini
   - Xiaowen Zhang
-  - YUANHAO YU
+  - Yuanhao Yu
   - Yang Wang
   - Xinxin Zuo
 year: 2026

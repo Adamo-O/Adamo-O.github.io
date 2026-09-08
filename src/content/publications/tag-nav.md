@@ -6,7 +6,7 @@ authors:
   - Sadman Rakib Pinon
   - Hannuo Zhang
   - Koosha Gholipour Baradari
-  - YUANHAO YU
+  - Yuanhao Yu
   - Xinxin Zuo
   - Yang Wang
 year: 2026
