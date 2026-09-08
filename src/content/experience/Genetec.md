@@ -12,6 +12,7 @@ skills:
   - .NET Core
   - Bash
 link: https://www.genetec.com/
+highlightSummary: Built reusable Azure Pipelines templates and a C# file-processing CLI, then integrated the deployment workflow into production services and plugins.
 # Not on the 2026 CV PDF; set cv: true to list it on /cv.
 cv: false
 ---

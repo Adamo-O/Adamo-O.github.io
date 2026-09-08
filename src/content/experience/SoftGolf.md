@@ -20,7 +20,7 @@ skills:
   - SEO
 link: https://softgolf.io/
 highlight: true
-highlightSummary: Leading SoftGolf's web and mobile product engineering for 100+ tournaments and 700+ player registrations.
+highlightSummary: Lead architecture and delivery of SoftGolf's web platform and React Native mobile app, including App Store submissions, reliability, and AI-search visibility. Provide 24/7 support during live tournaments while shipping new requirements with the founders.
 impactStats:
   - value: 100+
     label: tournaments hosted

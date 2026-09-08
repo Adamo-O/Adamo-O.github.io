@@ -9,6 +9,8 @@ skills:
   - Tensorflow
   - React
   - Vite
+highlight: true
+highlightSummary: Built an ASL Wordle game with TensorFlow.js hand tracking; inexperienced users improved recognition accuracy by 70% after using the app.
 link: https://adamoorsini.com/Handle/
 github: https://github.com/Adamo-O/Handle/
 cv: true

@@ -1,18 +1,16 @@
 ---
 /**
  * Hero block: particle field behind the intro copy from profile.ts, two
- * CTAs (Email, CV), the "now" pill and the live Discord/Spotify status.
+ * CTAs (Research, CV), and the current-work pill.
  * Designed to sit inside <Section id="about">; it does not wrap a <section>.
  */
-import { Mail, FileText } from "lucide-astro";
+import { FlaskConical, FileText } from "lucide-astro";
 import Button from "@/components/Button.astro";
-import LiveStatus from "@/components/LiveStatus/LiveStatus.astro";
 import { profile } from "@/data/profile";
 import ParticleField from "./ParticleField";
 import NowPill from "./NowPill.astro";
 
-const [lead, ...rest] = profile.heroLines;
-const roleLine = [profile.role, ...profile.affiliations].join(" · ");
+const lead = profile.heroLines[0];
 ---
 
 <div class="relative isolate">
@@ -23,28 +21,18 @@ const roleLine = [profile.role, ...profile.affiliations].join(" · ");
       <h1 class="text-display font-bold text-fg">
         Hi, I'm {profile.name}.
       </h1>
-      <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
-        {roleLine}
-      </p>
-      {lead && <p class="text-lg leading-snug text-fg md:text-xl">{lead}</p>}
-      {
-        rest.length > 0 && (
-          <div class="space-y-2 text-[15px] leading-relaxed text-muted">
-            {rest.map((line) => <p>{line}</p>)}
-          </div>
-        )
-      }
+      {lead && <p class="max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{lead}</p>}
     </div>
 
     <div class="flex flex-wrap items-center gap-3">
       <Button
-        href={`mailto:${profile.personalEmail}`}
-        title={`Send an email to ${profile.personalEmail}`}
+        href="#research"
+        title="View research"
         variant="default"
         staticSize
       >
-        <Mail class="mr-2" size="18" aria-hidden="true" />
-        Email me
+        <FlaskConical class="mr-2" size="18" aria-hidden="true" />
+        Research
       </Button>
       <Button href={profile.cvPdf} title="Open CV (PDF)" newTab variant="outline" staticSize>
         <FileText class="mr-2" size="18" aria-hidden="true" />
@@ -56,8 +44,5 @@ const roleLine = [profile.role, ...profile.affiliations].join(" · ");
       <NowPill text={profile.now.text} updated={profile.now.updated} />
     </div>
 
-    <div class="border-t border-line pt-5">
-      <LiveStatus class="justify-start" />
-    </div>
   </div>
 </div>

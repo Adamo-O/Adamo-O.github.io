@@ -11,7 +11,8 @@ skills:
   - Teaching
   - Course Design
 link: https://www.concordia.ca/
-highlight: true
+highlight: false
+highlightSummary: Teach C++ fundamentals for COEN 243 and support COMP 6321 machine-learning labs as coordinator under Professors Xinxin Zuo and Yang Wang.
 cv: true
 cvBullets:
   - Taught COEN 243, Programming Methodology I, under Professor Xinxin Zuo in Fall 2025 and returning for Fall 2026.

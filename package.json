@@ -16,7 +16,6 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.4",
     "@astrojs/tailwind": "^6.0.2",
-    "@fontsource-variable/inter-tight": "^5.0.20",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/react": "^18.2.75",
     "@types/react-dom": "^18.2.24",

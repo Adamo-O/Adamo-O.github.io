@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("../assets/fonts/PPNeueMontreal-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("../assets/fonts/PPNeueMontreal-Variable.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Supply Mono";
+  src: url("../assets/fonts/PPSupplyMono-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+}
+
 /* ------------------------------------------------------------------
    Design tokens. Colours are RGB triplets so Tailwind opacity modifiers
    work (bg-accent/10). Tailwind names: bg, surface, fg, muted, line,
@@ -94,7 +118,7 @@ body {
       transparent 1px
     );
   background-size: var(--grid-size) var(--grid-size);
-  font-family: "Inter Tight Variable", ui-sans-serif, system-ui, -apple-system,
+  font-family: "PP Neue Montreal", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
@@ -253,7 +277,7 @@ a {
 
 /* Small caps metadata voice: dates, badges, labels */
 .meta {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -285,7 +309,7 @@ a {
 
 .v-subtitle {
   writing-mode: vertical-lr;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;

@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 CLAUDE.md
 .claude/
+
+# Local design-review artifacts
+.impeccable/

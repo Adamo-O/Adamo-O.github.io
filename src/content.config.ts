@@ -67,6 +67,16 @@ const projects = defineCollection({
       github: z.string().url().optional(),
       secondLink: z.object({ text: z.string(), link: z.string() }).optional(),
       highlightSummary: z.string().optional(),
+      /** Optional verified product figures shown alongside the project preview. */
+      impactStats: z
+        .array(
+          z.object({
+            value: z.string(),
+            label: z.string(),
+          }),
+        )
+        .max(3)
+        .optional(),
       /** Bullets used on /cv (CV wording, may differ from the body). */
       cvBullets: z.array(z.string()).optional(),
       /** Listed on /cv. */

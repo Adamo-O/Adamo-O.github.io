@@ -27,8 +27,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['"Inter Tight Variable"', ...defaultTheme.fontFamily.sans],
-        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
+        sans: ['"PP Neue Montreal"', ...defaultTheme.fontFamily.sans],
+        mono: ['"PP Supply Mono"', "ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
       },
       fontSize: {
         display: ["var(--text-display)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adamo Orsini social preview</title>
+    <style>
+      @font-face {
+        font-family: "PP Neue Montreal";
+        src: url("../src/assets/fonts/PPNeueMontreal-Variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: block;
+      }
+
+      @font-face {
+        font-family: "PP Supply Mono";
+        src: url("../src/assets/fonts/PPSupplyMono-Variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: block;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        color: #151827;
+        background-color: #fbfaf7;
+        background-image:
+          linear-gradient(#e7e7e3 1px, transparent 1px),
+          linear-gradient(90deg, #e7e7e3 1px, transparent 1px);
+        background-size: 32px 32px;
+        font-family: "PP Neue Montreal", Arial, sans-serif;
+      }
+
+      main {
+        position: relative;
+        width: calc(100% - 80px);
+        height: calc(100% - 80px);
+        margin: 40px;
+        padding: 72px 56px 50px;
+        border: 2px solid #dfe3eb;
+        background: rgb(251 250 247 / 88%);
+      }
+
+      .eyebrow,
+      .url {
+        color: #3158a5;
+        font-family: "PP Supply Mono", ui-monospace, monospace;
+      }
+
+      .eyebrow {
+        margin: 0;
+        font-size: 23px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 24px 0 0;
+        font-size: 96px;
+        font-weight: 650;
+        letter-spacing: -0.045em;
+        line-height: 0.95;
+      }
+
+      .focus {
+        margin: 58px 0 0;
+        color: #606879;
+        font-size: 33px;
+        font-weight: 450;
+        letter-spacing: -0.02em;
+      }
+
+      .url {
+        position: absolute;
+        bottom: 45px;
+        left: 56px;
+        margin: 0;
+        font-size: 23px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">PhD student · Computer Science · Concordia University / Mila</p>
+      <h1>Adamo Orsini</h1>
+      <p class="focus">Mobile GUI agents · world models</p>
+      <p class="url">adamoorsini.com</p>
+    </main>
+  </body>
+</html>

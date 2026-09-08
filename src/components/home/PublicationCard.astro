@@ -15,6 +15,7 @@ interface Props {
     thumbnailAlt?: string;
     thumbnailCaption?: string;
     thumbnailCrop?: boolean;
+    highlight?: boolean;
     links: {
       pdf?: string;
       arxiv?: string;
@@ -49,21 +50,27 @@ const links = [
 ].filter((link) => link.href);
 ---
 
-<article class="overflow-hidden rounded border border-line bg-surface shadow-card">
+<article
+  class:list={[
+    "overflow-hidden rounded border bg-surface shadow-card",
+    publication.highlight ? "border-accent/45" : "border-line",
+    publication.thumbnail && "md:grid md:grid-cols-[minmax(15rem,0.92fr)_minmax(0,1.08fr)]",
+  ]}
+>
   {
     publication.thumbnail && publication.thumbnailAlt && (
-      <figure class="border-b border-line bg-bg/70 p-3 md:p-4">
-        <div class:list={["mx-auto overflow-hidden bg-white", publication.thumbnailCrop && "relative aspect-[2.1/1]"]}>
+      <figure class="flex flex-col justify-center border-b border-line bg-bg/70 p-3 md:border-b-0 md:border-r md:p-4">
+        <div class:list={["relative mx-auto w-full overflow-hidden bg-white", publication.thumbnailCrop ? "aspect-[2.3/1]" : "aspect-[16/10]"]}>
           <Image
             src={publication.thumbnail}
             alt={publication.thumbnailAlt}
             width={1200}
             height={750}
             class:list={[
-              "w-full",
+              "absolute inset-0 h-full w-full",
               publication.thumbnailCrop
-                ? "absolute inset-x-0 top-0 h-auto -translate-y-[6.5%]"
-                : "max-h-[28rem] object-contain",
+                ? "object-cover object-[center_30%]"
+                : "h-full object-contain",
             ]}
           />
         </div>
@@ -75,7 +82,7 @@ const links = [
       </figure>
     )
   }
-  <div class="p-5 md:p-6">
+  <div class="flex min-w-0 flex-col justify-center p-5 md:p-6">
     <div class="flex flex-wrap items-center gap-2">
       <span class="meta">{publication.year}</span>
       <span aria-hidden="true" class="text-line">/</span>

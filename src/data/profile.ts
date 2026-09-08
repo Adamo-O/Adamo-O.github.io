@@ -52,8 +52,8 @@ export const profile: Profile = {
     updated: "2026-09",
   },
   heroLines: [
-    "I'm a PhD Student in Computer Science studying AI Agents.",
-    "My current research focuses on Mobile GUI Agents and World Models.",
+    "PhD student at Concordia University and Mila, researching mobile GUI agents and world models.",
+    "I study how agents understand interfaces, plan actions, and build reusable models of interactive environments.",
   ],
   skills: {
     languages: ["Python", "TypeScript", "JavaScript", "HTML", "CSS", "Java", "C++"],

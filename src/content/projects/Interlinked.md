@@ -11,6 +11,8 @@ skills:
   - Firebase
   - Cypress
   - TypeScript
+highlight: false
+highlightSummary: Led front-end development for a LinkedIn-style network for technology professionals, coordinating task dependencies and mentoring teammates in React and Next.js.
 github: https://github.com/jay-roe/Interlinked
 cv: true
 cvBullets:

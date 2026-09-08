@@ -14,7 +14,7 @@ skills:
   - tRPC
   - Prisma
 link: https://lest.fe.uni-lj.si/
-highlight: true
+highlight: false
 highlightSummary: Developed PV solar panel investment tool for the EU market.
 cv: true
 cvBullets:

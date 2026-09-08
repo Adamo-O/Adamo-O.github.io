@@ -12,6 +12,7 @@ skills:
   - Scrum
   - IoT
 link: https://www.ptc.com/
+highlightSummary: Prototyped a reusable Polymer.js and D3 hierarchy graph, validating an internal initiative that the team continued developing.
 # Not on the 2026 CV PDF; set cv: true to list it on /cv.
 cv: false
 ---

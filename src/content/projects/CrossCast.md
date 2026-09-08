@@ -10,6 +10,8 @@ skills:
   - Project Planning
   - Next.js
   - TypeScript
+highlight: true
+highlightSummary: Led a 24-hour build of a cross-platform company news hub using X, GitHub, and Slack APIs; won ConUHacks VII's Mirego challenge.
 github: https://github.com/jay-roe/Cross-Cast
 cv: true
 cvBullets:

@@ -17,21 +17,70 @@ export interface ProjectProps {
     github?: string;
     secondLink?: { text: string; link: string };
     subtitle: string;
+    highlightSummary?: string;
+    impactStats?: { value: string; label: string }[];
   };
 }
 
 const {
-  frontmatter: { title, href, img, video, dates, skills, link, github, secondLink, subtitle },
+  frontmatter: {
+    title,
+    href,
+    img,
+    video,
+    dates,
+    skills,
+    link,
+    github,
+    secondLink,
+    subtitle,
+    highlightSummary,
+    impactStats,
+  },
 } = Astro.props as ProjectProps;
 const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : undefined;
 const lowResolutionPreview = img.width <= 640;
+const visibleSkills = skills.slice(0, 5);
+const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
 ---
 
 <article
   id={href}
   class="snap-card group scroll-mt-20 overflow-hidden rounded border border-line bg-surface shadow-card transition-colors duration-fast hover:border-accent/45"
 >
-  <div class="relative aspect-video overflow-hidden border-b border-line bg-bg/75">
+  {
+    impactStats?.length ? (
+      <div class="grid overflow-hidden border-b border-line bg-bg/75 md:grid-cols-[minmax(0,1.45fr)_minmax(14rem,0.55fr)]">
+        <div class="flex min-h-[15rem] items-center justify-center p-5 sm:p-7 md:min-h-[20rem]">
+          <div class="overflow-hidden rounded border border-line bg-surface shadow-card">
+            <Image
+              src={img}
+              alt={`${title} running in Discord`}
+              width={480}
+              height={270}
+              class="block h-auto w-full max-w-[30rem]"
+            />
+          </div>
+        </div>
+
+        <dl class="grid grid-cols-3 border-t border-line bg-surface/75 md:grid-cols-1 md:border-l md:border-t-0">
+          {impactStats.map((stat, index) => (
+            <div
+              class:list={[
+                "flex min-w-0 flex-col justify-center px-3 py-4 sm:px-5 md:px-6",
+                index > 0 && "border-l border-line md:border-l-0 md:border-t",
+              ]}
+            >
+              <dt class="meta order-2 mt-1 leading-snug">{stat.label}</dt>
+              <dd class="order-1 text-xl font-bold tabular-nums tracking-tight text-fg sm:text-2xl md:text-3xl">
+                {stat.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    ) : (
+      <div class="relative aspect-video overflow-hidden border-b border-line bg-bg/75 md:aspect-[2/1] xl:aspect-[2.2/1]">
     {
       video ? (
         <video
@@ -62,8 +111,10 @@ const lowResolutionPreview = img.width <= 640;
         />
       )
     }
-    <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-fg/5"></div>
-  </div>
+        <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-fg/5"></div>
+      </div>
+    )
+  }
 
   <div class="grid gap-6 p-5 md:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.38fr)] lg:gap-8">
     <div class="min-w-0">
@@ -76,7 +127,7 @@ const lowResolutionPreview = img.width <= 640;
       </div>
 
       <div class="project-copy mt-5 text-[15px] leading-relaxed text-muted">
-        <slot />
+        {highlightSummary ? <p>{highlightSummary}</p> : <slot />}
       </div>
     </div>
 
@@ -84,7 +135,12 @@ const lowResolutionPreview = img.width <= 640;
       <div>
         <p class="meta mb-3 text-accent">Tools</p>
         <div class="flex flex-wrap gap-1.5">
-          {skills.map((skill) => <Skill skill={skill} />)}
+          {visibleSkills.map((skill) => <Skill skill={skill} />)}
+          {remainingSkillCount > 0 && (
+            <span class="inline-flex items-center rounded-pill border border-line bg-bg/70 px-2.5 py-1 font-mono text-[10px] font-medium text-muted">
+              +{remainingSkillCount}
+            </span>
+          )}
         </div>
       </div>
 

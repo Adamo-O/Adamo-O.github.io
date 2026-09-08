@@ -19,6 +19,7 @@ import Shell from "@/components/layout/Shell.astro";
 import PublicationCard from "@/components/home/PublicationCard.astro";
 import EducationItem from "@/components/home/EducationItem.astro";
 import AwardItem from "@/components/home/AwardItem.astro";
+import ProjectArchiveItem from "@/components/home/ProjectArchiveItem.astro";
 import { profile } from "@/data/profile";
 import { sortContent } from "@/lib/utils";
 
@@ -64,6 +65,11 @@ const experiences = (
 
 const primaryExperiences = experiences.filter((experience) => !experience.data.collapsed);
 const earlierExperiences = experiences.filter((experience) => experience.data.collapsed);
+const featuredExperiences = primaryExperiences.filter((experience) => experience.data.highlight);
+const standardExperiences = primaryExperiences.filter((experience) => !experience.data.highlight);
+
+const selectedProjects = projects.filter((project) => project.data.highlight).slice(0, 4);
+const additionalProjects = projects.filter((project) => !project.data.highlight);
 
 const publications = publicationsRaw
   .filter((publication) => !publication.data.hidden && !containsPlaceholder(publication.data))
@@ -78,7 +84,7 @@ const education = educationRaw.sort((a, b) => a.data.order - b.data.order);
 const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 
-<Layout title={`${profile.name} — AI researcher & software engineer`}>
+<Layout title={`${profile.name} | AI researcher & software engineer`}>
   <Shell variant="home">
     <Section
       id="about"
@@ -130,19 +136,32 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
       rail="SELECTED BUILDS"
       class="border-t border-line"
     >
-      <div class="space-y-5">
+      <div class="space-y-8">
         <p class="max-w-2xl text-base leading-relaxed text-muted">
-          A selection of full-stack, machine-learning, game, and hardware projects.
+          Selected product, machine-learning, and software projects. Older experiments remain available below.
         </p>
         <div class="grid gap-5">
           {
-            projects.map((project) => (
+            selectedProjects.map((project) => (
               <Project frontmatter={project.data}>
                 <project.Content />
               </Project>
             ))
           }
         </div>
+
+        {
+          additionalProjects.length > 0 && (
+            <div class="border-t border-line pt-7">
+              <h3 class="text-lg font-bold tracking-tight text-fg">More projects</h3>
+              <div class="mt-4 grid gap-3 md:grid-cols-2">
+                {additionalProjects.map((project) => (
+                  <ProjectArchiveItem frontmatter={project.data} />
+                ))}
+              </div>
+            </div>
+          )
+        }
       </div>
     </Section>
 
@@ -153,13 +172,29 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
       rail="WORK & TEACHING"
       class="border-t border-line"
     >
-      <div class="grid gap-4">
+      <div class="grid gap-5">
         {
-          primaryExperiences.map((experience) => (
-            <Experience frontmatter={experience.data}>
+          featuredExperiences.map((experience) => (
+            <Experience frontmatter={experience.data} variant="featured">
               <experience.Content />
             </Experience>
           ))
+        }
+
+        {
+          standardExperiences.length > 0 && (
+            <div class="overflow-hidden rounded border border-line bg-surface shadow-card">
+              {standardExperiences.map((experience, index) => (
+                <Experience
+                  frontmatter={experience.data}
+                  variant="row"
+                  class={index > 0 ? "border-t border-line" : undefined}
+                >
+                  <experience.Content />
+                </Experience>
+              ))}
+            </div>
+          )
         }
 
         {
@@ -171,7 +206,7 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
               </summary>
               <div class="grid gap-4 border-t border-line p-4 md:p-5">
                 {earlierExperiences.map((experience) => (
-                  <Experience frontmatter={experience.data} compact>
+                  <Experience frontmatter={experience.data} variant="compact">
                     <experience.Content />
                   </Experience>
                 ))}
@@ -223,7 +258,7 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
         </p>
 
         <div class="mt-8 flex flex-wrap gap-3">
-          <Button href={`mailto:${profile.personalEmail}`} title={`Email ${profile.name}`} staticSize>
+          <Button href={`mailto:${profile.academicEmail}`} title={`Email ${profile.name}`} staticSize>
             <Mail size="18" aria-hidden="true" />
             Email me
           </Button>
