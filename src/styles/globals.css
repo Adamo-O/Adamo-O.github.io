@@ -216,35 +216,83 @@ a {
 @media (min-width: 1024px) {
   .sidebar-shell {
     grid-template-columns: 220px minmax(0, 1fr);
-    transition: grid-template-columns var(--dur) var(--ease);
+    transition: grid-template-columns var(--dur) var(--ease-in-out);
   }
 
-  .sidebar {
-    transition: padding var(--dur) var(--ease);
+  .sidebar-copy,
+  .sidebar-nav-label,
+  .sidebar-source,
+  .sidebar-social-item {
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity var(--dur-fast) var(--ease-out) 80ms,
+      visibility 0s linear 0s;
   }
 
   .sidebar-copy,
   .sidebar-nav-label,
   .sidebar-source {
-    transition: opacity var(--dur-fast) var(--ease);
+    min-inline-size: 0;
+    overflow: hidden;
+  }
+
+  .sidebar-nav-label,
+  .sidebar-source {
+    white-space: nowrap;
+  }
+
+  .sidebar-utilities {
+    align-content: flex-start;
+  }
+
+  .sidebar-theme-item,
+  .sidebar-toggle-item {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    transition: transform var(--dur) var(--ease-in-out);
+  }
+
+  .sidebar-theme-item {
+    transform: translateX(-40px);
+  }
+
+  .sidebar-toggle-item {
+    transform: translate(0);
+  }
+
+  .sidebar-toggle-item [data-sidebar-toggle] {
+    position: relative;
+  }
+
+  .sidebar-collapse-icon,
+  .sidebar-expand-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition:
+      opacity 160ms var(--ease-out),
+      transform 160ms var(--ease-out);
+  }
+
+  .sidebar-collapse-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0);
   }
 
   .sidebar-expand-icon {
-    display: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-12deg);
   }
 
   html.sidebar-compact .sidebar-shell {
     grid-template-columns: 72px minmax(0, 1fr);
   }
 
-  html.sidebar-compact .sidebar {
-    padding-inline: 0.75rem;
-  }
-
-  html.sidebar-compact .sidebar-identity,
   html.sidebar-compact .sidebar-nav-link {
-    justify-content: center;
-    padding-inline: 0.5rem;
+    gap: 0;
   }
 
   html.sidebar-compact .sidebar-nav-link::after {
@@ -276,29 +324,32 @@ a {
 
   html.sidebar-compact .sidebar-copy,
   html.sidebar-compact .sidebar-nav-label,
-  html.sidebar-compact .sidebar-source {
-    display: none;
+  html.sidebar-compact .sidebar-source,
+  html.sidebar-compact .sidebar-social-item {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity var(--dur-fast) var(--ease-out),
+      visibility 0s linear var(--dur-fast);
   }
 
   html.sidebar-compact .sidebar-utilities {
-    flex-direction: column;
-    justify-content: center;
+    overflow: hidden;
   }
 
-  html.sidebar-compact .sidebar-social-item {
-    display: none;
-  }
-
-  html.sidebar-compact .sidebar-utilities > li {
-    margin-left: 0;
+  html.sidebar-compact .sidebar-theme-item {
+    transform: translateY(-40px);
   }
 
   html.sidebar-compact .sidebar-collapse-icon {
-    display: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(12deg);
   }
 
   html.sidebar-compact .sidebar-expand-icon {
-    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0);
   }
 }
 
