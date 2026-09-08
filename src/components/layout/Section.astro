@@ -31,6 +31,7 @@ const {
   class: className,
   contentClass,
 } = Astro.props;
+const hasBackground = Astro.slots.has("background");
 
 ---
 
@@ -39,10 +40,13 @@ const {
   class={cn(
     "section-grid grid scroll-mt-16 gap-x-6 px-5 md:scroll-mt-32 md:px-8 lg:scroll-mt-6",
     "md:grid-cols-[auto_minmax(0,1fr)]",
+    hasBackground && "relative isolate overflow-hidden",
     className,
   )}
   aria-labelledby={`${id}-title`}
 >
+  {hasBackground && <slot name="background" />}
+
   <div class="rail rail-heading max-md:hidden">
     <VerticalHeading label={heading} class="sticky top-6" />
   </div>
