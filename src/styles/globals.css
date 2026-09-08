@@ -219,6 +219,10 @@ a {
     transition: grid-template-columns var(--dur) var(--ease-in-out);
   }
 
+  .sidebar-identity-mark {
+    transition: transform var(--dur) var(--ease-in-out);
+  }
+
   .sidebar-copy,
   .sidebar-nav-label,
   .sidebar-source,
@@ -289,6 +293,10 @@ a {
 
   html.sidebar-compact .sidebar-shell {
     grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  html.sidebar-compact .sidebar-identity-mark {
+    transform: translateX(-10px);
   }
 
   html.sidebar-compact .sidebar-nav-link {
