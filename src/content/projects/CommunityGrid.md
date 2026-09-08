@@ -4,8 +4,10 @@ href: CommunityGrid
 subtitle: Product development
 dates: September 2023 - April 2024
 tags: [web, ml]
-img: ../../assets/projects/communitygrid.png
-video: /media/communitygrid.webm
+img: ../../assets/projects/communitygrid-map.png
+previews:
+  - ../../assets/projects/communitygrid-map.png
+  - ../../assets/projects/communitygrid-station.png
 skills:
   - Project Management
   - Next.js

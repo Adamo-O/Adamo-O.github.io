@@ -94,13 +94,23 @@ html {
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   margin: 0;
   min-height: 100dvh;
   color: rgb(var(--c-fg));
   background-color: rgb(var(--c-bg));
   background-image:
+    radial-gradient(
+      circle at 86% 13%,
+      transparent 0 14rem,
+      rgb(var(--c-accent) / 0.085) 14.05rem 14.12rem,
+      transparent 14.2rem 21rem,
+      rgb(var(--c-accent) / 0.055) 21.05rem 21.12rem,
+      transparent 21.2rem
+    ),
     radial-gradient(ellipse 58rem 34rem at 78% -8%, rgb(var(--c-accent) / var(--atmosphere-alpha)), transparent 72%),
-    radial-gradient(ellipse 42rem 30rem at -8% 46%, rgb(var(--c-accent-soft) / 0.38), transparent 70%),
+    radial-gradient(ellipse 42rem 30rem at -8% 46%, rgb(var(--c-accent-soft) / 0.52), transparent 70%),
     linear-gradient(180deg, rgb(var(--c-surface) / 0.42), transparent 28rem);
   background-attachment: fixed;
   font-family: "PP Neue Montreal", ui-sans-serif, system-ui, -apple-system,
@@ -114,20 +124,32 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: 60;
-  background-image: repeating-linear-gradient(
-    112deg,
-    transparent 0,
-    transparent 2px,
-    rgb(var(--c-fg) / 0.012) 2.5px,
-    transparent 3px
-  );
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
   content: "";
-  opacity: 0.38;
+  opacity: 0.025;
   pointer-events: none;
 }
 
 .dark body::before {
-  opacity: 0.22;
+  opacity: 0.04;
+  mix-blend-mode: screen;
+}
+
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle, rgb(var(--c-accent) / 0.34) 1px, transparent 1.35px);
+  background-size: 24px 24px;
+  content: "";
+  opacity: 0.38;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 28rem 34rem at 94% 22%, #000 0, transparent 72%);
+  mask-image: radial-gradient(ellipse 28rem 34rem at 94% 22%, #000 0, transparent 72%);
+}
+
+.dark body::after {
+  opacity: 0.24;
 }
 
 ::selection {
@@ -297,7 +319,8 @@ a {
   font-size: clamp(3.5rem, 9vmin, 7rem);
   font-weight: 800;
   line-height: 0.85;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
   color: rgb(var(--c-accent) / 0.7);
   margin-left: -0.12em;
   user-select: none;

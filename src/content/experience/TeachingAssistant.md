@@ -6,7 +6,6 @@ type: Teaching
 dates: September 2025 - Present
 location: Montreal, Canada
 img: ../../assets/experience/concordia.svg
-logoWide: true
 skills:
   - C++
   - Teaching

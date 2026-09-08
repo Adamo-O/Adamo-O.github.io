@@ -10,6 +10,7 @@ export interface ProjectProps {
     title: string;
     href: string;
     img: ImageMetadata;
+    previews?: ImageMetadata[];
     video?: string;
     dates: string;
     skills: string[];
@@ -27,6 +28,7 @@ const {
     title,
     href,
     img,
+    previews,
     video,
     dates,
     skills,
@@ -81,7 +83,21 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
     ) : (
       <div class="relative aspect-video overflow-hidden border-b border-line bg-bg/75">
     {
-      video ? (
+      previews?.length ? (
+        <div class="project-screen-stage absolute inset-0" aria-label={`${title} interface preview`}>
+          {previews.map((preview, index) => (
+            <div class:list={["project-screen", index === 1 && "project-screen-offset"]}>
+              <Image
+                src={preview}
+                alt={`${title} interface screen ${index + 1}`}
+                width={750}
+                height={1800}
+                class="h-full w-full object-contain object-top"
+              />
+            </div>
+          ))}
+        </div>
+      ) : video ? (
         <video
           data-project-video
           class="absolute inset-0 h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.01]"
@@ -167,6 +183,52 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
   .project-copy :global(p) { margin-top: 0.7rem; }
   .project-copy :global(p:first-child) { margin-top: 0; }
   .project-copy :global(br) { display: none; }
+
+  .project-screen-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.75rem, 3vw, 2rem);
+    padding: clamp(1rem, 3.5vw, 2rem);
+    background:
+      radial-gradient(circle at 50% 115%, rgb(var(--c-accent) / 0.2), transparent 52%),
+      linear-gradient(145deg, rgb(var(--c-accent-soft) / 0.82), rgb(var(--c-bg) / 0.92));
+  }
+
+  .project-screen {
+    height: 92%;
+    width: auto;
+    aspect-ratio: 5 / 12;
+    overflow: hidden;
+    border: 1px solid rgb(var(--c-line));
+    border-radius: clamp(0.7rem, 1.5vw, 1.2rem);
+    background: white;
+    box-shadow: 0 1.1rem 2.5rem -1.35rem rgb(var(--c-fg) / 0.42);
+    transform: translateY(-0.2rem) rotate(-1.5deg);
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+
+  .project-screen-offset {
+    transform: translateY(0.65rem) rotate(1.5deg);
+  }
+
+  article:hover .project-screen {
+    transform: translateY(-0.45rem) rotate(-0.75deg);
+  }
+
+  article:hover .project-screen-offset {
+    transform: translateY(0.35rem) rotate(0.75deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-screen,
+    .project-screen-offset,
+    article:hover .project-screen,
+    article:hover .project-screen-offset {
+      transform: none;
+      transition: none;
+    }
+  }
 </style>
 
 <script>

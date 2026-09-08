@@ -61,6 +61,8 @@ const projects = defineCollection({
       tags: z.array(z.enum(projectTags)).min(1),
       /** Static image or first-frame poster (relative path, e.g. ../../assets/projects/handle.png). */
       img: image(),
+      /** Optional source-quality screens composed as a product preview instead of enlarging a small demo. */
+      previews: z.array(image()).min(2).max(3).optional(),
       /** Optional looping clip served from public/, e.g. /media/arduino-robot.webm; rendered over `img` as poster. */
       video: z.string().optional(),
       link: z.string().url().optional(),
@@ -99,8 +101,6 @@ const experience = defineCollection({
       img: image().optional(),
       /** Switches the logo tile to a dark surface for light/white wordmarks. */
       logoTone: z.enum(['light', 'dark']).default('light'),
-      /** Allows long wordmarks to retain a legible aspect ratio. */
-      logoWide: z.boolean().default(false),
       skills: z.array(z.string()),
       link: z.string().url().optional(),
       highlightSummary: z.string().optional(),

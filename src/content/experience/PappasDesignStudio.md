@@ -5,7 +5,6 @@ href: pappas-design-studio
 type: On-Call
 dates: December 2021 - Present
 img: ../../assets/experience/pappas.png
-logoWide: true
 skills:
   - HTML
   - CSS

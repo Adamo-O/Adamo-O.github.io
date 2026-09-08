@@ -15,7 +15,6 @@ export interface ExperienceProps {
     location?: string;
     img?: ImageMetadata;
     logoTone?: "light" | "dark";
-    logoWide?: boolean;
     skills: string[];
     link?: string;
     highlightSummary?: string;
@@ -32,7 +31,6 @@ const {
     type,
     img,
     logoTone = "light",
-    logoWide = false,
     dates,
     skills,
     link,
@@ -85,11 +83,11 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
 
         <div class="order-first sm:order-none">
           {img ? (
-            <div class:list={["flex h-16 items-center justify-center rounded border border-line p-2.5", logoWide ? "w-28" : "w-20", logoTone === "dark" ? "bg-[#1f1f1f]" : "bg-white"]}>
-              <Image src={img} alt={`${company} logo`} width={160} height={80} class="max-h-full w-auto object-contain" />
+            <div class:list={["flex h-16 w-28 items-center justify-center rounded border border-line p-2.5", logoTone === "dark" ? "bg-[#1f1f1f]" : "bg-white"]}>
+              <Image src={img} alt={`${company} logo`} width={176} height={72} class="h-10 w-20 object-contain" />
             </div>
           ) : (
-            <div class="flex h-16 w-16 items-center justify-center rounded border border-line bg-accent-soft/60 text-sm font-bold tracking-tight text-accent dark:bg-accent-soft/10" aria-hidden="true">
+            <div class="flex h-16 w-28 items-center justify-center rounded border border-line bg-accent-soft/60 text-sm font-bold tracking-tight text-accent dark:bg-accent-soft/10" aria-hidden="true">
               {monogram}
             </div>
           )}
@@ -132,11 +130,11 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
       <div class="grid gap-4 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-5">
         <div>
           {img ? (
-            <div class:list={["flex h-14 items-center justify-center rounded border border-line p-2", logoWide ? "w-24" : "w-16", logoTone === "dark" ? "bg-[#1f1f1f]" : "bg-white"]}>
-              <Image src={img} alt={`${company} logo`} width={144} height={72} class="max-h-full w-auto object-contain" />
+            <div class:list={["flex h-16 w-28 items-center justify-center rounded border border-line p-2.5", logoTone === "dark" ? "bg-[#1f1f1f]" : "bg-white"]}>
+              <Image src={img} alt={`${company} logo`} width={176} height={72} class="h-10 w-20 object-contain" />
             </div>
           ) : (
-            <div class="flex h-14 w-14 items-center justify-center rounded border border-line bg-accent-soft/60 text-xs font-bold tracking-tight text-accent dark:bg-accent-soft/10" aria-hidden="true">
+            <div class="flex h-16 w-28 items-center justify-center rounded border border-line bg-accent-soft/60 text-xs font-bold tracking-tight text-accent dark:bg-accent-soft/10" aria-hidden="true">
               {monogram}
             </div>
           )}

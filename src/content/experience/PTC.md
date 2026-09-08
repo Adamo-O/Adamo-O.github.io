@@ -6,7 +6,6 @@ type: Internship
 dates: June - August 2022
 location: Montreal, Canada
 img: ../../assets/experience/ptc.svg
-logoWide: true
 skills:
   - JavaScript
   - Polymer.js
