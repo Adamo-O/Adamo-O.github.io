@@ -84,7 +84,11 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
       <div class="relative aspect-video overflow-hidden border-b border-line bg-bg/75">
     {
       previews?.length ? (
-        <div class="project-screen-stage absolute inset-0" aria-label={`${title} interface preview`}>
+        <div
+          class="project-screen-stage absolute inset-0"
+          data-project-preview-stage
+          aria-label={`${title} interface preview`}
+        >
           {previews.map((preview, index) => (
             <div class:list={["project-screen", index === 1 && "project-screen-offset"]}>
               <Image
@@ -130,12 +134,12 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
 
   <div class="grid gap-6 p-5 md:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.38fr)] lg:gap-8">
     <div class="min-w-0">
-      <div class="flex flex-wrap items-start justify-between gap-3">
-        <div>
+      <div>
+        <div class="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
           <p class="meta text-accent">{subtitle}</p>
-          <h3 class="mt-2 text-2xl font-bold leading-tight tracking-tight text-fg md:text-3xl">{title}</h3>
+          <time class="meta shrink-0">{dates}</time>
         </div>
-        <time class="meta pt-1">{dates}</time>
+        <h3 class="mt-2 text-2xl font-bold leading-tight tracking-tight text-fg md:text-3xl">{title}</h3>
       </div>
 
       <div class="project-copy mt-5 text-[15px] leading-relaxed text-muted">
@@ -212,11 +216,21 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
     transform: translateY(0.65rem) rotate(1.5deg);
   }
 
-  article:hover .project-screen {
+  @media (hover: hover) and (pointer: fine) {
+    article:hover .project-screen {
+      transform: translateY(-0.45rem) rotate(-0.75deg);
+    }
+
+    article:hover .project-screen-offset {
+      transform: translateY(0.35rem) rotate(0.75deg);
+    }
+  }
+
+  article.project-preview-in-view .project-screen {
     transform: translateY(-0.45rem) rotate(-0.75deg);
   }
 
-  article:hover .project-screen-offset {
+  article.project-preview-in-view .project-screen-offset {
     transform: translateY(0.35rem) rotate(0.75deg);
   }
 
@@ -224,7 +238,9 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
     .project-screen,
     .project-screen-offset,
     article:hover .project-screen,
-    article:hover .project-screen-offset {
+    article:hover .project-screen-offset,
+    article.project-preview-in-view .project-screen,
+    article.project-preview-in-view .project-screen-offset {
       transform: none;
       transition: none;
     }
@@ -233,7 +249,9 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
 
 <script>
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const touchPointer = window.matchMedia("(hover: none), (pointer: coarse)");
   const videos = document.querySelectorAll<HTMLVideoElement>("[data-project-video]");
+  const previewStages = document.querySelectorAll<HTMLElement>("[data-project-preview-stage]");
 
   if (reduceMotion.matches) {
     videos.forEach((video) => video.pause());
@@ -249,5 +267,20 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
       { rootMargin: "160px 0px" },
     );
     videos.forEach((video) => observer.observe(video));
+  }
+
+  if (!reduceMotion.matches && touchPointer.matches && "IntersectionObserver" in window) {
+    const previewObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target
+            .closest("article")
+            ?.classList.toggle("project-preview-in-view", entry.intersectionRatio >= 0.5);
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    previewStages.forEach((stage) => previewObserver.observe(stage));
   }
 </script>

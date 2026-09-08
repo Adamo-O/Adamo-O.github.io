@@ -36,6 +36,8 @@ const { class: className, withLabel = false } = Astro.props;
 <script>
   const root = document.documentElement;
   const toggles = document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let transitionActive = false;
 
   const sync = () => {
     const dark = root.classList.contains("dark");
@@ -46,15 +48,66 @@ const { class: className, withLabel = false } = Astro.props;
     });
   };
 
+  const applyTheme = (dark: boolean) => {
+    root.classList.toggle("dark", dark);
+    const theme = dark ? "dark" : "light";
+    try {
+      localStorage.setItem("theme", theme);
+    } catch {}
+    sync();
+    document.dispatchEvent(new CustomEvent("themechange", { detail: { theme } }));
+  };
+
   toggles.forEach((btn) =>
-    btn.addEventListener("click", () => {
-      const dark = root.classList.toggle("dark");
-      const theme = dark ? "dark" : "light";
+    btn.addEventListener("click", async () => {
+      if (transitionActive) return;
+
+      const dark = !root.classList.contains("dark");
+      const startViewTransition = document.startViewTransition?.bind(document);
+
+      if (!startViewTransition || reduceMotion.matches) {
+        applyTheme(dark);
+        return;
+      }
+
+      const bounds = btn.getBoundingClientRect();
+      const x = bounds.left + bounds.width / 2;
+      const y = bounds.top + bounds.height / 2;
+      const radius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y),
+      );
+
+      transitionActive = true;
+      root.classList.add("theme-transitioning");
+      let themeApplied = false;
+
       try {
-        localStorage.setItem("theme", theme);
-      } catch {}
-      sync();
-      document.dispatchEvent(new CustomEvent("themechange", { detail: { theme } }));
+        const transition = startViewTransition(() => {
+          applyTheme(dark);
+          themeApplied = true;
+        });
+        await transition.ready;
+
+        const reveal = root.animate(
+          {
+            clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`],
+          },
+          {
+            duration: 420,
+            easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+            pseudoElement: "::view-transition-new(root)",
+          },
+        );
+
+        await reveal.finished;
+        await transition.finished;
+      } catch {
+        if (!themeApplied) applyTheme(dark);
+      } finally {
+        root.classList.remove("theme-transitioning");
+        transitionActive = false;
+      }
     }),
   );
   sync();

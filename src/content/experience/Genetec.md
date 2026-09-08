@@ -4,6 +4,7 @@ company: Genetec Inc.
 href: genetec
 type: Internship
 dates: September - December 2021
+location: Montreal, Canada
 img: ../../assets/experience/genetec.png
 skills:
   - Azure DevOps
