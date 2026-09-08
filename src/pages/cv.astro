@@ -41,9 +41,21 @@ const projects = projectsRaw
   .filter(({ data }) => data.cv && !data.hidden && data.cvBullets?.length && !hasTodo(data))
   .sort((a, b) => sortContent(a.data.dates, b.data.dates));
 
+const publicationStatusOrder = {
+  accepted: 0,
+  "under-review": 1,
+  preprint: 2,
+  workshop: 3,
+  withdrawn: 4,
+} as const;
+
 const publications = publicationsRaw
   .filter(({ data }) => !data.hidden && !hasTodo(data))
-  .sort((a, b) => b.data.year - a.data.year);
+  .sort(
+    (a, b) =>
+      b.data.year - a.data.year ||
+      publicationStatusOrder[a.data.status] - publicationStatusOrder[b.data.status],
+  );
 
 const education = educationRaw
   .filter(({ data }) => !hasTodo(data))
