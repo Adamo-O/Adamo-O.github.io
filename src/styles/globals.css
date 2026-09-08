@@ -335,17 +335,6 @@ a {
   color: rgb(var(--c-accent) / 0.6);
 }
 
-.v-subtitle {
-  writing-mode: vertical-lr;
-  font-family: "PP Neue Montreal", ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: rgb(var(--c-muted));
-  white-space: nowrap;
-  user-select: none;
-}
-
 /* ------------------------------------------------------------------
    Skip link
    ------------------------------------------------------------------ */

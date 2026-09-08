@@ -1,28 +1,23 @@
 ---
 /**
- * One page section with the three-column rail grid.
+ * One page section with a sticky heading rail and content column.
  * Props:
  *  id        anchor / scroll-spy key (e.g. "projects")
  *  heading   vertical rail text (e.g. "PROJECTS")
  *  title     accessible h2 text; visible below md, sr-only from md
- *  rail?     right-rail subtitle text (xl only); or pass slot "rail"
- *  railId?   id for the VerticalSubtitle (live updates)
  *  hideMobileTitle? keep the h2 available to assistive technology without
  *                   repeating it visually below md
  *  class?    extra classes on <section>
  *  contentClass?  extra classes on the content column
- * Slots: default (content), rail (replaces the VerticalSubtitle).
+ * Slot: default (content).
  */
 import { cn } from "@/lib/utils";
 import VerticalHeading from "./VerticalHeading.astro";
-import VerticalSubtitle from "./VerticalSubtitle.astro";
 
 interface Props {
   id: string;
   heading: string;
   title: string;
-  rail?: string;
-  railId?: string;
   hideMobileTitle?: boolean;
   class?: string;
   contentClass?: string;
@@ -32,14 +27,11 @@ const {
   id,
   heading,
   title,
-  rail,
-  railId,
   hideMobileTitle = false,
   class: className,
   contentClass,
 } = Astro.props;
 
-const hasRail = rail !== undefined || Astro.slots.has("rail");
 ---
 
 <section
@@ -47,7 +39,6 @@ const hasRail = rail !== undefined || Astro.slots.has("rail");
   class={cn(
     "section-grid grid scroll-mt-16 gap-x-6 px-5 md:scroll-mt-32 md:px-8 lg:scroll-mt-6",
     "md:grid-cols-[auto_minmax(0,1fr)]",
-    hasRail && "xl:grid-cols-[auto_minmax(0,1fr)_3rem]",
     className,
   )}
   aria-labelledby={`${id}-title`}
@@ -68,14 +59,4 @@ const hasRail = rail !== undefined || Astro.slots.has("rail");
     </h2>
     <slot />
   </div>
-
-  {
-    hasRail && (
-      <div class="rail rail-subtitle border-l border-line pl-3 max-xl:hidden">
-        <slot name="rail">
-          <VerticalSubtitle label={rail ?? ""} id={railId} class="sticky top-6" />
-        </slot>
-      </div>
-    )
-  }
 </section>
