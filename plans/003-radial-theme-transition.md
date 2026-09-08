@@ -1,6 +1,6 @@
 # 003 — Reveal theme changes from the toggle
 
-- **Status**: READY
+- **Status**: DONE
 - **Severity**: MEDIUM
 - **Category**: State transition; accessibility; progressive enhancement
 - **Estimated scope**: 2 files, about 70 lines
@@ -30,3 +30,6 @@ The enhancement must be interrupt-safe: ignore another toggle activation while a
 - Confirm unsupported/reduced-motion paths update instantly and still dispatch `themechange`.
 - Run `npm run check`, `npm run build`, and `git diff --check`.
 
+## Execution result — 2026-09-08
+
+Implemented in isolated-worktree commit `41d9ec9` and integrated into `main` as `ab42431`. Chromium confirmed that both theme directions animate `::view-transition-new(root)` from the visible toggle's center and clean up the transition state after 420ms. Unsupported and reduced-motion checks both changed theme immediately without creating the transition layer. Build, Astro diagnostics, dist verification, browser error checks, and `git diff --check` passed.

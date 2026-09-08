@@ -1,6 +1,6 @@
 # 005 — Retune the Additional roles disclosure
 
-- **Status**: READY
+- **Status**: DONE
 - **Severity**: LOW
 - **Category**: Timing; disclosure continuity
 - **Estimated scope**: 2 files, about 20 lines
@@ -26,3 +26,6 @@ Keep the native `details` element and existing intrinsic-size implementation. Re
 - Confirm opening reads as more gradual than closing and reduced motion is effectively instant.
 - Run `npm run check`, `npm run build`, and `git diff --check`.
 
+## Execution result — 2026-09-08
+
+Implemented in isolated-worktree commit `41d9ec9` and integrated into `main` as `ab42431`. Browser inspection confirmed 360/260/320ms opening timings, 260/180/220ms closing timings, a 340ms opening chevron and 220ms closing chevron. Rapid reversal returned continuously to zero height, and Enter toggled both directions without moving focus from the native summary. Reduced motion remained centralized in the global rule. Build, Astro diagnostics, dist verification, browser error checks, and `git diff --check` passed.

@@ -1,6 +1,6 @@
 # 004 — Animate project previews on mobile entry
 
-- **Status**: READY
+- **Status**: DONE
 - **Severity**: MEDIUM
 - **Category**: Scroll-triggered motion; interaction parity
 - **Estimated scope**: 1 file, about 45 lines
@@ -29,3 +29,6 @@ Skip the observer entirely under `prefers-reduced-motion: reduce`; the existing 
 - Confirm reduced motion has no transition.
 - Run `npm run check`, `npm run build`, and `git diff --check`.
 
+## Execution result — 2026-09-08
+
+Implemented in isolated-worktree commit `41d9ec9` and integrated into `main` as `ab42431`. A Chromium CDP check at 393 x 852 with five touch points verified `(hover: none)` and `(pointer: coarse)`, then observed CommunityGrid switching from inactive off-screen to active at 50% visibility and back to inactive after exit. Desktop hover remains isolated to fine pointers, and reduced motion leaves the screens static. Build, Astro diagnostics, dist verification, browser error checks, and `git diff --check` passed.
