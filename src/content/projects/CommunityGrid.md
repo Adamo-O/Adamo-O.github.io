@@ -1,7 +1,7 @@
 ---
 title: CommunityGrid
 href: CommunityGrid
-subtitle: WEB APP MANAGEMENT & DESIGN
+subtitle: Product development
 dates: September 2023 - April 2024
 tags: [web, ml]
 img: ../../assets/projects/communitygrid.png
@@ -18,12 +18,11 @@ secondLink:
   text: View Poster
   link: /files/CommunityGrid_Poster.pdf
 highlight: true
-highlightSummary: Project management and development of an application to manage energy capacity congestion in low voltage networks by optimizing electric vehicle charging bookings.
+highlightSummary: Led product development with Concordia teammates and the Laboratory of Energy Policy in Slovenia, building a platform that optimizes EV charging bookings for capacity-constrained grids.
 cv: true
 cvBullets:
-  - Developed application to manage energy capacity congestion in low voltage networks by scheduling, prioritizing, and predicting electric vehicle charging bookings.
-  - Managed 8-month long project lifecycle via task allocation, stakeholder meetings and progress reports in an Agile environment.
-  - Deployed multi-container Dockerized application using Next.js, tRPC, shadcn/ui, Prisma, FastAPI on DigitalOcean.
+  - Led an eight-month international collaboration with the Laboratory of Energy Policy in Ljubljana, Slovenia.
+  - Built and deployed a Dockerized platform to optimize EV charging through scheduling, prioritization, and prediction.
 ---
 Developed application to manage energy capacity congestion
 in low voltage networks by scheduling, prioritizing, and

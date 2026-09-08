@@ -39,7 +39,6 @@ const {
   },
 } = Astro.props as ProjectProps;
 const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : undefined;
-const lowResolutionPreview = img.width <= 640;
 const visibleSkills = skills.slice(0, 5);
 const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
 ---
@@ -80,12 +79,12 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
         </dl>
       </div>
     ) : (
-      <div class="relative aspect-video overflow-hidden border-b border-line bg-bg/75 md:aspect-[2/1] xl:aspect-[2.2/1]">
+      <div class="relative aspect-video overflow-hidden border-b border-line bg-bg/75">
     {
       video ? (
         <video
           data-project-video
-          class="absolute inset-0 m-auto h-full w-full max-w-[40rem] object-contain transition-transform duration-slow group-hover:scale-[1.005]"
+          class="absolute inset-0 h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.01]"
           autoplay
           muted
           loop
@@ -104,10 +103,7 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
           alt={`${title} project preview`}
           width={1200}
           height={675}
-          class:list={[
-            "absolute inset-0 m-auto h-full w-full object-contain transition-transform duration-slow group-hover:scale-[1.005]",
-            lowResolutionPreview && "max-w-[40rem]",
-          ]}
+          class="absolute inset-0 h-full w-full object-contain p-3 transition-transform duration-slow group-hover:scale-[1.005]"
         />
       )
     }
@@ -133,11 +129,11 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
 
     <div class="flex flex-col justify-between gap-6 lg:border-l lg:border-line lg:pl-7">
       <div>
-        <p class="meta mb-3 text-accent">Tools</p>
+        <p class="meta mb-3 text-accent">Tools used</p>
         <div class="flex flex-wrap gap-1.5">
           {visibleSkills.map((skill) => <Skill skill={skill} />)}
           {remainingSkillCount > 0 && (
-            <span class="inline-flex items-center rounded-pill border border-line bg-bg/70 px-2.5 py-1 font-mono text-[10px] font-medium text-muted">
+            <span class="inline-flex items-center rounded-pill border border-line bg-bg/70 px-2.5 py-1 text-[11px] font-semibold text-muted">
               +{remainingSkillCount}
             </span>
           )}

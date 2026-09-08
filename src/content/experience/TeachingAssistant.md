@@ -5,14 +5,15 @@ href: teaching-assistant
 type: Teaching
 dates: September 2025 - Present
 location: Montreal, Canada
-# TODO(adamo): supply a Concordia logo at src/assets/experience/concordia.svg; monogram fallback until then.
+img: ../../assets/experience/concordia.svg
+logoWide: true
 skills:
   - C++
   - Teaching
   - Course Design
 link: https://www.concordia.ca/
 highlight: false
-highlightSummary: Teach C++ fundamentals for COEN 243 and support COMP 6321 machine-learning labs as coordinator under Professors Xinxin Zuo and Yang Wang.
+highlightSummary: Teaching C++ fundamentals for COEN 243 and supporting COMP 6321 machine-learning labs as coordinator under Professors Xinxin Zuo and Yang Wang.
 cv: true
 cvBullets:
   - Taught COEN 243, Programming Methodology I, under Professor Xinxin Zuo in Fall 2025 and returning for Fall 2026.

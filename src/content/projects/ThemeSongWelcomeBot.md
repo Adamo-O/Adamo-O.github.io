@@ -1,7 +1,7 @@
 ---
 title: Theme Song Welcome Bot
 href: theme-song-welcome-bot
-subtitle: PRODUCTION DISCORD BOT
+subtitle: Production Discord bot
 dates: October 2021 - Present
 tags: [bot]
 img: ../../assets/projects/theme-song-bot.gif

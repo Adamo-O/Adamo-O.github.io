@@ -11,7 +11,7 @@ const { skill } = Astro.props as SkillProps;
 
 <span
   class={cn(
-    "inline-flex max-w-full items-center gap-1.5 rounded-pill border border-line bg-bg/70 px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-muted",
+    "inline-flex max-w-full items-center gap-1.5 rounded-pill border border-line bg-bg/70 px-2.5 py-1 text-[11px] font-semibold text-muted",
   )}
 >
   {skillIcons[skill] && <i class={cn(skillIcons[skill], "text-[0.72rem] text-accent")} aria-hidden="true"></i>}

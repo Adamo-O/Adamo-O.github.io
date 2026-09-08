@@ -1,7 +1,7 @@
 ---
 title: CrossCast
 href: CrossCast
-subtitle: WEB APP DESIGN
+subtitle: Hackathon product
 dates: January 2023
 tags: [web, hackathon]
 img: ../../assets/projects/cross-cast.png

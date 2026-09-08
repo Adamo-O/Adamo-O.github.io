@@ -1,6 +1,6 @@
 ---
 /**
- * "NOW · SEP 2026 · <text>" status pill. The month is hidden once
+ * "Now / Sep 2026 / <text>" status pill. The month is hidden once
  * `updated` is more than four months old so a stale date never shows.
  */
 interface Props {
@@ -30,8 +30,8 @@ const stamp = fresh
       ]}
     >
       <span class="h-1.5 w-1.5 shrink-0 rounded-pill bg-accent" aria-hidden="true" />
-      <span class="shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
-        Now{stamp && <span aria-hidden="true"> · </span>}{stamp}
+      <span class="shrink-0 text-xs font-semibold text-muted">
+        Now{stamp && <span aria-hidden="true"> / </span>}{stamp}
       </span>
       <span class="min-w-0 leading-snug">{text}</span>
     </p>

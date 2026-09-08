@@ -112,7 +112,7 @@ const initialsFor = (name: string) =>
           <p class="cv-kicker">Curriculum vitae</p>
           <h1 id="cv-title">{profile.name}</h1>
           <p class="cv-role">{profile.role}</p>
-          <p class="cv-affiliation">{profile.affiliations.join(" · ")}</p>
+          <p class="cv-affiliation">{profile.affiliations.join(" / ")}</p>
         </div>
       </header>
 
@@ -175,7 +175,7 @@ const initialsFor = (name: string) =>
                 <ul>
                   {data.cvBullets?.map((bullet) => <li>{bullet}</li>)}
                 </ul>
-                <p class="cv-skills">{data.skills.join(" · ")}</p>
+                <p class="cv-skills">{data.skills.join(" / ")}</p>
               </article>
             ))
           }
@@ -257,7 +257,7 @@ const initialsFor = (name: string) =>
                 <ul>
                   {data.cvBullets?.map((bullet) => <li>{bullet}</li>)}
                 </ul>
-                <p class="cv-skills">{data.skills.join(" · ")}</p>
+                <p class="cv-skills">{data.skills.join(" / ")}</p>
               </article>
             ))
           }
@@ -276,7 +276,7 @@ const initialsFor = (name: string) =>
                       <h3>{data.code}: {data.title}</h3>
                       <p class="cv-organization">{data.role}, {data.institution}</p>
                     </div>
-                    <div class="cv-entry-meta">{data.terms.join(" · ")}</div>
+                    <div class="cv-entry-meta">{data.terms.join(" / ")}</div>
                   </div>
                   {data.description && <p>{data.description}</p>}
                 </article>
@@ -306,12 +306,12 @@ const initialsFor = (name: string) =>
       <section class="cv-section cv-competencies" aria-labelledby="skills-heading">
         <h2 id="skills-heading">Skills</h2>
         <div>
-          <p><strong>Languages</strong><span>{profile.skills.languages.join(" · ")}</span></p>
-          <p><strong>Frameworks</strong><span>{profile.skills.frameworks.join(" · ")}</span></p>
+          <p><strong>Languages</strong><span>{profile.skills.languages.join(" / ")}</span></p>
+          <p><strong>Frameworks</strong><span>{profile.skills.frameworks.join(" / ")}</span></p>
           {profile.skills.tools.length > 0 && (
-            <p><strong>Tools</strong><span>{profile.skills.tools.join(" · ")}</span></p>
+            <p><strong>Tools</strong><span>{profile.skills.tools.join(" / ")}</span></p>
           )}
-          <p><strong>Spoken</strong><span>{profile.skills.spoken.join(" · ")}</span></p>
+          <p><strong>Spoken</strong><span>{profile.skills.spoken.join(" / ")}</span></p>
         </div>
       </section>
 
@@ -407,11 +407,10 @@ const initialsFor = (name: string) =>
 
   .cv-kicker {
     color: rgb(var(--c-accent));
-    font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.68rem;
+    font-family: "PP Neue Montreal", ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.74rem;
     font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
 
   h1 {
@@ -466,11 +465,10 @@ const initialsFor = (name: string) =>
 
   .cv-section > h2 {
     color: rgb(var(--c-accent));
-    font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.73rem;
+    font-family: "PP Neue Montreal", ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
 
   .cv-summary p {
@@ -520,8 +518,9 @@ const initialsFor = (name: string) =>
   .cv-entry-meta {
     flex: 0 0 auto;
     color: rgb(var(--c-muted));
-    font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.68rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
     letter-spacing: 0.02em;
     line-height: 1.5;
     text-align: right;
@@ -555,8 +554,8 @@ const initialsFor = (name: string) =>
   .cv-skills {
     margin-top: 0.7rem;
     color: rgb(var(--c-muted));
-    font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.67rem;
+    font-weight: 550;
     line-height: 1.5;
   }
 
@@ -603,8 +602,9 @@ const initialsFor = (name: string) =>
   .cv-awards article + article { border-top: 1px dashed rgb(var(--c-line)); }
   .cv-awards time {
     color: rgb(var(--c-muted));
-    font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.66rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
     letter-spacing: 0.03em;
   }
   .cv-awards h3 { font-size: 0.93rem; }
@@ -629,8 +629,8 @@ const initialsFor = (name: string) =>
     padding: 1rem clamp(1.25rem, 6vw, 4rem);
     background: rgb(var(--c-bg) / 0.55);
     color: rgb(var(--c-muted));
-    font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.67rem;
+    font-weight: 550;
   }
   .cv-footer a { display: inline-flex; align-items: center; gap: 0.35rem; color: rgb(var(--c-accent)); }
 
@@ -643,7 +643,7 @@ const initialsFor = (name: string) =>
     .cv-entry-heading { display: grid; gap: 0.35rem; }
     .cv-entry-meta { text-align: left; }
     .cv-entry-meta > * { display: inline; }
-    .cv-entry-meta > * + *::before { content: " · "; }
+    .cv-entry-meta > * + *::before { content: " / "; }
     .cv-contact { gap: 0.7rem 1rem; }
     .cv-footer { display: grid; }
   }

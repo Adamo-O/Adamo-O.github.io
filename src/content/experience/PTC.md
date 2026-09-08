@@ -4,7 +4,9 @@ company: PTC Inc.
 href: PTC
 type: Internship
 dates: June - August 2022
-# TODO(adamo): supply a local logo at src/assets/experience/ptc.svg (was hotlinked from Wikimedia); monogram fallback until then.
+location: Montreal, Canada
+img: ../../assets/experience/ptc.svg
+logoWide: true
 skills:
   - JavaScript
   - Polymer.js

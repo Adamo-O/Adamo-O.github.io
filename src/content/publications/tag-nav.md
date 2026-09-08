@@ -15,7 +15,7 @@ summary: "Builds reusable, task-agnostic destination memory from autonomous app 
 thumbnail: ../../assets/publications/tag-nav.png
 thumbnailAlt: "Three-stage TAG-Nav overview showing offline app exploration, graph processing into destination records, and online retrieval for GUI-agent navigation."
 thumbnailCaption: "TAG-Nav explores apps offline, builds destination records, and retrieves them to guide GUI agents."
-thumbnailCrop: true
+thumbnailFrame: wide
 topics:
   - GUI Agents
 highlight: true

@@ -1,7 +1,7 @@
 ---
 title: Independent Traversal Arduino Robot
 href: arduino-robot
-subtitle: ROBOT DESIGN
+subtitle: Robotics project
 dates: September - December 2019
 tags: [hardware]
 img: ../../assets/projects/arduino-robot.png
@@ -11,6 +11,7 @@ skills:
   - Arduino
   - TinkerCad
   - Project management
+highlightSummary: Programmed obstacle-avoidance logic for an Arduino robot that won its class traversal challenge without touching an obstacle.
 # github: https://github.com/Adamo-O/...
 ---
 An Arduino robot built to traverse a random obstacle

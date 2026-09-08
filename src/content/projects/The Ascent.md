@@ -1,7 +1,7 @@
 ---
 title: The Ascent
 href: the-ascent
-subtitle: GAME DESIGN
+subtitle: Independent game
 dates: June - August 2017
 tags: [game]
 img: ../../assets/projects/ascent.png
@@ -11,6 +11,7 @@ skills:
   - C#
   - Photoshop
   - Audacity
+highlightSummary: Designed and built an original Unity platformer, including its code, art, and music, earning Great Distinction at a regional science fair.
 github: https://github.com/Adamo-O/The-Ascent
 ---
 The Ascent is an upwards 2D platformer created using C# in

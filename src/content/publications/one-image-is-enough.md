@@ -14,7 +14,7 @@ summary: "Synthesizes pose-diverse supervision from one reference image to impro
 thumbnail: ../../assets/publications/one-image-is-enough.png
 thumbnailAlt: "One Image Is Enough overview showing reward-guided pseudo-video generation from one reference image and test-time adaptation of a frozen video diffusion model."
 thumbnailCaption: "One reference image generates pseudo-supervision for test-time personalization."
-thumbnailCrop: true
+thumbnailFrame: extra-wide
 topics:
   - Human Video Diffusion
 ---

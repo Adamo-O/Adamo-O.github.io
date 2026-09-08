@@ -1,7 +1,7 @@
 ---
 title: Handle
 href: Handle
-subtitle: WEB APP DESIGN
+subtitle: Machine-learning web app
 dates: March - April 2023
 tags: [web, ml]
 img: ../../assets/projects/handle.png

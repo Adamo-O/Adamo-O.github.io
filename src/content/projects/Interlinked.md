@@ -1,7 +1,7 @@
 ---
 title: Interlinked
 href: Interlinked
-subtitle: WEB APP DESIGN
+subtitle: Team web app
 dates: January - April 2023
 tags: [web]
 img: ../../assets/projects/interlinked.png

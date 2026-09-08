@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import {
   ArrowUpRight,
+  ChevronDown,
   FileText,
   Github,
   GraduationCap,
@@ -88,9 +89,9 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
   <Shell variant="home">
     <Section
       id="about"
-      heading="ABOUT"
+      heading="About"
       title="About"
-      rail="GUI AGENTS · WORLD MODELS"
+      rail="GUI agents + world models"
       class="min-h-[calc(100svh-4rem)] items-center lg:min-h-svh"
       hideMobileTitle
     >
@@ -99,9 +100,9 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
 
     <Section
       id="research"
-      heading="RESEARCH"
+      heading="Research"
       title="Research"
-      rail="PAPERS"
+      rail="Papers"
       class="border-t border-line"
     >
       <div class="max-w-[52rem] space-y-8">
@@ -131,9 +132,9 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
 
     <Section
       id="projects"
-      heading="PROJECTS"
+      heading="Projects"
       title="Projects"
-      rail="SELECTED BUILDS"
+      rail="Selected builds"
       class="border-t border-line"
     >
       <div class="space-y-8">
@@ -153,7 +154,7 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
         {
           additionalProjects.length > 0 && (
             <div class="border-t border-line pt-7">
-              <h3 class="text-lg font-bold tracking-tight text-fg">More projects</h3>
+              <h3 class="text-lg font-bold tracking-tight text-fg">Earlier projects & experiments</h3>
               <div class="mt-4 grid gap-3 md:grid-cols-2">
                 {additionalProjects.map((project) => (
                   <ProjectArchiveItem frontmatter={project.data} />
@@ -167,9 +168,9 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
 
     <Section
       id="experience"
-      heading="EXPERIENCE"
+      heading="Experience"
       title="Experience"
-      rail="WORK & TEACHING"
+      rail="Work + teaching"
       class="border-t border-line"
     >
       <div class="grid gap-5">
@@ -202,7 +203,9 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
             <details class="earlier-roles group rounded border border-line bg-surface/60">
               <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 text-sm font-semibold text-fg marker:hidden">
                 Additional roles
-                <span class="meta transition-transform duration-[200ms] ease-[var(--ease-in-out)] group-open:rotate-45" aria-hidden="true">+</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-pill border border-line bg-bg/70 text-muted transition-transform duration-[220ms] ease-[var(--ease-out)] group-open:rotate-180" aria-hidden="true">
+                  <ChevronDown size={20} stroke-width={1.8} />
+                </span>
               </summary>
               <div class="grid gap-4 border-t border-line p-4 md:p-5">
                 {earlierExperiences.map((experience) => (
@@ -219,9 +222,9 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
 
     <Section
       id="education"
-      heading="EDUCATION"
+      heading="Education"
       title="Education"
-      rail="ACADEMIC PATH"
+      rail="Academic path"
       class="border-t border-line"
     >
       <ol class="relative grid gap-0 before:absolute before:bottom-6 before:left-[5px] before:top-6 before:w-px before:bg-line">
@@ -231,21 +234,21 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
 
     <Section
       id="awards"
-      heading="AWARDS"
+      heading="Awards"
       title="Awards"
-      rail="RECOGNITION"
+      rail="Recognition"
       class="border-t border-line"
     >
-      <div class="grid gap-px overflow-hidden rounded border border-line bg-line sm:grid-cols-2">
+      <div class="grid gap-3 sm:grid-cols-2">
         {awards.map((entry) => <AwardItem award={entry.data} />)}
       </div>
     </Section>
 
     <Section
       id="contact"
-      heading="CONTACT"
+      heading="Contact"
       title="Contact"
-      rail="LET'S TALK"
+      rail="Let's talk"
       class="border-y border-line"
       contentClass="py-16 md:py-24"
     >

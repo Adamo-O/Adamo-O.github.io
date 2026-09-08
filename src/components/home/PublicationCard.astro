@@ -14,7 +14,7 @@ interface Props {
     thumbnail?: ImageMetadata;
     thumbnailAlt?: string;
     thumbnailCaption?: string;
-    thumbnailCrop?: boolean;
+    thumbnailFrame?: "wide" | "extra-wide";
     highlight?: boolean;
     links: {
       pdf?: string;
@@ -54,24 +54,23 @@ const links = [
   class:list={[
     "overflow-hidden rounded border bg-surface shadow-card",
     publication.highlight ? "border-accent/45" : "border-line",
-    publication.thumbnail && "md:grid md:grid-cols-[minmax(15rem,0.92fr)_minmax(0,1.08fr)]",
   ]}
 >
   {
     publication.thumbnail && publication.thumbnailAlt && (
-      <figure class="flex flex-col justify-center border-b border-line bg-bg/70 p-3 md:border-b-0 md:border-r md:p-4">
-        <div class:list={["relative mx-auto w-full overflow-hidden bg-white", publication.thumbnailCrop ? "aspect-[2.3/1]" : "aspect-[16/10]"]}>
+      <figure class="border-b border-line bg-bg/60 p-3 md:p-4">
+        <div
+          class:list={[
+            "relative mx-auto w-full overflow-hidden rounded-sm border border-line/70 bg-white",
+            publication.thumbnailFrame === "extra-wide" ? "aspect-[2.7/1]" : "aspect-[2.25/1]",
+          ]}
+        >
           <Image
             src={publication.thumbnail}
             alt={publication.thumbnailAlt}
-            width={1200}
-            height={750}
-            class:list={[
-              "absolute inset-0 h-full w-full",
-              publication.thumbnailCrop
-                ? "object-cover object-[center_30%]"
-                : "h-full object-contain",
-            ]}
+            width={1600}
+            height={720}
+            class="absolute inset-0 h-full w-full object-cover object-center"
           />
         </div>
         {publication.thumbnailCaption && (
@@ -98,7 +97,7 @@ const links = [
       >
         {statusLabels[publication.status]}
       </span>
-      {publication.topics.length > 0 && <span class="meta ml-auto">{publication.topics.join(" · ")}</span>}
+      {publication.topics.length > 0 && <span class="meta ml-auto">{publication.topics.join(" / ")}</span>}
     </div>
     <h3 class="mt-4 text-xl font-bold leading-snug tracking-tight text-fg md:text-2xl">
       {publication.title}

@@ -18,7 +18,7 @@ highlightSummary: Developed two machine learning algorithms to match products be
 cv: true
 cvBullets:
   - Collaborated with MECP via Concordia University to develop two scalable algorithms for matching MECP products with competitor products to ensure competitive price points.
-  - Implemented semantic matching using the SBERT Large Language Model and similarity search using fuzzy matching to find matching products between multiple product databases.
+  - Implemented semantic matching with SBERT embeddings and fuzzy similarity search across multiple product databases.
   - Utilized Spark to query and manipulate data from a MySQL database of products retrieved via web scraping and product inventory APIs.
 ---
 Collaborated with MECP via Concordia University to develop two scalable algorithms for matching MECP products with competitor products to ensure competitive price points. Completed as part of SOEN 471 (Big Data Analytics).

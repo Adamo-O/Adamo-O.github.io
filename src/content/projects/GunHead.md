@@ -1,13 +1,14 @@
 ---
 title: GunHead
 href: GunHead
-subtitle: GAME DESIGN
+subtitle: Game jam
 dates: October 2022
 tags: [game, hackathon]
 img: ../../assets/projects/gunhead.png
 skills:
   - Unity
   - C#
+highlightSummary: Led programming and storyboarding for a side-scrolling Unity platformer built during the 2022 Concordia Game Jam.
 github: https://github.com/peach3es/C_GAMEJAM_OCT22
 secondLink:
   text: Play Game

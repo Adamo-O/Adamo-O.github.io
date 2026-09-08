@@ -18,14 +18,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "PP Supply Mono";
-  src: url("../assets/fonts/PPSupplyMono-Variable.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 100 800;
-  font-display: swap;
-}
-
 /* ------------------------------------------------------------------
    Design tokens. Colours are RGB triplets so Tailwind opacity modifiers
    work (bg-accent/10). Tailwind names: bg, surface, fg, muted, line,
@@ -40,9 +32,7 @@
   --c-accent: 52 79 151; /* #344f97 */
   --c-accent-strong: 38 60 122;
   --c-accent-soft: 232 237 249;
-  --c-grid: 52 79 151;
-  --grid-alpha: 0.07;
-  --grid-size: 32px;
+  --atmosphere-alpha: 0.1;
   --c-badge-review: 180 83 9; /* amber: "Under review" */
   --c-badge-accepted: 21 128 61;
 
@@ -75,7 +65,7 @@
   --c-accent: 118 144 214;
   --c-accent-strong: 169 185 255;
   --c-accent-soft: 118 144 214; /* use with /15 */
-  --grid-alpha: 0.08;
+  --atmosphere-alpha: 0.14;
   --c-badge-review: 245 158 11;
   --c-badge-accepted: 74 222 128;
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
@@ -108,21 +98,36 @@ body {
   min-height: 100dvh;
   color: rgb(var(--c-fg));
   background-color: rgb(var(--c-bg));
-  background-image: linear-gradient(
-      rgb(var(--c-grid) / var(--grid-alpha)) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgb(var(--c-grid) / var(--grid-alpha)) 1px,
-      transparent 1px
-    );
-  background-size: var(--grid-size) var(--grid-size);
+  background-image:
+    radial-gradient(ellipse 58rem 34rem at 78% -8%, rgb(var(--c-accent) / var(--atmosphere-alpha)), transparent 72%),
+    radial-gradient(ellipse 42rem 30rem at -8% 46%, rgb(var(--c-accent-soft) / 0.38), transparent 70%),
+    linear-gradient(180deg, rgb(var(--c-surface) / 0.42), transparent 28rem);
+  background-attachment: fixed;
   font-family: "PP Neue Montreal", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background-image: repeating-linear-gradient(
+    112deg,
+    transparent 0,
+    transparent 2px,
+    rgb(var(--c-fg) / 0.012) 2.5px,
+    transparent 3px
+  );
+  content: "";
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.dark body::before {
+  opacity: 0.22;
 }
 
 ::selection {
@@ -275,12 +280,12 @@ a {
   }
 }
 
-/* Small caps metadata voice: dates, badges, labels */
+/* Quiet metadata voice: dates, badges, and labels. */
 .meta {
-  font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: "PP Neue Montreal", ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: rgb(var(--c-muted));
 }
 
@@ -309,10 +314,10 @@ a {
 
 .v-subtitle {
   writing-mode: vertical-lr;
-  font-family: "PP Supply Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: "PP Neue Montreal", ui-sans-serif, system-ui, sans-serif;
   font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   color: rgb(var(--c-muted));
   white-space: nowrap;
   user-select: none;
