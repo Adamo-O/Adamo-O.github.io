@@ -1,24 +1,11 @@
 ---
-/**
- * "Now / Sep 2026 / <text>" status pill. The month is hidden once
- * `updated` is more than four months old so a stale date never shows.
- */
+/** "Now / <text>" status pill. */
 interface Props {
   text: string;
-  /** ISO-ish date, e.g. "2026-09" or "2026-09-01". */
-  updated: string;
   class?: string;
 }
 
-const { text, updated, class: className } = Astro.props;
-
-const MAX_AGE_MS = 4 * 30.5 * 24 * 60 * 60 * 1000;
-const parsed = new Date(updated);
-const valid = !Number.isNaN(parsed.getTime());
-const fresh = valid && Date.now() - parsed.getTime() <= MAX_AGE_MS;
-const stamp = fresh
-  ? `${parsed.toLocaleString("en-US", { month: "short", timeZone: "UTC" })} ${parsed.getUTCFullYear()}`
-  : null;
+const { text, class: className } = Astro.props;
 ---
 
 {
@@ -31,9 +18,7 @@ const stamp = fresh
     >
       <span class="inline-flex shrink-0 items-center gap-2.5 whitespace-nowrap text-xs font-semibold text-muted">
         <span class="h-1.5 w-1.5 shrink-0 rounded-pill bg-accent" aria-hidden="true" />
-        <span>
-          Now{stamp && <span aria-hidden="true"> / </span>}{stamp}
-        </span>
+        <span>Now</span>
       </span>
       <span class="min-w-0 leading-snug">{text}</span>
     </p>

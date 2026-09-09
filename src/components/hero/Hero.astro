@@ -28,17 +28,17 @@ const lead = profile.heroLines[0];
         variant="default"
         staticSize
       >
-        <FlaskConical class="mr-2" size="18" aria-hidden="true" />
+        <FlaskConical size="18" aria-hidden="true" />
         Research
       </Button>
       <Button href={profile.cvPdf} title="Open CV (PDF)" newTab variant="outline" staticSize>
-        <FileText class="mr-2" size="18" aria-hidden="true" />
+        <FileText size="18" aria-hidden="true" />
         CV
       </Button>
     </div>
 
     <div>
-      <NowPill text={profile.now.text} updated={profile.now.updated} />
+      <NowPill text={profile.now.text} />
     </div>
   </div>
 </div>
