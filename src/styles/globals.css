@@ -327,6 +327,13 @@ a {
     transform: translateX(-10px);
   }
 
+  html.sidebar-compact .sidebar-copy {
+    flex: 0 0 0;
+    inline-size: 0;
+    block-size: 0;
+    white-space: nowrap;
+  }
+
   html.sidebar-compact .sidebar-nav-link {
     gap: 0;
   }
