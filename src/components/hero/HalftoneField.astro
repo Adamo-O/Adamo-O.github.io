@@ -1,0 +1,21 @@
+---
+/**
+ * Hero background: a quiet halftone dot field (see src/scripts/halftoneField.ts).
+ * Dark mode only — in light mode the canvas draws nothing and the page keeps its
+ * plain wash + grain. Masked so the field is strongest away from the copy.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<canvas
+  data-halftone
+  aria-hidden="true"
+  class:list={["halftone-field pointer-events-none absolute inset-0 h-full w-full", className]}
+></canvas>
+
+<script>
+  import "@/scripts/halftoneField";
+</script>

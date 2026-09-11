@@ -143,38 +143,18 @@ body::before {
   mix-blend-mode: screen;
 }
 
-/* Cursor-trailing accent orb (src/scripts/cursorGlow.ts). Sits behind content,
-   above the body wash. Only ever inserted on a fine pointer at >=1024px with
-   reduced-motion off, so there is no mobile or touch cost. Moved by transform
-   only; opacity starts at 0 so it does not flash in the top-left before the
-   first pointermove. */
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 40rem;
-  height: 40rem;
-  margin: -20rem 0 0 -20rem;
-  background: radial-gradient(
-    circle closest-side,
-    rgb(var(--c-accent) / 0.1),
-    rgb(var(--c-accent) / 0.045) 45%,
-    transparent 72%
-  );
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 400ms var(--ease-out);
-  will-change: transform;
+/* Halftone hero field (src/scripts/halftoneField.ts). Masked so the lattice is
+   strongest toward the top-right and falls away before it reaches the copy
+   column, and faded out below md where the hero is narrow. */
+.halftone-field {
+  -webkit-mask-image: radial-gradient(ellipse 46rem 32rem at 78% 26%, #000 0%, transparent 76%);
+  mask-image: radial-gradient(ellipse 46rem 32rem at 78% 26%, #000 0%, transparent 76%);
 }
 
-.dark .cursor-glow {
-  background: radial-gradient(
-    circle closest-side,
-    rgb(var(--c-accent) / 0.16),
-    rgb(var(--c-accent) / 0.07) 45%,
-    transparent 72%
-  );
+@media (max-width: 767.98px) {
+  .halftone-field {
+    opacity: 0.55;
+  }
 }
 
 ::selection {
