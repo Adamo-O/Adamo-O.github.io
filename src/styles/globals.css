@@ -322,25 +322,17 @@ a {
     white-space: nowrap;
   }
 
+  /* Two controls, laid out by flex. This used to be absolutely positioned with
+     hard-coded 40px translations, which only fitted while the row was 4.75rem
+     tall to hold three social icons; once those moved into the nav the row
+     shrank and `overflow: hidden` clipped the theme toggle out of sight. */
   .sidebar-utilities {
-    align-content: flex-start;
+    justify-content: flex-end;
   }
 
   .sidebar-theme-item,
   .sidebar-toggle-item {
-    position: absolute;
-    right: 0;
-    bottom: 0;
     display: flex;
-    transition: transform var(--dur) var(--ease-in-out);
-  }
-
-  .sidebar-theme-item {
-    transform: translateX(-40px);
-  }
-
-  .sidebar-toggle-item {
-    transform: translate(0);
   }
 
   .sidebar-toggle-item [data-sidebar-toggle] {
@@ -427,11 +419,9 @@ a {
   }
 
   html.sidebar-compact .sidebar-utilities {
-    overflow: hidden;
-  }
-
-  html.sidebar-compact .sidebar-theme-item {
-    transform: translateY(-40px);
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   html.sidebar-compact .sidebar-collapse-icon {
