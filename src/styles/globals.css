@@ -133,6 +133,12 @@ body::before {
   inset: 0;
   z-index: 60;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  /* Tile at native scale. The SVG has a viewBox but no intrinsic width/height,
+     so with `background-size: auto` it stretches to fill the element and each
+     noise cell is upscaled into a visible ~8x5px block — chunky, not film
+     grain. 180px maps one SVG unit to one CSS px, which is what stitchTiles
+     was authored for. */
+  background-size: 180px 180px;
   content: "";
   opacity: 0.045;
   pointer-events: none;
@@ -147,8 +153,15 @@ body::before {
    strongest toward the top-right and falls away before it reaches the copy
    column, and faded out below md where the hero is narrow. */
 .halftone-field {
-  -webkit-mask-image: radial-gradient(ellipse 46rem 32rem at 78% 26%, #000 0%, transparent 76%);
-  mask-image: radial-gradient(ellipse 46rem 32rem at 78% 26%, #000 0%, transparent 76%);
+  --halftone-mask: radial-gradient(
+    ellipse 92% 88% at 78% 22%,
+    #000 0%,
+    #000 26%,
+    rgb(0 0 0 / 0.45) 60%,
+    transparent 88%
+  );
+  -webkit-mask-image: var(--halftone-mask);
+  mask-image: var(--halftone-mask);
 }
 
 @media (max-width: 767.98px) {

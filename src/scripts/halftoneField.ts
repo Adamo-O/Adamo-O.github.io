@@ -14,15 +14,17 @@
  * - prefers-reduced-motion: one static frame, never animates.
  * - (hover: none) / coarse pointer: wave only, no pointer influence.
  */
-const CELL = 24; // px between dot centres
-const R_MIN = 0.45;
-const R_MAX = 1.55;
-const WAVELENGTH = 96; // px per wave crest
+const CELL = 26; // px between dot centres
+const R_MIN = 0;
+const R_MAX = 3.6;
+const WAVELENGTH = 115; // px per wave crest
 const SPEED = 0.0011; // radians per ms
 const INFLUENCE = 165; // px; pointer falloff radius
-const CURSOR_GAIN = 1.35; // px added to radius at the pointer
-const ALPHA = 0.2;
-const ORIGIN = { x: 0.74, y: 0.3 }; // wave centre, as a fraction of the canvas
+const CURSOR_GAIN = 2.2; // px added to radius at the pointer
+const ALPHA = 0.5;
+const GAMMA = 2.4; // >1 narrows the crests so rings read as bands, not a grid
+const R_SKIP = 0.18; // below this a dot is sub-pixel mush; skip it
+const ORIGIN = { x: 0.74, y: 0.28 }; // wave centre, as a fraction of the canvas
 
 export function initHalftoneField(canvas: HTMLCanvasElement): void {
   const ctx = canvas.getContext("2d");
@@ -77,8 +79,9 @@ export function initHalftoneField(canvas: HTMLCanvasElement): void {
         const dx = x - ox;
         const dy = y - oy;
         const d = Math.sqrt(dx * dx + dy * dy);
-        // (sin + 1) / 2 keeps the wave in 0..1 so radii never invert.
-        const pulse = (Math.sin(d / WAVELENGTH - t) + 1) * 0.5;
+        // (sin + 1) / 2 keeps the wave in 0..1 so radii never invert; the gamma
+        // then pushes troughs toward zero so the rings read as distinct bands.
+        const pulse = Math.pow((Math.sin(d / WAVELENGTH - t) + 1) * 0.5, GAMMA);
         let r = R_MIN + pulse * (R_MAX - R_MIN);
 
         if (usePointer) {
@@ -91,6 +94,7 @@ export function initHalftoneField(canvas: HTMLCanvasElement): void {
           }
         }
 
+        if (r < R_SKIP) continue;
         path.moveTo(x + r, y);
         path.arc(x, y, r, 0, Math.PI * 2);
       }
