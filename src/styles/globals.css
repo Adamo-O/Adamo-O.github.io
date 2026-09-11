@@ -32,7 +32,14 @@
   --c-accent: 52 79 151; /* #344f97 */
   --c-accent-strong: 38 60 122;
   --c-accent-soft: 232 237 249;
-  --atmosphere-alpha: 0.1;
+  /* Overhead key light + edge vignette. Light mode is daylight on warm paper,
+     so the glow is faint and the vignette uses the ink colour rather than black
+     (pure black on a warm ground just greys it). */
+  --glow-strong: 0.1;
+  --glow-soft: 0.042;
+  --glow-lip: 0.03;
+  --vignette-rgb: 22 25 43;
+  --vignette-alpha: 0.05;
   --c-badge-review: 180 83 9; /* amber: "Under review" */
   --c-badge-accepted: 21 128 61;
 
@@ -65,7 +72,11 @@
   --c-accent: 118 144 214;
   --c-accent-strong: 169 185 255;
   --c-accent-soft: 118 144 214; /* use with /15 */
-  --atmosphere-alpha: 0.14;
+  --glow-strong: 0.3;
+  --glow-soft: 0.1;
+  --glow-lip: 0.05;
+  --vignette-rgb: 0 0 0;
+  --vignette-alpha: 0.55;
   --c-badge-review: 245 158 11;
   --c-badge-accepted: 74 222 128;
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
@@ -107,10 +118,23 @@ body {
   /* One idea, committed: a single-hue wash plus grain (body::before). The old
      concentric rings and 24px dot grid were removed — four competing low-opacity
      layers read as vague texture rather than a deliberate gradient. */
+  /* One light source above the frame, plus an edge vignette, so the page reads
+     as a lit surface rather than a flat fill. Earlier layers are listed first,
+     so the vignette sits over the glow. No pattern: depth comes from light and
+     falloff, which is what survives at any zoom and never reads as texture. */
   background-image:
-    radial-gradient(ellipse 70rem 44rem at 76% -12%, rgb(var(--c-accent) / var(--atmosphere-alpha)), transparent 70%),
-    radial-gradient(ellipse 52rem 38rem at -10% 42%, rgb(var(--c-accent-soft) / 0.62), transparent 72%),
-    linear-gradient(180deg, rgb(var(--c-surface) / 0.55), transparent 32rem);
+    radial-gradient(
+      115% 100% at 50% 42%,
+      transparent 42%,
+      rgb(var(--vignette-rgb) / var(--vignette-alpha)) 100%
+    ),
+    radial-gradient(
+      120% 78% at 50% -34%,
+      rgb(var(--c-accent) / var(--glow-strong)) 0%,
+      rgb(var(--c-accent) / var(--glow-soft)) 38%,
+      transparent 72%
+    ),
+    linear-gradient(180deg, rgb(var(--c-accent) / var(--glow-lip)), transparent 46%);
   background-attachment: fixed;
   font-family: "PP Neue Montreal", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
