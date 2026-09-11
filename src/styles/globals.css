@@ -164,12 +164,12 @@ body::before {
      was authored for. */
   background-size: 180px 180px;
   content: "";
-  opacity: 0.045;
+  opacity: 0.058;
   pointer-events: none;
 }
 
 .dark body::before {
-  opacity: 0.062;
+  opacity: 0.082;
   mix-blend-mode: screen;
 }
 
@@ -255,6 +255,22 @@ a {
     transition: grid-template-columns var(--dur) var(--ease-in-out);
   }
 
+  /* The rail sits recessed and the content plane floats above it: a rounded
+     leading edge, a hairline, and a soft cast shadow. Translucent on purpose so
+     the body's key light and vignette still read through both surfaces. */
+  .sidebar-shell > main {
+    position: relative;
+    border-left: 1px solid rgb(var(--c-line));
+    border-start-start-radius: 18px;
+    border-end-start-radius: 18px;
+    background: rgb(var(--c-surface) / 0.42);
+    box-shadow: -18px 0 40px -26px rgb(var(--vignette-rgb) / 0.55);
+  }
+
+  .dark .sidebar-shell > main {
+    background: rgb(var(--c-surface) / 0.3);
+  }
+
   /* The name sits directly beside it, so the mark is redundant while the sidebar
      is expanded. In compact mode .sidebar-copy collapses to zero width and the
      mark becomes the only identity element, so it comes back there. */
@@ -281,6 +297,11 @@ a {
     overflow: hidden;
   }
 
+  /* nowrap at ALL widths, not just when compact. The grid column animates
+     72px -> 220px over --dur; if the identity text is allowed to wrap it
+     reflows to several lines mid-transition and shoves the nav and social
+     icons down and back up. Fixed line count = stable height = no jump. */
+  .sidebar-copy,
   .sidebar-nav-label,
   .sidebar-source {
     white-space: nowrap;

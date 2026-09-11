@@ -5,7 +5,6 @@ import {
   ChevronDown,
   FileText,
   Github,
-  GraduationCap,
   Linkedin,
   Mail,
 } from "lucide-astro";
@@ -275,11 +274,6 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
           <a class="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-accent" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">
             <Linkedin size="17" aria-hidden="true" /> LinkedIn <ArrowUpRight size="14" aria-hidden="true" />
           </a>
-          {profile.links.scholar && (
-            <a class="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-accent" href={profile.links.scholar} target="_blank" rel="noopener noreferrer">
-              <GraduationCap size="17" aria-hidden="true" /> Google Scholar <ArrowUpRight size="14" aria-hidden="true" />
-            </a>
-          )}
         </nav>
       </div>
     </Section>

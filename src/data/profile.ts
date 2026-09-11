@@ -15,9 +15,7 @@ export interface Profile {
   links: {
     github: string;
     linkedin: string;
-    scholar?: string;
     twitter?: string;
-    source: string;
   };
   now: { text: string; updated: string };
   heroLines: string[];
@@ -44,8 +42,6 @@ export const profile: Profile = {
   links: {
     github: "https://github.com/Adamo-O",
     linkedin: "https://www.linkedin.com/in/adamo-orsini/",
-    scholar: "https://scholar.google.ca/citations?hl=en&user=Aei55m0AAAAJ",
-    source: "https://github.com/Adamo-O/Adamo-O.github.io",
   },
   now: {
     text: "Deep diving on world models & grinding SoftGolf's mobile app",

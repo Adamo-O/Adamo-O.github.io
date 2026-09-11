@@ -103,11 +103,12 @@ const links = [
       {publication.title}
     </h3>
     <p class="mt-2 text-sm leading-relaxed text-muted">
+      {/* The separator must live inside the same expression as the name, or the
+          markup's own indentation becomes a text node and renders "A , B". */}
       {publication.authors.map((author, index) => (
-        <>
-          <span class:list={[author === "Adamo Orsini" && "font-semibold text-fg"]}>{author}</span>
-          {index < publication.authors.length - 1 && ", "}
-        </>
+        <span class:list={[author === "Adamo Orsini" && "font-semibold text-fg"]}>
+          {author}{index < publication.authors.length - 1 ? ", " : ""}
+        </span>
       ))}
     </p>
     {publication.venue && <p class="meta mt-2">{publication.venue}</p>}

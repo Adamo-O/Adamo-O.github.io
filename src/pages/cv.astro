@@ -4,7 +4,6 @@ import {
   Download,
   ExternalLink,
   Github,
-  GraduationCap,
   Linkedin,
   Mail,
   MapPin,
@@ -145,12 +144,6 @@ const initialsFor = (name: string) =>
           <Linkedin size={14} aria-hidden="true" />
           LinkedIn
         </a>
-        {profile.links.scholar && (
-          <a href={profile.links.scholar} target="_blank" rel="noopener noreferrer">
-            <GraduationCap size={14} aria-hidden="true" />
-            Scholar
-          </a>
-        )}
       </div>
 
       <section class="cv-section cv-summary" aria-labelledby="summary-heading">

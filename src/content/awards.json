@@ -72,14 +72,5 @@
     "date": "2021-10",
     "kind": "competition",
     "placement": "1st Place"
-  },
-  {
-    "id": "genetec-challenge-2021",
-    "title": "Participant, Genetec Challenge",
-    "issuer": "Genetec Inc.",
-    "date": "2021-03",
-    "kind": "competition",
-    "placement": "Participant",
-    "logo": "genetec"
   }
 ]
