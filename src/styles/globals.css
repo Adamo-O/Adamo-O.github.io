@@ -53,6 +53,7 @@
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
   --shadow-card: 0 1px 2px rgb(22 25 43 / 0.06),
     0 8px 24px -12px rgb(52 79 151 / 0.18);
@@ -252,7 +253,7 @@ a {
 @media (min-width: 1024px) {
   .sidebar-shell {
     grid-template-columns: 220px minmax(0, 1fr);
-    transition: grid-template-columns var(--dur) var(--ease-in-out);
+    transition: grid-template-columns var(--dur) var(--ease-drawer);
   }
 
   /* The rail sits recessed and the content plane floats above it: a rounded
@@ -277,21 +278,40 @@ a {
   .sidebar {
     position: sticky;
     z-index: 20;
+    /* The track animation reflows the page each frame; keep the rail's own
+       internals from cascading into that. */
+    contain: layout style;
   }
 
   /* Identity block holds ONE height in every state. Expanded it is three lines
      of copy, compact it is the 44px mark; letting either drive the height
      shifts the whole nav by 11px on toggle. */
   .sidebar-identity {
+    position: relative;
     block-size: 3.5rem;
   }
 
   /* The name sits directly beside it, so the mark is redundant while the sidebar
      is expanded. In compact mode .sidebar-copy collapses to zero width and the
      mark becomes the only identity element, so it comes back there. */
+  /* Out of flow and always present: `display` cannot animate, so toggling it
+     made the mark pop in one frame while everything else moved over 200ms.
+     Opacity carries the hide; absolute positioning keeps it from reserving
+     width beside the copy. */
   .sidebar-identity-mark {
-    display: none;
-    transition: transform var(--dur) var(--ease-in-out);
+    position: absolute;
+    /* Centred on the rail, not offset from its edge: the mark (44px) is wider
+       than the collapsed rail's content box (40px), so an edge offset puts it
+       off-centre. Percentage centring is width-independent. */
+    inset-inline-start: 50%;
+    inset-block-start: 50%;
+    display: flex;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.92);
+    pointer-events: none;
+    transition:
+      opacity var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out);
   }
 
   .sidebar-copy,
@@ -300,8 +320,10 @@ a {
   .sidebar-social-item {
     opacity: 1;
     visibility: visible;
+    /* Delayed by a full --dur so labels are never painted while the container
+       is still narrowing and hard-clipping them mid-word. */
     transition:
-      opacity var(--dur-fast) var(--ease-out) 80ms,
+      opacity var(--dur-fast) var(--ease-out) var(--dur),
       visibility 0s linear 0s;
   }
 
@@ -321,6 +343,11 @@ a {
   .sidebar-source {
     white-space: nowrap;
   }
+
+  /* No clip-edge mask here. It was tried and removed: these boxes are sized to
+     their text, so a trailing fade eats real glyphs at rest. The retimed fades
+     below already guarantee no label is ever painted while the rail is
+     mid-clip, which is what the mask was insuring against. */
 
   /* Two controls, laid out by flex. This used to be absolutely positioned with
      hard-coded 40px translations, which only fitted while the row was 4.75rem
@@ -364,8 +391,12 @@ a {
   }
 
   html.sidebar-compact .sidebar-identity-mark {
-    display: flex;
-    transform: translateX(-10px);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    /* Delayed so the mark and the copy are never both half-opaque together. */
+    transition:
+      opacity var(--dur-fast) var(--ease-out) 90ms,
+      transform var(--dur-fast) var(--ease-out) 90ms;
   }
 
   html.sidebar-compact .sidebar-copy {
@@ -413,9 +444,11 @@ a {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    /* Asymmetric on purpose: labels leave before the track closes, so it
+       narrows over empty space rather than over shrinking text. */
     transition:
-      opacity var(--dur-fast) var(--ease-out),
-      visibility 0s linear var(--dur-fast);
+      opacity 90ms var(--ease-out),
+      visibility 0s linear 90ms;
   }
 
   html.sidebar-compact .sidebar-utilities {

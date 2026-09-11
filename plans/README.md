@@ -10,6 +10,8 @@
 | 006 | Design critique and redesign plan (WS0–WS7) | HIGH | SUPERSEDED by 008 |
 | 007 | Conference readiness for AACL-IJCNLP 2026 | MEDIUM | WS0/WS1 done, WS2/WS3 open |
 | 008 | Revert plan 006, carry a keep-list forward | HIGH | DONE |
+| 009 | Stop the sidebar labels being crushed on collapse/expand | HIGH | DONE |
+| 010 | Crossfade the identity mark instead of popping it | MEDIUM | DONE |
 
 ## Recommended execution order
 
@@ -30,3 +32,14 @@ the scratchpad copies are session-scoped and will not survive.
 `007-conference-readiness-aacl.md` stays active for **WS2** (drop the `featured` experience
 variant) and **WS3** (the `/aacl` poster landing page). Its WS1 is superseded by 008's
 keep-list. AACL-IJCNLP 2026 runs 6–10 November.
+
+## Sidebar motion (009, 010)
+
+From an `improve-animations` audit at `ba07772`. Run **009 first**: it owns the
+collapse timing and the label masking, and 010's crossfade delay is tuned against
+009's retimed fades. 010 is independent in file terms but will look wrong if the
+label timing underneath it has not been fixed.
+
+Findings raised but NOT planned: `.sidebar-copy` snapping `inline-size`/`block-size`
+(MEDIUM, subsumed by 009's masking) and tooltips re-animating per icon in the
+collapsed rail (LOW).
