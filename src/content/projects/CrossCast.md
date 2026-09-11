@@ -5,7 +5,6 @@ subtitle: Hackathon product
 dates: January 2023
 tags: [web, hackathon]
 img: ../../assets/projects/cross-cast.png
-video: /media/cross-cast.webm
 skills:
   - Project Planning
   - Next.js

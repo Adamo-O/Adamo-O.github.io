@@ -23,6 +23,7 @@ import EducationItem from "@/components/home/EducationItem.astro";
 import AwardItem from "@/components/home/AwardItem.astro";
 import ProjectArchiveItem from "@/components/home/ProjectArchiveItem.astro";
 import { profile } from "@/data/profile";
+import portrait from "@/assets/brand/portrait.jpg";
 import { sortContent } from "@/lib/utils";
 
 const containsPlaceholder = (value: unknown): boolean => {
@@ -82,6 +83,9 @@ const publications = publicationsRaw
       a.data.title.localeCompare(b.data.title),
   );
 
+/** The hero's acceptance row: the pinned paper, so the announcement updates itself. */
+const latestPublication = publications.find((publication) => publication.data.highlight)?.data;
+
 const education = educationRaw.sort((a, b) => a.data.order - b.data.order);
 const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
@@ -96,7 +100,7 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
       hideMobileTitle
     >
       <ParticleField slot="background" client:idle className="-z-10" />
-      <Hero />
+      <Hero portrait={portrait} latest={latestPublication} />
     </Section>
 
     <Section

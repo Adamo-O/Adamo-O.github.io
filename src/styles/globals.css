@@ -247,7 +247,11 @@ a {
     transition: grid-template-columns var(--dur) var(--ease-in-out);
   }
 
+  /* The name sits directly beside it, so the mark is redundant while the sidebar
+     is expanded. In compact mode .sidebar-copy collapses to zero width and the
+     mark becomes the only identity element, so it comes back there. */
   .sidebar-identity-mark {
+    display: none;
     transition: transform var(--dur) var(--ease-in-out);
   }
 
@@ -324,6 +328,7 @@ a {
   }
 
   html.sidebar-compact .sidebar-identity-mark {
+    display: flex;
     transform: translateX(-10px);
   }
 

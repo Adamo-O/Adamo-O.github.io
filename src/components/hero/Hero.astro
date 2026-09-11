@@ -1,44 +1,136 @@
 ---
 /**
- * Hero block: particle field behind the intro copy from profile.ts, two
- * CTAs (Research, CV), and the current-work pill.
+ * Hero block: intro copy from profile.ts beside the portrait, the CV CTA, a
+ * profile-link row and the pinned publication's acceptance row.
  * Designed to sit inside <Section id="about">; it does not wrap a <section>.
+ *
+ * Research CTA intentionally absent: it duplicates the persistent mobile tab bar
+ * and the desktop sidebar, and its target is the next section down.
  */
-import { FlaskConical, FileText } from "lucide-astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { FileText, Github, Linkedin, Mail } from "lucide-astro";
 import Button from "@/components/Button.astro";
 import { profile } from "@/data/profile";
-import NowPill from "./NowPill.astro";
 
+type Publication = CollectionEntry<"publications">["data"];
+
+interface Props {
+  portrait?: ImageMetadata;
+  latest?: Publication;
+}
+
+const { portrait, latest } = Astro.props;
 const lead = profile.heroLines[0];
+
+/** "Accepted to Findings of AACL-IJCNLP 2026" from status + venue; nothing hand-written. */
+const statusPhrase = (publication: Publication): string => {
+  const venue = publication.venue?.trim();
+  switch (publication.status) {
+    case "accepted":
+      return venue ? `Accepted to ${venue}` : "Accepted";
+    case "workshop":
+      return venue ? `Workshop paper at ${venue}` : "Workshop paper";
+    case "preprint":
+      return venue ? `Preprint · ${venue}` : "Preprint";
+    case "under-review":
+      return "Under review";
+    case "withdrawn":
+      return "Withdrawn";
+  }
+};
+
+// The schema records the year only, so the eyebrow prints the year (never a guessed
+// month) and skips it when the venue already carries it.
+const latestEyebrow = latest
+  ? latest.venue?.includes(String(latest.year))
+    ? statusPhrase(latest)
+    : `${latest.year} · ${statusPhrase(latest)}`
+  : "";
+const latestHref =
+  latest?.links.openreview ?? latest?.links.pdf ?? latest?.links.arxiv ?? latest?.links.project;
+
+/** Email is a mailto, so it takes no target/rel. Google Scholar is deliberately
+    absent (Adamo's call, 2026-09-11); it stays in the sidebar and Contact. */
+const profileLinks: Array<[label: string, href: string, external: boolean, Icon: any]> = [
+  ["LinkedIn", profile.links.linkedin, true, Linkedin],
+  ["GitHub", profile.links.github, true, Github],
+  ["Email", `mailto:${profile.academicEmail}`, false, Mail],
+];
 ---
 
 <div>
-  <div class="flex max-w-[52rem] flex-col gap-7 py-6 md:gap-8 md:py-10">
-    <div class="space-y-4">
-      <h1 class="text-display font-bold text-fg">
-        Hi, I'm {profile.name}.
-      </h1>
-      {lead && <p class="max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{lead}</p>}
-    </div>
+  {/* Portrait sits in a left gutter; everything else shares ONE text column, so the
+      name, lead, CTAs, acceptance card and Now pill all start on the same edge. */}
+  <div class="flex max-w-[52rem] flex-col gap-5 py-6 sm:flex-row sm:items-start sm:gap-7 md:py-10">
+    {
+      portrait && (
+        <Image
+          src={portrait}
+          alt={`Portrait of ${profile.name}`}
+          width={112}
+          densities={[1, 2]}
+          class="h-20 w-20 shrink-0 rounded-2xl border border-line object-cover md:h-28 md:w-28"
+          loading="eager"
+          fetchpriority="high"
+        />
+      )
+    }
+    <div class="flex min-w-0 flex-1 flex-col gap-7 md:gap-8">
+      <div class="space-y-4">
+        <h1 class="text-display font-bold text-fg">
+          Hi, I'm {profile.name}.
+        </h1>
+        {lead && <p class="max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{lead}</p>}
+      </div>
 
     <div class="flex flex-wrap items-center gap-3">
-      <Button
-        href="#research"
-        title="View research"
-        variant="default"
-        staticSize
-      >
-        <FlaskConical size="18" aria-hidden="true" />
-        Research
-      </Button>
-      <Button href={profile.cvPdf} title="Open CV (PDF)" newTab variant="outline" staticSize>
+      <Button href={profile.cvPdf} title="Open CV (PDF)" newTab variant="default" staticSize>
         <FileText size="18" aria-hidden="true" />
         CV
       </Button>
+      <nav class="flex flex-wrap items-center gap-x-1 text-muted" aria-label="Profiles and contact">
+        {
+          profileLinks.map(([label, href, external, Icon]) => (
+            <a
+              href={href}
+              title={label}
+              aria-label={label}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              class="inline-flex h-11 w-11 items-center justify-center rounded-pill transition-colors duration-fast hover:text-accent focus-visible:text-accent"
+            >
+              <Icon size="20" aria-hidden="true" />
+            </a>
+          ))
+        }
+      </nav>
     </div>
 
-    <div>
-      <NowPill text={profile.now.text} />
+    {
+      latest && (
+        <div class="rounded-2xl border border-line bg-surface px-5 py-4 shadow-card">
+          <p class="meta">
+            <span class="sr-only">Latest: </span>
+            {latestEyebrow}
+          </p>
+          <p class="mt-1.5 text-lg font-semibold leading-snug text-fg">
+            {latestHref ? (
+              <a
+                href={latestHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline-offset-4 transition-colors duration-fast hover:text-accent hover:underline"
+              >
+                {latest.title}
+              </a>
+            ) : (
+              latest.title
+            )}
+          </p>
+        </div>
+      )
+    }
     </div>
   </div>
 </div>

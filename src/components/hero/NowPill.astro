@@ -12,11 +12,15 @@ const { text, class: className } = Astro.props;
   text && (
     <p
       class:list={[
-        "inline-grid max-w-full grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-3 rounded-2xl border border-line bg-surface py-1.5 pl-3 pr-4 text-sm text-fg shadow-card sm:rounded-pill",
+        "inline-grid max-w-full grid-cols-[auto_minmax(0,1fr)] items-start gap-x-3 rounded-2xl border border-line bg-surface py-1.5 pl-3 pr-4 text-sm text-fg shadow-card sm:rounded-pill",
         className,
       ]}
     >
-      <span class="inline-flex shrink-0 items-center gap-2.5 whitespace-nowrap text-xs font-semibold text-muted">
+      {/* Top-aligned, NOT baseline: with `items-baseline` a wrapped (2-line) body made
+          the grid centre this label against the whole block, dropping it ~9.75px below
+          the first line on mobile. `items-start` pins it to the first line in both
+          cases; the small translate optically centres the 12px label on the 14px line. */}
+      <span class="inline-flex shrink-0 translate-y-[1.5px] items-center gap-2.5 whitespace-nowrap text-xs font-semibold text-muted">
         <span class="h-1.5 w-1.5 shrink-0 rounded-pill bg-accent" aria-hidden="true" />
         <span>Now</span>
       </span>

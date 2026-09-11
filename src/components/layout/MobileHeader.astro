@@ -14,15 +14,9 @@ import ThemeToggle from "./ThemeToggle.astro";
   <div class="flex h-14 items-center justify-between px-5 md:px-8">
     <a
       href="/"
-      class="flex min-h-11 items-center gap-2.5"
+      class="flex min-h-11 items-center"
       aria-label={`${profile.name}, home`}
     >
-      <span
-        class="flex h-8 w-8 items-center justify-center rounded-sm border border-line bg-accent-soft/70 text-xs font-extrabold tracking-tight text-accent dark:bg-accent-soft/15"
-        aria-hidden="true"
-      >
-        {profile.initials}
-      </span>
       <span class="text-sm font-bold tracking-tight">{profile.name}</span>
     </a>
     <div class="flex items-center gap-1.5">

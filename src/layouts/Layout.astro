@@ -82,12 +82,28 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? profile.site);
 
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- Devicon: skill icons (only external stylesheet). -->
+    <!-- Devicon: skill icons (only external stylesheet). Version-pinned (@latest
+         shipped whatever was current, unreviewed) and loaded non-blocking, since
+         the chips are decorative and ~813 KB should not hold up first paint. -->
+    <link
+      rel="preconnect"
+      href="https://cdn.jsdelivr.net"
+      crossorigin
+    />
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css"
+      />
+    </noscript>
   </head>
   <body class="bg-bg text-fg font-sans antialiased">
     <slot />
