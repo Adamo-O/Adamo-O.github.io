@@ -132,8 +132,11 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
     )
   }
 
-  <div class="grid gap-6 p-5 md:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.38fr)] lg:gap-8">
-    <div class="min-w-0">
+  {/* Same column template as the stats grid above, with padding inside the cells
+      rather than on the container, so this divider lands on exactly the same
+      x as the stats divider. */}
+  <div class="grid md:grid-cols-[minmax(0,1.45fr)_minmax(14rem,0.55fr)]">
+    <div class="min-w-0 p-5 md:p-7">
       <div>
         <div class="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
           <p class="meta text-accent">{subtitle}</p>
@@ -147,7 +150,7 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
       </div>
     </div>
 
-    <div class="flex flex-col justify-between gap-6 lg:border-l lg:border-line lg:pl-7">
+    <div class="flex flex-col justify-between gap-6 border-t border-line p-5 md:border-l md:border-t-0 md:p-7">
       <div>
         <p class="meta mb-3 text-accent">Tools used</p>
         <div class="flex flex-wrap gap-1.5">

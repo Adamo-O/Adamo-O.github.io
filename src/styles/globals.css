@@ -260,15 +260,30 @@ a {
      the body's key light and vignette still read through both surfaces. */
   .sidebar-shell > main {
     position: relative;
+    z-index: 10;
     border-left: 1px solid rgb(var(--c-line));
     border-start-start-radius: 18px;
     border-end-start-radius: 18px;
     background: rgb(var(--c-surface) / 0.42);
-    box-shadow: -18px 0 40px -26px rgb(var(--vignette-rgb) / 0.55);
+    box-shadow: -10px 0 26px -22px rgb(var(--vignette-rgb) / 0.32);
   }
 
   .dark .sidebar-shell > main {
     background: rgb(var(--c-surface) / 0.3);
+  }
+
+  /* Above main: main is positioned for the inset, so without this it paints
+     over the rail and swallows the nav tooltips. */
+  .sidebar {
+    position: sticky;
+    z-index: 20;
+  }
+
+  /* Identity block holds ONE height in every state. Expanded it is three lines
+     of copy, compact it is the 44px mark; letting either drive the height
+     shifts the whole nav by 11px on toggle. */
+  .sidebar-identity {
+    block-size: 3.5rem;
   }
 
   /* The name sits directly beside it, so the mark is redundant while the sidebar
@@ -375,7 +390,7 @@ a {
   html.sidebar-compact .sidebar-nav-link::after {
     position: absolute;
     left: calc(100% + 0.75rem);
-    z-index: 60;
+    z-index: 80;
     padding: 0.4rem 0.6rem;
     border: 1px solid rgb(var(--c-line));
     border-radius: var(--radius-sm);

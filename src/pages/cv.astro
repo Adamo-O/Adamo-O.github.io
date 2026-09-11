@@ -376,16 +376,9 @@ const initialsFor = (name: string) =>
     isolation: isolate;
   }
 
-  .cv-document::before {
-    position: absolute;
-    inset: 0 0 auto;
-    z-index: -1;
-    height: 12rem;
-    background:
-      linear-gradient(110deg, rgb(var(--c-accent) / 0.13), transparent 58%),
-      repeating-linear-gradient(90deg, transparent 0 2.95rem, rgb(var(--c-accent) / 0.055) 3rem);
-    content: "";
-  }
+  /* Decorative masthead wash removed 2026-09-11: it cut a diagonal edge straight
+     through the name. This page is a crawlable plain-text mirror of the PDF, so
+     it carries no ornament of its own. */
 
   .cv-masthead {
     display: grid;

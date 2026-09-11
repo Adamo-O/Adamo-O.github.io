@@ -18,10 +18,9 @@ thumbnailAlt: "Three-stage TAG-Nav overview showing offline app exploration, gra
 thumbnailCaption: "TAG-Nav explores apps offline, builds destination records, and retrieves them to guide GUI agents."
 thumbnailFrame: wide
 links:
-  openreview: https://openreview.net/forum?id=VjBWmU05B3
-  secondary:
-    label: Reviews (ARR)
-    url: https://openreview.net/forum?id=2EOBkw4eGQ
+  # ARR discussion view: one click to the PDF. Swap to the ACL Anthology entry
+  # once the camera-ready publishes.
+  openreview: https://openreview.net/forum?id=2EOBkw4eGQ#discussion
 topics:
   - GUI Agents
 highlight: true

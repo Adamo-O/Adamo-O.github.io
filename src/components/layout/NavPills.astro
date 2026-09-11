@@ -40,6 +40,7 @@ const {
         <li class={cn(orientation === "vertical" && item.outline && "mt-3 border-t border-line pt-3")}>
           <a
             href={item.href}
+            {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             data-nav-link
             data-label={item.label}
             aria-label={item.label}

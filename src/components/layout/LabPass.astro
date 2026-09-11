@@ -30,11 +30,11 @@ const {
 
 <a
   href="/"
-  class="sidebar-identity group flex min-h-14 items-center gap-3 rounded-sm px-2 py-2 transition-colors duration-fast hover:bg-accent-soft/60 dark:hover:bg-accent-soft/10"
+  class="sidebar-identity group flex items-center gap-3 rounded-sm px-2"
   aria-label={`${name}, home`}
   title={name}
 >
-  <div class="sidebar-identity-mark flex h-11 w-11 shrink-0 overflow-hidden rounded-sm border border-line bg-accent-soft/70 dark:bg-accent-soft/15">
+  <div class="sidebar-identity-mark flex h-11 w-11 shrink-0 overflow-hidden rounded-sm border border-line bg-accent-soft/70 transition-colors duration-fast group-hover:border-accent/50 dark:bg-accent-soft/15">
     {
       portrait ? (
         <Image

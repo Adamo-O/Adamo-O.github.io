@@ -3,11 +3,11 @@
  * Persistent left column at lg+. Contains LabPass, NavPills, social row,
  * ThemeToggle and a footer line. Props: portrait?: ImageMetadata, class?
  */
-import { Github, Linkedin, Mail, PanelLeftClose, PanelLeftOpen } from "lucide-astro";
+import { PanelLeftClose, PanelLeftOpen } from "lucide-astro";
 import type { ImageMetadata } from "astro";
 import { cn } from "@/lib/utils";
 import { profile } from "@/data/profile";
-import { NAV_ITEMS, CV_ITEM } from "./nav";
+import { NAV_ITEMS, EXTERNAL_ITEMS } from "./nav";
 import LabPass from "./LabPass.astro";
 import NavPills from "./NavPills.astro";
 import ThemeToggle from "./ThemeToggle.astro";
@@ -18,17 +18,12 @@ interface Props {
 }
 const { portrait, class: className } = Astro.props;
 
-const socials = [
-  { href: profile.links.github, label: "GitHub", Icon: Github },
-  { href: profile.links.linkedin, label: "LinkedIn", Icon: Linkedin },
-  { href: `mailto:${profile.academicEmail}`, label: "Email", Icon: Mail },
-];
 ---
 
 <aside
   class={cn(
     "sidebar hidden lg:sticky lg:top-0 lg:flex lg:h-dvh lg:flex-col lg:self-start lg:overflow-visible",
-    "border-r border-line bg-bg/60 p-4",
+    "bg-bg/60 p-4",
     className,
   )}
   aria-label="Sidebar"
@@ -41,26 +36,10 @@ const socials = [
     portrait={portrait}
   />
 
-  <NavPills items={[...NAV_ITEMS, CV_ITEM]} orientation="vertical" class="mt-6" label="Sections" />
+  <NavPills items={[...NAV_ITEMS, ...EXTERNAL_ITEMS]} orientation="vertical" class="mt-6" label="Sections" />
 
-  <div class="mt-auto pt-8">
-    <ul class="sidebar-utilities relative flex h-[4.75rem] flex-wrap items-center gap-1" aria-label="Profiles and display settings">
-      {
-        socials.map(({ href, label, Icon }) => (
-            <li class="sidebar-social-item">
-              <a
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                title={label}
-                aria-label={label}
-                class="inline-flex h-9 w-9 items-center justify-center rounded-pill text-muted transition-colors duration-fast hover:bg-accent-soft/70 hover:text-accent dark:hover:bg-accent-soft/15"
-              >
-                <Icon size={18} aria-hidden="true" />
-              </a>
-            </li>
-          ))
-      }
+  <div class="mt-auto pt-6">
+    <ul class="sidebar-utilities relative flex h-[3rem] flex-wrap items-center gap-1" aria-label="Display settings">
       <li class="sidebar-theme-item">
         <ThemeToggle />
       </li>
@@ -70,7 +49,7 @@ const socials = [
           data-sidebar-toggle
           aria-label="Collapse sidebar"
           aria-expanded="true"
-          title="Collapse sidebar"
+          title="Collapse sidebar (⌘B)"
           class="inline-flex h-9 w-9 items-center justify-center rounded-pill text-muted transition-colors duration-fast hover:bg-accent-soft/70 hover:text-accent dark:hover:bg-accent-soft/15"
         >
           <PanelLeftClose class="sidebar-collapse-icon" size={18} aria-hidden="true" />
@@ -107,6 +86,20 @@ const socials = [
   media.addEventListener("change", (event) => {
     if (localStorage.getItem("sidebar")) return;
     root.classList.toggle("sidebar-compact", event.matches);
+    updateToggle();
+  });
+
+  // Cmd/Ctrl+B toggles the rail, the convention in dashboard UIs.
+  window.addEventListener("keydown", (event) => {
+    if (event.key?.toLowerCase() !== "b") return;
+    if (!(event.metaKey || event.ctrlKey) || event.altKey || event.shiftKey) return;
+    const el = document.activeElement as HTMLElement | null;
+    const tag = el?.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || el?.isContentEditable) return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+    event.preventDefault();
+    const compact = root.classList.toggle("sidebar-compact");
+    localStorage.setItem("sidebar", compact ? "compact" : "expanded");
     updateToggle();
   });
 
