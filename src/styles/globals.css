@@ -149,27 +149,6 @@ body::before {
   mix-blend-mode: screen;
 }
 
-/* Halftone hero field (src/scripts/halftoneField.ts). Masked so the lattice is
-   strongest toward the top-right and falls away before it reaches the copy
-   column, and faded out below md where the hero is narrow. */
-.halftone-field {
-  --halftone-mask: radial-gradient(
-    ellipse 92% 88% at 78% 22%,
-    #000 0%,
-    #000 26%,
-    rgb(0 0 0 / 0.45) 60%,
-    transparent 88%
-  );
-  -webkit-mask-image: var(--halftone-mask);
-  mask-image: var(--halftone-mask);
-}
-
-@media (max-width: 767.98px) {
-  .halftone-field {
-    opacity: 0.55;
-  }
-}
-
 ::selection {
   color: rgb(var(--c-bg));
   background-color: rgb(var(--c-accent));
