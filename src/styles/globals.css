@@ -104,18 +104,13 @@ body {
   overscroll-behavior-y: none;
   color: rgb(var(--c-fg));
   background-color: rgb(var(--c-bg));
+  /* One idea, committed: a single-hue wash plus grain (body::before). The old
+     concentric rings and 24px dot grid were removed — four competing low-opacity
+     layers read as vague texture rather than a deliberate gradient. */
   background-image:
-    radial-gradient(
-      circle at 86% 13%,
-      transparent 0 14rem,
-      rgb(var(--c-accent) / 0.085) 14.05rem 14.12rem,
-      transparent 14.2rem 21rem,
-      rgb(var(--c-accent) / 0.055) 21.05rem 21.12rem,
-      transparent 21.2rem
-    ),
-    radial-gradient(ellipse 58rem 34rem at 78% -8%, rgb(var(--c-accent) / var(--atmosphere-alpha)), transparent 72%),
-    radial-gradient(ellipse 42rem 30rem at -8% 46%, rgb(var(--c-accent-soft) / 0.52), transparent 70%),
-    linear-gradient(180deg, rgb(var(--c-surface) / 0.42), transparent 28rem);
+    radial-gradient(ellipse 70rem 44rem at 76% -12%, rgb(var(--c-accent) / var(--atmosphere-alpha)), transparent 70%),
+    radial-gradient(ellipse 52rem 38rem at -10% 42%, rgb(var(--c-accent-soft) / 0.62), transparent 72%),
+    linear-gradient(180deg, rgb(var(--c-surface) / 0.55), transparent 32rem);
   background-attachment: fixed;
   font-family: "PP Neue Montreal", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -139,30 +134,47 @@ body::before {
   z-index: 60;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
   content: "";
-  opacity: 0.025;
+  opacity: 0.045;
   pointer-events: none;
 }
 
 .dark body::before {
-  opacity: 0.04;
+  opacity: 0.062;
   mix-blend-mode: screen;
 }
 
-body::after {
+/* Cursor-trailing accent orb (src/scripts/cursorGlow.ts). Sits behind content,
+   above the body wash. Only ever inserted on a fine pointer at >=1024px with
+   reduced-motion off, so there is no mobile or touch cost. Moved by transform
+   only; opacity starts at 0 so it does not flash in the top-left before the
+   first pointermove. */
+.cursor-glow {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: -1;
-  background-image: radial-gradient(circle, rgb(var(--c-accent) / 0.34) 1px, transparent 1.35px);
-  background-size: 24px 24px;
-  content: "";
-  opacity: 0.38;
+  width: 40rem;
+  height: 40rem;
+  margin: -20rem 0 0 -20rem;
+  background: radial-gradient(
+    circle closest-side,
+    rgb(var(--c-accent) / 0.1),
+    rgb(var(--c-accent) / 0.045) 45%,
+    transparent 72%
+  );
+  opacity: 0;
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 28rem 34rem at 94% 22%, #000 0, transparent 72%);
-  mask-image: radial-gradient(ellipse 28rem 34rem at 94% 22%, #000 0, transparent 72%);
+  transition: opacity 400ms var(--ease-out);
+  will-change: transform;
 }
 
-.dark body::after {
-  opacity: 0.24;
+.dark .cursor-glow {
+  background: radial-gradient(
+    circle closest-side,
+    rgb(var(--c-accent) / 0.16),
+    rgb(var(--c-accent) / 0.07) 45%,
+    transparent 72%
+  );
 }
 
 ::selection {
