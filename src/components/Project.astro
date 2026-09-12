@@ -4,6 +4,7 @@ import type { ImageMetadata } from "astro";
 import { ArrowUpRight, ExternalLink, Github } from "lucide-astro";
 import Button from "./Button.astro";
 import Skill from "./Skill.astro";
+import themeSongStats from "@/data/theme-song-stats.json";
 
 export interface ProjectProps {
   frontmatter: {
@@ -20,6 +21,8 @@ export interface ProjectProps {
     subtitle: string;
     highlightSummary?: string;
     impactStats?: { value: string; label: string }[];
+    statsSource?: "theme-song";
+    mediaTone?: "light" | "dark";
   };
 }
 
@@ -37,9 +40,32 @@ const {
     secondLink,
     subtitle,
     highlightSummary,
-    impactStats,
+    impactStats: staticStats,
+    statsSource,
+    mediaTone = "light",
   },
 } = Astro.props as ProjectProps;
+
+/* Stats: `statsSource` reads a build-time JSON in src/data/ that a scheduled
+   workflow refreshes, so the figures are never more than a day old with no
+   client-side JS. Falls back to the hand-written `impactStats`. */
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const formatUpdated = (yearMonth: string) => {
+  const [year, month] = yearMonth.split("-").map(Number);
+  return `${MONTHS[month - 1]} ${year}`;
+};
+const formatCount = (value: number) => value.toLocaleString("en-US");
+const statsSources = { "theme-song": themeSongStats };
+const liveStats = statsSource ? statsSources[statsSource] : undefined;
+const impactStats = liveStats
+  ? [
+      { value: formatCount(liveStats.profiles), label: "saved profiles" },
+      { value: formatCount(liveStats.servers), label: "Discord servers" },
+      { value: formatCount(liveStats.introThemes), label: "intro themes" },
+    ]
+  : staticStats;
+const statsUpdated = liveStats ? formatUpdated(liveStats.updated) : undefined;
+const isDarkMedia = mediaTone === "dark";
 const mp4Video = video?.endsWith(".webm") ? video.replace(/\.webm$/, ".mp4") : undefined;
 const visibleSkills = skills.slice(0, 5);
 const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
@@ -53,12 +79,20 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
     impactStats?.length ? (
       <div class="grid overflow-hidden border-b border-line bg-bg/75 md:grid-cols-[minmax(0,1.45fr)_minmax(14rem,0.55fr)]">
         <div class="flex min-h-[15rem] items-center justify-center p-5 sm:p-7 md:min-h-[20rem]">
-          <div class="overflow-hidden rounded border border-line bg-surface shadow-card">
+          <div
+            class:list={[
+              "overflow-hidden rounded shadow-card",
+              /* Dark tone: a Discord-like panel reads as a framed device, not a hole in the light page. */
+              isDarkMedia
+                ? "border border-transparent bg-[#1e1f22] dark:ring-1 dark:ring-white/10"
+                : "border border-line bg-surface",
+            ]}
+          >
             <Image
               src={img}
               alt={`${title} running in Discord`}
-              width={480}
-              height={270}
+              width={584}
+              densities={[1, 2]}
               class="block h-auto w-full max-w-[30rem]"
             />
           </div>
@@ -78,6 +112,11 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
               </dd>
             </div>
           ))}
+          {statsUpdated && (
+            <div class="col-span-3 border-t border-line px-3 py-2 sm:px-5 md:col-span-1 md:px-6">
+              <p class="meta normal-case tracking-normal text-muted">Updated {statsUpdated}</p>
+            </div>
+          )}
         </dl>
       </div>
     ) : (

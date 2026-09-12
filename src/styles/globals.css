@@ -55,6 +55,17 @@
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
+  /* Sidebar label reveal, timed to run DURING the track's grid-template-columns
+     animation rather than after it (see the "Desktop sidebar" block below for
+     why). Tokenised so reduced-motion can zero the blur/offset/delay too, not
+     just the durations. */
+  --label-enter-dur: 160ms;
+  --label-enter-delay: 40ms;
+  --label-exit-dur: 100ms;
+  --label-blur: 4px;
+  --label-idle-offset: -6px;
+  --label-exit-offset: -4px;
+
   --shadow-card: 0 1px 2px rgb(22 25 43 / 0.06),
     0 8px 24px -12px rgb(52 79 151 / 0.18);
 
@@ -273,6 +284,47 @@ a {
     background: rgb(var(--c-surface) / 0.3);
   }
 
+  /* The two corner wedges. main's rounded leading edge clips a wedge out of its
+     own box, in main's grid column past .sidebar's edge, so nothing paints it
+     and the body's fixed vignette shows through raw. A plain square patch was
+     tried first and was wrong: pseudo-elements paint ABOVE their parent's own
+     background and border even at z-index -1, so a 20px square covered the
+     curved hairline and re-tinted the corner of the translucent plate, leaving
+     a straight seam. This patch is masked to the inverse of the plate's radius,
+     so it exists only outside the curve: the hairline, the plate and the shadow
+     are untouched, and the wedge reads as continuous rail. */
+  .sidebar-shell > main {
+    --plate-radius: 18px;
+    --plate-border: 1px;
+  }
+
+  .sidebar-shell > main::before,
+  .sidebar-shell > main::after {
+    content: "";
+    position: absolute;
+    /* Absolute children position from the PADDING box, which starts inside the
+       1px hairline; without this the border column itself was left unpainted
+       in the wedge and showed as a straight 1px line above and below the curve. */
+    inset-inline-start: calc(-1 * var(--plate-border));
+    z-index: -1;
+    inline-size: calc(var(--plate-radius) + var(--plate-border));
+    block-size: var(--plate-radius);
+    background: rgb(var(--c-bg) / 0.6);
+    pointer-events: none;
+  }
+
+  .sidebar-shell > main::before {
+    inset-block-start: 0;
+    -webkit-mask-image: radial-gradient(circle at calc(100% - var(--plate-border)) 100%, transparent var(--plate-radius), #000 calc(var(--plate-radius) + 0.6px));
+    mask-image: radial-gradient(circle at calc(100% - var(--plate-border)) 100%, transparent var(--plate-radius), #000 calc(var(--plate-radius) + 0.6px));
+  }
+
+  .sidebar-shell > main::after {
+    inset-block-end: 0;
+    -webkit-mask-image: radial-gradient(circle at calc(100% - var(--plate-border)) 0%, transparent var(--plate-radius), #000 calc(var(--plate-radius) + 0.6px));
+    mask-image: radial-gradient(circle at calc(100% - var(--plate-border)) 0%, transparent var(--plate-radius), #000 calc(var(--plate-radius) + 0.6px));
+  }
+
   /* Above main: main is positioned for the inset, so without this it paints
      over the rail and swallows the nav tooltips. */
   .sidebar {
@@ -281,6 +333,22 @@ a {
     /* The track animation reflows the page each frame; keep the rail's own
        internals from cascading into that. */
     contain: layout style;
+  }
+
+  /* While the track (.sidebar-shell's grid-template-columns, below) is mid-width,
+     give the rail's own right edge a soft fade instead of a hard clip. This is
+     NOT the same mask that was tried and reverted on the label boxes
+     themselves (see the comment further down) — that one sized to each box's
+     own text and ate real glyphs at rest. This one lives on `.sidebar` only,
+     only for the ~200ms `html.sidebar-animating` window (added/removed by
+     Sidebar.astro's script), so at rest nothing is masked at all. */
+  /* On the rail's CHILDREN, not the rail: the aside carries the translucent
+     rail background, and masking that faded its last 24px to nothing for the
+     length of the animation, exposing the body wash and main's cast shadow
+     underneath, so the seam appeared to light up on every toggle. */
+  html.sidebar-animating .sidebar > * {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent 100%);
+    mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent 100%);
   }
 
   /* Identity block holds ONE height in every state. Expanded it is three lines
@@ -309,22 +377,31 @@ a {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.92);
     pointer-events: none;
+    /* Opening: fade out fast, no delay, finishing right as the copy below
+       starts fading in (--label-enter-delay) — a clean handoff instead of
+       both being half-opaque at once. */
     transition:
-      opacity var(--dur-fast) var(--ease-out),
-      transform var(--dur-fast) var(--ease-out);
+      opacity var(--label-enter-delay) var(--ease-out),
+      transform var(--label-enter-delay) var(--ease-out);
   }
 
+  /* Open state: labels fade IN during the track animation (not after it), so
+     the rail's width and its contents settle together instead of the labels
+     popping in once the rail has already stopped. Also governs the label's
+     resting look whenever the sidebar is expanded. */
   .sidebar-copy,
   .sidebar-nav-label,
   .sidebar-source,
   .sidebar-social-item {
     opacity: 1;
     visibility: visible;
-    /* Delayed by a full --dur so labels are never painted while the container
-       is still narrowing and hard-clipping them mid-word. */
+    filter: blur(0);
+    transform: translateX(0);
     transition:
-      opacity var(--dur-fast) var(--ease-out) var(--dur),
-      visibility 0s linear 0s;
+      opacity var(--label-enter-dur) var(--ease-out) var(--label-enter-delay),
+      filter var(--label-enter-dur) var(--ease-out) var(--label-enter-delay),
+      transform var(--label-enter-dur) var(--ease-out) var(--label-enter-delay),
+      visibility 0s linear var(--label-enter-delay);
   }
 
   .sidebar-copy,
@@ -344,27 +421,10 @@ a {
     white-space: nowrap;
   }
 
-  /* No clip-edge mask here. It was tried and removed: these boxes are sized to
-     their text, so a trailing fade eats real glyphs at rest. The retimed fades
-     below already guarantee no label is ever painted while the rail is
-     mid-clip, which is what the mask was insuring against. */
-
-  /* Two controls, laid out by flex. This used to be absolutely positioned with
-     hard-coded 40px translations, which only fitted while the row was 4.75rem
-     tall to hold three social icons; once those moved into the nav the row
-     shrank and `overflow: hidden` clipped the theme toggle out of sight. */
-  .sidebar-utilities {
-    justify-content: flex-end;
-  }
-
-  .sidebar-theme-item,
-  .sidebar-toggle-item {
-    display: flex;
-  }
-
-  .sidebar-toggle-item [data-sidebar-toggle] {
-    position: relative;
-  }
+  /* No clip-edge mask on these boxes. It was tried and reverted: they're sized
+     to their own text, so a trailing fade there eats real glyphs at rest. The
+     soft edge now lives on `.sidebar` itself instead (above), only while
+     `html.sidebar-animating`, which never touches the resting state. */
 
   .sidebar-collapse-icon,
   .sidebar-expand-icon {
@@ -393,10 +453,12 @@ a {
   html.sidebar-compact .sidebar-identity-mark {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    /* Delayed so the mark and the copy are never both half-opaque together. */
+    /* Delayed to start right as the copy below finishes leaving
+       (--label-exit-dur), so the mark and the copy are never both
+       half-opaque together. */
     transition:
-      opacity var(--dur-fast) var(--ease-out) 90ms,
-      transform var(--dur-fast) var(--ease-out) 90ms;
+      opacity var(--dur-fast) var(--ease-out) var(--label-exit-dur),
+      transform var(--dur-fast) var(--ease-out) var(--label-exit-dur);
   }
 
   html.sidebar-compact .sidebar-copy {
@@ -437,24 +499,40 @@ a {
     transform: translateX(0);
   }
 
+  /* Idle hidden state: the rail is compact and no toggle animation is in
+     flight (loaded compact, or a close just finished). This is also the START
+     point for the next OPEN transition, which is why its offset is deliberately
+     different from the CLOSE target below — opening travels back in from a
+     hair further out than closing tucks away to. No transition is declared
+     here on purpose: the only ways into or out of this state go through the
+     animating rule right below (both classes are always toggled together, in
+     the same tick, by Sidebar.astro's script), so this rule only ever governs
+     the resting look, never a live transition. */
   html.sidebar-compact .sidebar-copy,
   html.sidebar-compact .sidebar-nav-label,
   html.sidebar-compact .sidebar-source,
   html.sidebar-compact .sidebar-social-item {
     opacity: 0;
     visibility: hidden;
+    filter: blur(var(--label-blur));
+    transform: translateX(var(--label-idle-offset));
     pointer-events: none;
-    /* Asymmetric on purpose: labels leave before the track closes, so it
-       narrows over empty space rather than over shrinking text. */
-    transition:
-      opacity 90ms var(--ease-out),
-      visibility 0s linear 90ms;
   }
 
-  html.sidebar-compact .sidebar-utilities {
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: flex-end;
+  /* Mid-close TARGET: while the toggle animation is running and heading into
+     compact, labels leave before the rail finishes narrowing — settling at a
+     shallower offset than the idle rest above, over --label-exit-dur, with no
+     delay so they start leaving immediately. */
+  html.sidebar-compact.sidebar-animating .sidebar-copy,
+  html.sidebar-compact.sidebar-animating .sidebar-nav-label,
+  html.sidebar-compact.sidebar-animating .sidebar-source,
+  html.sidebar-compact.sidebar-animating .sidebar-social-item {
+    transform: translateX(var(--label-exit-offset));
+    transition:
+      opacity var(--label-exit-dur) var(--ease-out),
+      filter var(--label-exit-dur) var(--ease-out),
+      transform var(--label-exit-dur) var(--ease-out),
+      visibility 0s linear var(--label-exit-dur);
   }
 
   html.sidebar-compact .sidebar-collapse-icon {
@@ -554,6 +632,16 @@ html.theme-transitioning::view-transition-new(root) {
     --dur-fast: 0ms;
     --dur: 0ms;
     --dur-slow: 0ms;
+    /* Zeroed explicitly (belt-and-suspenders alongside the blanket
+       transition-duration override below): a leftover blur/offset/delay on
+       the sidebar label reveal would otherwise still be visually detectable
+       even at 0.01ms, since transition-delay isn't covered by that override. */
+    --label-enter-dur: 0ms;
+    --label-enter-delay: 0ms;
+    --label-exit-dur: 0ms;
+    --label-blur: 0px;
+    --label-idle-offset: 0px;
+    --label-exit-offset: 0px;
   }
   html {
     scroll-behavior: auto;

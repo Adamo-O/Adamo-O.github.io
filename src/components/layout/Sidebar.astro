@@ -39,21 +39,25 @@ const { portrait, class: className } = Astro.props;
   <NavPills items={[...NAV_ITEMS, ...EXTERNAL_ITEMS]} orientation="vertical" class="mt-6" label="Sections" />
 
   <div class="mt-auto pt-6">
-    <ul class="sidebar-utilities flex items-center gap-1" aria-label="Display settings">
-      <li class="sidebar-theme-item">
-        <ThemeToggle />
+    <ul class="sidebar-utilities flex flex-col gap-1" aria-label="Display settings">
+      <li>
+        <ThemeToggle variant="nav" />
       </li>
-      <li class="sidebar-toggle-item">
+      <li>
         <button
           type="button"
           data-sidebar-toggle
           aria-label="Collapse sidebar"
           aria-expanded="true"
           title="Collapse sidebar (⌘B)"
-          class="inline-flex h-9 w-9 items-center justify-center rounded-pill text-muted transition-colors duration-fast hover:bg-accent-soft/70 hover:text-accent dark:hover:bg-accent-soft/15"
+          data-label="Collapse sidebar"
+          class="sidebar-nav-link group relative flex min-h-10 w-full items-center gap-2.5 rounded-sm px-3 py-2 text-sm font-medium text-fg/75 transition-colors duration-fast hover:bg-accent-soft/60 hover:text-accent dark:hover:bg-accent-soft/10"
         >
-          <PanelLeftClose class="sidebar-collapse-icon" size={18} aria-hidden="true" />
-          <PanelLeftOpen class="sidebar-expand-icon" size={18} aria-hidden="true" />
+          <span class="relative inline-flex h-4 w-4 shrink-0 items-center justify-center">
+            <PanelLeftClose class="sidebar-collapse-icon" size={16} aria-hidden="true" />
+            <PanelLeftOpen class="sidebar-expand-icon" size={16} aria-hidden="true" />
+          </span>
+          <span class="sidebar-nav-label">Collapse sidebar</span>
         </button>
       </li>
     </ul>
@@ -67,24 +71,53 @@ const { portrait, class: className } = Astro.props;
 
   const root = document.documentElement;
   const toggle = document.querySelector<HTMLButtonElement>("[data-sidebar-toggle]");
+  const shell = document.querySelector<HTMLElement>(".sidebar-shell");
   const media = window.matchMedia("(min-width: 1024px) and (max-width: 1279px)");
 
   const updateToggle = () => {
     if (!toggle) return;
     const compact = root.classList.contains("sidebar-compact");
+    const label = compact ? "Expand sidebar" : "Collapse sidebar";
     toggle.setAttribute("aria-expanded", String(!compact));
-    toggle.setAttribute("aria-label", compact ? "Expand sidebar" : "Collapse sidebar");
-    toggle.title = compact ? "Expand sidebar" : "Collapse sidebar";
+    toggle.setAttribute("aria-label", label);
+    toggle.title = compact ? "Expand sidebar" : "Collapse sidebar (⌘B)";
+    toggle.setAttribute("data-label", label);
+  };
+
+  // The track (.sidebar-shell grid-template-columns) and the label fades both
+  // animate off this class: it lets the labels clip against a soft mask edge
+  // instead of a hard one while the rail is mid-width (see the mask rule in
+  // globals.css), and it's what the CSS keys the closing-vs-idle label offset
+  // off of. Added synchronously with the class toggle so there's never a frame
+  // where the rail width changes without it armed; removed on the shell's own
+  // transitionend, with a safety timeout in case that never fires (e.g. the
+  // property list changes, or a transition gets interrupted mid-flight).
+  let animationSafety: ReturnType<typeof setTimeout> | undefined;
+  const beginAnimating = () => {
+    root.classList.add("sidebar-animating");
+    clearTimeout(animationSafety);
+    animationSafety = setTimeout(() => root.classList.remove("sidebar-animating"), 400);
+  };
+  shell?.addEventListener("transitionend", (event) => {
+    if (event.target !== shell || event.propertyName !== "grid-template-columns") return;
+    clearTimeout(animationSafety);
+    root.classList.remove("sidebar-animating");
+  });
+
+  const setCompact = (compact: boolean) => {
+    beginAnimating();
+    root.classList.toggle("sidebar-compact", compact);
+    localStorage.setItem("sidebar", compact ? "compact" : "expanded");
+    updateToggle();
   };
 
   toggle?.addEventListener("click", () => {
-    const compact = root.classList.toggle("sidebar-compact");
-    localStorage.setItem("sidebar", compact ? "compact" : "expanded");
-    updateToggle();
+    setCompact(!root.classList.contains("sidebar-compact"));
   });
 
   media.addEventListener("change", (event) => {
     if (localStorage.getItem("sidebar")) return;
+    beginAnimating();
     root.classList.toggle("sidebar-compact", event.matches);
     updateToggle();
   });
@@ -98,9 +131,7 @@ const { portrait, class: className } = Astro.props;
     if (tag === "INPUT" || tag === "TEXTAREA" || el?.isContentEditable) return;
     if (!window.matchMedia("(min-width: 1024px)").matches) return;
     event.preventDefault();
-    const compact = root.classList.toggle("sidebar-compact");
-    localStorage.setItem("sidebar", compact ? "compact" : "expanded");
-    updateToggle();
+    setCompact(!root.classList.contains("sidebar-compact"));
   });
 
   updateToggle();

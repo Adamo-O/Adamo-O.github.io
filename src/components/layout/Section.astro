@@ -54,7 +54,7 @@ const hasBackground = Astro.slots.has("background");
     <VerticalHeading label={heading} class="sticky top-6" />
   </div>
 
-  <div class={cn("min-w-0 py-10 md:py-14", contentClass)}>
+  <div class={cn("min-w-0 max-w-[66rem] py-10 md:py-14", contentClass)}>
     <h2
       id={`${id}-title`}
       class={cn(

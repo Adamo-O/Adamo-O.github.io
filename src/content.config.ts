@@ -79,6 +79,11 @@ const projects = defineCollection({
         )
         .max(3)
         .optional(),
+      /** Build-time stats source in src/data/ (refreshed by a scheduled workflow);
+          when set it supplies the impact figures instead of `impactStats`. */
+      statsSource: z.enum(['theme-song']).optional(),
+      /** Dark-toned screenshots (Discord etc.) sit on a dark plate instead of the light surface. */
+      mediaTone: z.enum(['light', 'dark']).default('light'),
       /** Bullets used on /cv (CV wording, may differ from the body). */
       cvBullets: z.array(z.string()).optional(),
       /** Listed on /cv. */

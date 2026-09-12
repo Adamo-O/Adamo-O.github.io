@@ -4,7 +4,9 @@ href: theme-song-welcome-bot
 subtitle: Production Discord bot
 dates: October 2021 - Present
 tags: [bot]
-img: ../../assets/projects/theme-song-bot.gif
+img: ../../assets/projects/theme-song-bot.png
+mediaTone: dark
+statsSource: theme-song
 skills:
   - Python
   - Discord.py
@@ -19,13 +21,6 @@ secondLink:
   link: https://top.gg/bot/903352344941588480
 highlight: true
 highlightSummary: Built and operate a Discord voice bot that plays personalized intro and outro themes, now used across 240 servers with more than 1,500 saved user profiles.
-impactStats:
-  - value: "1,599"
-    label: saved profiles
-  - value: "240"
-    label: Discord servers
-  - value: "1,538"
-    label: intro themes
 cv: true
 cvBullets:
   - Built and operate a Discord voice bot that plays personalized intro and outro themes across 240 servers.

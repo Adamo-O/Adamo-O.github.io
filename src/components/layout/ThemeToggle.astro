@@ -3,35 +3,68 @@
  * Light/dark toggle. Flips `dark` on <html>, persists localStorage.theme and
  * dispatches `themechange` on document: CustomEvent<{ theme: "light" | "dark" }>.
  * Several instances may exist on one page (sidebar + mobile header); they stay in sync.
+ *
+ * variant "pill" (default): today's icon(+label) pill, used by the mobile header.
+ * variant "nav": a full-width row matching `.sidebar-nav-link` (icon + label,
+ * min-h-10, rounded-sm, px-3), for the desktop sidebar's utility stack, where it
+ * needs to sit flush with the nav links above it in both expanded and compact
+ * rail states.
  */
 import { Sun, Moon } from "lucide-astro";
 import { cn } from "@/lib/utils";
 
 interface Props {
   class?: string;
-  /** Show the "Theme" text label next to the icon. */
+  /** Show the "Theme" text label next to the icon. Ignored by variant "nav" (always labelled). */
   withLabel?: boolean;
+  variant?: "pill" | "nav";
 }
-const { class: className, withLabel = false } = Astro.props;
+const { class: className, withLabel = false, variant = "pill" } = Astro.props;
 ---
 
-<button
-  type="button"
-  data-theme-toggle
-  aria-pressed="false"
-  aria-label="Toggle dark mode"
-  title="Toggle dark mode"
-  class={cn(
-    "inline-flex h-9 items-center justify-center gap-2 rounded-pill border border-line bg-surface text-muted",
-    "transition-colors duration-fast hover:border-accent hover:text-accent",
-    withLabel ? "px-3 text-xs font-medium" : "w-9",
-    className,
-  )}
->
-  <Sun size={16} class="hidden dark:block" aria-hidden="true" />
-  <Moon size={16} class="block dark:hidden" aria-hidden="true" />
-  {withLabel && <span data-theme-label>Dark</span>}
-</button>
+{
+  variant === "nav" ? (
+    <button
+      type="button"
+      data-theme-toggle
+      aria-pressed="false"
+      aria-label="Toggle dark mode"
+      title="Toggle dark mode"
+      data-label="Dark mode"
+      class={cn(
+        "sidebar-nav-link group relative flex min-h-10 w-full items-center gap-2.5 rounded-sm px-3 py-2 text-sm font-medium",
+        "text-fg/75 transition-colors duration-fast hover:bg-accent-soft/60 hover:text-accent dark:hover:bg-accent-soft/10",
+        className,
+      )}
+    >
+      <span class="relative inline-flex h-4 w-4 shrink-0 items-center justify-center">
+        <Sun size={16} class="hidden dark:block" aria-hidden="true" />
+        <Moon size={16} class="block dark:hidden" aria-hidden="true" />
+      </span>
+      <span class="sidebar-nav-label" data-theme-label>
+        Dark mode
+      </span>
+    </button>
+  ) : (
+    <button
+      type="button"
+      data-theme-toggle
+      aria-pressed="false"
+      aria-label="Toggle dark mode"
+      title="Toggle dark mode"
+      class={cn(
+        "inline-flex h-9 items-center justify-center gap-2 rounded-pill border border-line bg-surface text-muted",
+        "transition-colors duration-fast hover:border-accent hover:text-accent",
+        withLabel ? "px-3 text-xs font-medium" : "w-9",
+        className,
+      )}
+    >
+      <Sun size={16} class="hidden dark:block" aria-hidden="true" />
+      <Moon size={16} class="block dark:hidden" aria-hidden="true" />
+      {withLabel && <span data-theme-label>Dark</span>}
+    </button>
+  )
+}
 
 <script>
   const root = document.documentElement;
@@ -41,10 +74,13 @@ const { class: className, withLabel = false } = Astro.props;
 
   const sync = () => {
     const dark = root.classList.contains("dark");
+    const text = dark ? "Light mode" : "Dark mode";
     toggles.forEach((btn) => {
       btn.setAttribute("aria-pressed", String(dark));
       const label = btn.querySelector("[data-theme-label]");
-      if (label) label.textContent = dark ? "Light" : "Dark";
+      if (label) label.textContent = text;
+      // The "nav" variant's compact-rail tooltip reads this attribute.
+      if (btn.hasAttribute("data-label")) btn.setAttribute("data-label", text);
     });
   };
 
