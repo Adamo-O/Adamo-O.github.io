@@ -1,0 +1,106 @@
+# Refreshes src/data/theme-song-stats.json once a day so the Theme Song Welcome
+# Bot row shows server/profile counts that are never more than a day old, with
+# no client-side JS. Server count comes from Top.gg; profile and intro-theme
+# counts come from an optional authenticated JSON endpoint on the bot's host.
+#
+# Secrets (both optional; the job exits 0 and leaves the file untouched when
+# neither is set, so the last committed numbers keep rendering):
+#   TOPGG_TOKEN            Top.gg API token for bot 903352344941588480
+#   THEME_SONG_STATS_URL   URL returning {"profiles": <int>, "introThemes": <int>}
+#                          (may embed its own auth token in the query string)
+name: Refresh Theme Song stats
+
+on:
+  schedule:
+    - cron: "17 6 * * *" # daily, 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write # to dispatch deploy.yml after the commit (GITHUB_TOKEN pushes do not trigger push workflows)
+
+concurrency:
+  group: refresh-theme-song-stats
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch counts and rewrite the stats file
+        id: fetch
+        env:
+          TOPGG_TOKEN: ${{ secrets.TOPGG_TOKEN }}
+          THEME_SONG_STATS_URL: ${{ secrets.THEME_SONG_STATS_URL }}
+          BOT_ID: "903352344941588480"
+          FILE: src/data/theme-song-stats.json
+        run: |
+          set -euo pipefail
+
+          if [ -z "${TOPGG_TOKEN:-}" ] && [ -z "${THEME_SONG_STATS_URL:-}" ]; then
+            echo "No TOPGG_TOKEN or THEME_SONG_STATS_URL secret set; leaving $FILE untouched."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Start from the committed numbers so a missing source keeps its last value.
+          servers=$(jq -r '.servers' "$FILE")
+          profiles=$(jq -r '.profiles' "$FILE")
+          intro_themes=$(jq -r '.introThemes' "$FILE")
+
+          if [ -n "${TOPGG_TOKEN:-}" ]; then
+            servers=$(curl -fsS --max-time 30 \
+              -H "Authorization: $TOPGG_TOKEN" \
+              "https://top.gg/api/bots/$BOT_ID/stats" | jq -r '.server_count')
+            if ! [[ "$servers" =~ ^[0-9]+$ ]]; then
+              echo "Top.gg returned no numeric server_count (got: $servers)"; exit 1
+            fi
+          else
+            echo "TOPGG_TOKEN not set; keeping servers=$servers"
+          fi
+
+          if [ -n "${THEME_SONG_STATS_URL:-}" ]; then
+            stats=$(curl -fsS --max-time 30 "$THEME_SONG_STATS_URL")
+            profiles=$(echo "$stats" | jq -r '.profiles')
+            intro_themes=$(echo "$stats" | jq -r '.introThemes')
+            if ! [[ "$profiles" =~ ^[0-9]+$ && "$intro_themes" =~ ^[0-9]+$ ]]; then
+              echo "Stats endpoint returned non-numeric profiles/introThemes"; exit 1
+            fi
+          else
+            echo "THEME_SONG_STATS_URL not set; keeping profiles=$profiles introThemes=$intro_themes"
+          fi
+
+          updated=$(date -u +%Y-%m)
+          jq -n \
+            --argjson servers "$servers" \
+            --argjson profiles "$profiles" \
+            --argjson introThemes "$intro_themes" \
+            --arg updated "$updated" \
+            '{servers: $servers, profiles: $profiles, introThemes: $introThemes, updated: $updated}' \
+            > "$FILE.tmp"
+          mv "$FILE.tmp" "$FILE"
+          cat "$FILE"
+
+          if git diff --quiet -- "$FILE"; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push if the numbers changed
+        if: steps.fetch.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/theme-song-stats.json
+          git commit -m "Refresh Theme Song stats ($(date -u +%Y-%m-%d))"
+          git push
+
+      - name: Redeploy Pages
+        if: steps.fetch.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref "${GITHUB_REF_NAME}"
