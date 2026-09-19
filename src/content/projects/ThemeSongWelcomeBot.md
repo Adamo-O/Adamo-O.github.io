@@ -24,8 +24,7 @@ highlightSummary: Built and operate a Discord voice bot that plays personalized 
 cv: true
 cvBullets:
   - Built and operate a Discord voice bot that plays personalized intro and outro themes across 240 servers.
-  - Scaled asynchronous commands and voice events to more than 1,500 saved user profiles and 1,500 configured intro themes.
-  - Maintained a Dockerized Python, Discord.py, MongoDB, FFmpeg, and yt-dlp service deployed on Railway.
+  - Scaled a Dockerized Railway service to more than 1,500 saved profiles using MongoDB, FFmpeg, and yt-dlp.
 ---
 Built and operate a Discord voice bot that plays a personalized
 theme song whenever a user enters a voice channel, with configurable

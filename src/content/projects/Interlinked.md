@@ -16,9 +16,8 @@ highlightSummary: Led front-end development for a LinkedIn-style network for tec
 github: https://github.com/jay-roe/Interlinked
 cv: true
 cvBullets:
-  - Led frontend development by recording React and Next.js tutorials for teammates, pair programming, and showing clear communication.
-  - Developed LinkedIn clone designed for IT and tech professionals using React, Next.js, Cypress, Firebase, and Vercel.
-  - Presented as one of the best projects in the class thanks to successful task allocation, task dependency mapping, and implementation scheduling.
+  - Led front-end development of a LinkedIn-style network using Next.js, Cypress, Firebase, and Vercel.
+  - Mentored teammates through React tutorials and pair programming; selected among the class's best projects.
 ---
 Developed LinkedIn clone designed for IT and tech
 professionals using React, Next.js, Cypress, Firebase, and

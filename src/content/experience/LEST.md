@@ -1,6 +1,6 @@
 ---
-position: Software Engineer Intern
-company: Laboratory of Energy Policy (LEST)
+position: Research Software Engineering Intern
+company: Laboratory of Energy Policy (LEST), University of Ljubljana
 href: LEST
 type: Internship
 dates: May - August 2023
@@ -15,24 +15,12 @@ skills:
   - Prisma
 link: https://lest.fe.uni-lj.si/
 highlight: false
-highlightSummary: Developed PV solar panel investment tool for the EU market.
+highlightSummary: Developed a photovoltaic investment decision-support tool and designed an extensible full-stack architecture for future lab deployments.
 cv: true
 cvBullets:
-  - Developed PV solar panel investment tool usable by energy communities to estimate CO2 emissions, energy cost and savings over time, and their optimal PV configuration.
-  - Planned, presented, and designed scalable full-stack web application architecture for a new project.
-  - Supported extension of application data by planning a customizable API for use by new country representatives.
+  - Developed a photovoltaic investment decision-support tool for energy communities to model emissions, energy costs, savings, and optimal system configurations.
+  - Designed and presented a scalable full-stack architecture and extensible API for country-specific data and future lab deployments.
 ---
-Planned, presented, and designed scalable full-stack web
-application architecture for a new project.
+Developed a photovoltaic investment decision-support tool for energy communities to model emissions, energy costs, savings, and optimal system configurations.
 
-<br />
-
-Supported extension of application data by planning a
-customizable API for use by new country representatives.
-
-<br />
-
-Developed PV solar panel investment tool usable by
-consumers or energy communities to estimate CO2 emissions,
-energy cost and savings over time, and the optimal PV
-configuration.
+Designed and presented a scalable full-stack architecture and extensible API for country-specific data and future lab deployments.

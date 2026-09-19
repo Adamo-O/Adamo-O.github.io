@@ -17,9 +17,9 @@ highlight: false
 highlightSummary: Developed two machine learning algorithms to match products between large-scale pharmaceutical product databases.
 cv: true
 cvBullets:
-  - Collaborated with MECP via Concordia University to develop two scalable algorithms for matching MECP products with competitor products to ensure competitive price points.
+  - Built two scalable algorithms through Concordia University to match MECP products with competitor databases.
   - Implemented semantic matching with SBERT embeddings and fuzzy similarity search across multiple product databases.
-  - Utilized Spark to query and manipulate data from a MySQL database of products retrieved via web scraping and product inventory APIs.
+  - Used PySpark to query and transform a MySQL corpus of 3,939 products assembled through web scraping and inventory APIs.
 ---
 Collaborated with MECP via Concordia University to develop two scalable algorithms for matching MECP products with competitor products to ensure competitive price points. Completed as part of SOEN 471 (Big Data Analytics).
 

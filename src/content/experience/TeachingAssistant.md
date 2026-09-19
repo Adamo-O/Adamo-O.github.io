@@ -12,18 +12,15 @@ skills:
   - Course Design
 link: https://www.concordia.ca/
 highlight: false
-highlightSummary: Teaching C++ fundamentals for COEN 243 and supporting COMP 6321 machine-learning labs as coordinator under Professors Xinxin Zuo and Yang Wang.
+highlightSummary: Teach introductory programming in C++ and coordinate machine-learning laboratory sessions at Concordia University.
 cv: true
 cvBullets:
-  - Taught COEN 243, Programming Methodology I, under Professor Xinxin Zuo in Fall 2025 and returning for Fall 2026.
-  - Prepared lesson plans, slides, and practice questions on C++ fundamentals, object-oriented programming, and data structures for over 40 students.
-  - Preparing to coordinate the labs for COMP 6321, Machine Learning, under Professor Yang Wang in Fall 2026.
-  - Updated legacy course content to ensure students keep up with modern standards.
+  - Teach introductory programming in C++, covering object-oriented programming and data structures for over 40 students.
+  - Develop lesson plans, slides, and practice material, and modernize legacy course content.
+  - Coordinate machine-learning laboratory sessions and support students with core concepts and implementations.
 ---
-Taught COEN 243, Programming Methodology I, under Professor Xinxin Zuo in Fall 2025 and returning for Fall 2026.
+Teach introductory programming in C++, covering object-oriented programming and data structures for over 40 students.
 
-Prepared lesson plans, slides, and practice questions on C++ fundamentals, object-oriented programming, and data structures for over 40 students.
+Develop lesson plans, slides, and practice material, and modernize legacy course content.
 
-Preparing to coordinate the labs for COMP 6321, Machine Learning, under Professor Yang Wang in Fall 2026.
-
-Updated legacy course content to ensure students keep up with modern standards.
+Coordinate machine-learning laboratory sessions and support students with core concepts and implementations.

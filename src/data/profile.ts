@@ -20,9 +20,10 @@ export interface Profile {
   now: { text: string; updated: string };
   heroLines: string[];
   skills: {
-    languages: string[];
-    frameworks: string[];
-    tools: string[];
+    research: string[];
+    machineLearning: string[];
+    programming: string[];
+    softwareEngineering: string[];
     spoken: string[];
   };
   cvPdf: string;
@@ -52,9 +53,10 @@ export const profile: Profile = {
     "I study how agents understand interfaces, plan actions, and build reusable models of interactive environments.",
   ],
   skills: {
-    languages: ["Python", "TypeScript", "JavaScript", "HTML", "CSS", "Java", "C++"],
-    frameworks: ["PyTorch", "NumPy", "Next.js", "React", "Astro", "Express"],
-    tools: [],
+    research: ["Mobile GUI agents", "world models", "representation learning", "computer vision"],
+    machineLearning: ["PyTorch", "NumPy", "multimodal learning"],
+    programming: ["Python", "C++", "TypeScript", "SQL"],
+    softwareEngineering: ["Docker", "React Native", "Next.js", "PostgreSQL"],
     spoken: ["English (Native)", "French (Intermediate)"],
   },
   cvPdf: "/files/Adamo_Orsini_CV.pdf",

@@ -1,7 +1,7 @@
 ---
 title: CommunityGrid
 href: CommunityGrid
-subtitle: Product development
+subtitle: Project Lead & Lead Full-Stack Developer
 dates: September 2023 - April 2024
 tags: [web, ml]
 img: ../../assets/projects/communitygrid-map.png
@@ -23,8 +23,9 @@ highlight: true
 highlightSummary: Led product development with Concordia teammates and the Laboratory of Energy Policy in Slovenia, building a platform that optimizes EV charging bookings for capacity-constrained grids.
 cv: true
 cvBullets:
-  - Led an eight-month international collaboration with the Laboratory of Energy Policy in Ljubljana, Slovenia.
-  - Built and deployed a Dockerized platform to optimize EV charging through scheduling, prioritization, and prediction.
+  - Managed the eight-month project, coordinating tasks and serving as the primary liaison between the Concordia team and LEST.
+  - Architected and implemented a Dockerized platform for grid-aware EV charging scheduling, prioritization, and prediction.
+  - Prepared approximately seven hours of full-stack tutorials to help teammates contribute across the application stack.
 ---
 Developed application to manage energy capacity congestion
 in low voltage networks by scheduling, prioritizing, and

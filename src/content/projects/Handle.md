@@ -15,8 +15,7 @@ link: https://adamoorsini.com/Handle/
 github: https://github.com/Adamo-O/Handle/
 cv: true
 cvBullets:
-  - Designed interactive ASL Wordle game to promote ASL learning and communication.
-  - Used Tensorflow.js hand-tracking model to track hand joint movements.
+  - Built an interactive ASL Wordle game using TensorFlow.js hand tracking.
   - Surveyed test population of inexperienced ASL users, resulting in a 70% accuracy improvement after using our app.
 ---
 Designed interactive ASL Wordle game to promote ASL

@@ -15,14 +15,13 @@ import { profile } from "@/data/profile";
 import { sortContent } from "@/lib/utils";
 import "@/styles/print.css";
 
-const [experienceRaw, projectsRaw, publicationsRaw, educationRaw, awardsRaw, teachingRaw] =
+const [experienceRaw, projectsRaw, publicationsRaw, educationRaw, awardsRaw] =
   await Promise.all([
     getCollection("experience"),
     getCollection("projects"),
     getCollection("publications"),
     getCollection("education"),
     getCollection("awards"),
-    getCollection("teaching"),
   ]);
 
 const hasTodo = (value: unknown): boolean => {
@@ -63,8 +62,6 @@ const education = educationRaw
 const awards = awardsRaw
   .filter(({ data }) => !hasTodo(data))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
-
-const teaching = teachingRaw.filter(({ data }) => !hasTodo(data));
 
 const monthYear = (value: string) => {
   const [year, month] = value.split("-").map(Number);
@@ -269,28 +266,6 @@ const initialsFor = (name: string) =>
         </div>
       </section>
 
-      {
-        teaching.length > 0 && (
-          <section class="cv-section" aria-labelledby="teaching-heading">
-            <h2 id="teaching-heading">Teaching</h2>
-            <div class="cv-stack cv-stack-compact">
-              {teaching.map(({ data }) => (
-                <article class="cv-entry">
-                  <div class="cv-entry-heading">
-                    <div>
-                      <h3>{data.code}: {data.title}</h3>
-                      <p class="cv-organization">{data.role}, {data.institution}</p>
-                    </div>
-                    <div class="cv-entry-meta">{data.terms.join(" / ")}</div>
-                  </div>
-                  {data.description && <p>{data.description}</p>}
-                </article>
-              ))}
-            </div>
-          </section>
-        )
-      }
-
       <section class="cv-section" aria-labelledby="awards-heading">
         <h2 id="awards-heading">Honours & awards</h2>
         <div class="cv-awards">
@@ -309,14 +284,13 @@ const initialsFor = (name: string) =>
       </section>
 
       <section class="cv-section cv-competencies" aria-labelledby="skills-heading">
-        <h2 id="skills-heading">Skills</h2>
+        <h2 id="skills-heading">Skills &amp; research areas</h2>
         <div>
-          <p><strong>Languages</strong><span>{profile.skills.languages.join(" / ")}</span></p>
-          <p><strong>Frameworks</strong><span>{profile.skills.frameworks.join(" / ")}</span></p>
-          {profile.skills.tools.length > 0 && (
-            <p><strong>Tools</strong><span>{profile.skills.tools.join(" / ")}</span></p>
-          )}
-          <p><strong>Spoken</strong><span>{profile.skills.spoken.join(" / ")}</span></p>
+          <p><strong>Research</strong><span>{profile.skills.research.join(" / ")}</span></p>
+          <p><strong>Machine learning</strong><span>{profile.skills.machineLearning.join(" / ")}</span></p>
+          <p><strong>Programming</strong><span>{profile.skills.programming.join(" / ")}</span></p>
+          <p><strong>Software engineering</strong><span>{profile.skills.softwareEngineering.join(" / ")}</span></p>
+          <p><strong>Languages</strong><span>{profile.skills.spoken.join(" / ")}</span></p>
         </div>
       </section>
 
