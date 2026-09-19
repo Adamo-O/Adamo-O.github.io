@@ -22,8 +22,6 @@ link: https://softgolf.io/
 highlight: true
 highlightSummary: Lead architecture and delivery of SoftGolf's web platform and React Native mobile app, including App Store submissions, reliability, and AI-search visibility. Provide 24/7 support during live tournaments while shipping new requirements with the founders.
 impactStats:
-  - value: 100+
-    label: tournaments hosted
   - value: 700+
     label: player registrations
   - value: 1,100+
@@ -33,7 +31,7 @@ impactStats:
 cv: true
 cvBullets:
   - Lead SoftGolf's web platform and React Native mobile app architecture, delivery, and App Store submissions.
-  - Provide 24/7 support across 100+ tournaments, 700+ registrations, 1,100+ player-hole scores, and $60K+ USD processed.
+  - Provide 24/7 support to organizers and players during live tournaments, maintaining platform reliability and resolving urgent issues.
   - Lead technical SEO and AI-search visibility alongside platform performance and reliability.
 ---
 Lead architecture and delivery across SoftGolf's full-stack web platform and React Native mobile app for creating, managing, and playing charity golf tournaments, including App Store submissions.

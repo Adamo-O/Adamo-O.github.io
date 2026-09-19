@@ -37,6 +37,7 @@ export const experienceTypes = [
   'Contract',
   'On-Call',
   'Teaching',
+  'Research',
 ] as const;
 
 export const publicationStatuses = [
