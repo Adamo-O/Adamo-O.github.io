@@ -49,7 +49,7 @@ const latestEyebrow = latest
     : `${latest.year} · ${statusPhrase(latest)}`
   : "";
 const latestHref =
-  latest?.links.openreview ?? latest?.links.pdf ?? latest?.links.arxiv ?? latest?.links.project;
+  latest?.links.arxiv ?? latest?.links.openreview ?? latest?.links.pdf ?? latest?.links.project;
 
 /** Email is a mailto, so it takes no target/rel. Google Scholar is deliberately
     absent (Adamo's call, 2026-09-11); it stays in the sidebar and Contact. */
