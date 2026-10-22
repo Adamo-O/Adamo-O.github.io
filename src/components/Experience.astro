@@ -52,6 +52,8 @@ const monogram = company
 const skillLimit = variant === "featured" ? 5 : variant === "row" ? 4 : 3;
 const visibleSkills = skills.slice(0, skillLimit);
 const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
+// Match columns to the stat count so the grid never shows an empty cell.
+const impactStatCols = ["", "sm:grid-cols-1", "sm:grid-cols-2", "sm:grid-cols-3", "sm:grid-cols-4"];
 ---
 
 {
@@ -99,9 +101,14 @@ const remainingSkillCount = Math.max(0, skills.length - visibleSkills.length);
       </div>
 
       {impactStats.length > 0 && (
-        <dl class="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded border border-line bg-line sm:grid-cols-4">
+        <dl
+          class={cn(
+            "mt-5 grid grid-cols-2 gap-px overflow-hidden rounded border border-line bg-line",
+            impactStatCols[Math.min(impactStats.length, 4)],
+          )}
+        >
           {impactStats.map(({ value, label }) => (
-            <div class="min-w-0 bg-bg/55 px-3 py-3 md:px-4">
+            <div class="min-w-0 bg-bg/55 px-3 py-3 last:odd:col-span-2 sm:last:odd:col-span-1 md:px-4">
               <dd class="text-lg font-bold tabular-nums tracking-tight text-fg">{value}</dd>
               <dt class="mt-1 text-[11px] leading-snug text-muted">{label}</dt>
             </div>
