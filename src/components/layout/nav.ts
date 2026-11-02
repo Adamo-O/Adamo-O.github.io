@@ -27,8 +27,8 @@ export interface NavItem {
 export const NAV_ITEMS: NavItem[] = [
   { href: "#about", label: "About", icon: "user" },
   { href: "#research", label: "Research", icon: "flask" },
-  { href: "#projects", label: "Projects", icon: "pencil-ruler" },
   { href: "#experience", label: "Experience", icon: "briefcase" },
+  { href: "#projects", label: "Projects", icon: "pencil-ruler" },
   { href: "#education", label: "Education", icon: "graduation-cap" },
   { href: "#awards", label: "Awards", icon: "award" },
   { href: "#contact", label: "Contact", icon: "send" },

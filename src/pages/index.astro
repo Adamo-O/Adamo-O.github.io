@@ -67,8 +67,11 @@ const experiences = (
 
 const primaryExperiences = experiences.filter((experience) => !experience.data.collapsed);
 const earlierExperiences = experiences.filter((experience) => experience.data.collapsed);
-const featuredExperiences = primaryExperiences.filter((experience) => experience.data.highlight);
-const standardExperiences = primaryExperiences.filter((experience) => !experience.data.highlight);
+/** Research affiliations lead the section; everything else follows under its own heading. */
+const researchRoles = primaryExperiences.filter((experience) => experience.data.type === "Research");
+const otherExperiences = primaryExperiences.filter((experience) => experience.data.type !== "Research");
+const featuredExperiences = otherExperiences.filter((experience) => experience.data.highlight);
+const standardExperiences = otherExperiences.filter((experience) => !experience.data.highlight);
 
 const selectedProjects = projects.filter((project) => project.data.highlight).slice(0, 4);
 const additionalProjects = projects.filter((project) => !project.data.highlight);
@@ -133,47 +136,22 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
     </Section>
 
     <Section
-      id="projects"
-      heading="Projects"
-      title="Projects"
-      class="border-t border-line"
-    >
-      <div class="space-y-8">
-        <p class="max-w-2xl text-base leading-relaxed text-muted">
-          Selected product, machine-learning, and software projects. Older experiments remain available below.
-        </p>
-        <div class="grid gap-5">
-          {
-            selectedProjects.map((project) => (
-              <Project frontmatter={project.data}>
-                <project.Content />
-              </Project>
-            ))
-          }
-        </div>
-
-        {
-          additionalProjects.length > 0 && (
-            <div class="border-t border-line pt-7">
-              <h3 class="text-lg font-bold tracking-tight text-fg">Earlier projects & experiments</h3>
-              <div class="mt-4 grid gap-3 md:grid-cols-2">
-                {additionalProjects.map((project) => (
-                  <ProjectArchiveItem frontmatter={project.data} />
-                ))}
-              </div>
-            </div>
-          )
-        }
-      </div>
-    </Section>
-
-    <Section
       id="experience"
       heading="Experience"
       title="Experience"
       class="border-t border-line"
     >
       <div class="grid gap-5">
+        <h3 class="text-lg font-bold tracking-tight text-fg">Research roles</h3>
+        {
+          researchRoles.map((experience) => (
+            <Experience frontmatter={experience.data} variant="featured">
+              <experience.Content />
+            </Experience>
+          ))
+        }
+
+        <h3 class="mt-4 border-t border-line pt-7 text-lg font-bold tracking-tight text-fg">Industry & other experience</h3>
         {
           featuredExperiences.map((experience) => (
             <Experience frontmatter={experience.data} variant="featured">
@@ -215,6 +193,41 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
                 ))}
               </div>
             </details>
+          )
+        }
+      </div>
+    </Section>
+
+    <Section
+      id="projects"
+      heading="Projects"
+      title="Projects"
+      class="border-t border-line"
+    >
+      <div class="space-y-8">
+        <p class="max-w-2xl text-base leading-relaxed text-muted">
+          Selected product, machine-learning, and software projects. Older experiments remain available below.
+        </p>
+        <div class="grid gap-5">
+          {
+            selectedProjects.map((project) => (
+              <Project frontmatter={project.data}>
+                <project.Content />
+              </Project>
+            ))
+          }
+        </div>
+
+        {
+          additionalProjects.length > 0 && (
+            <div class="border-t border-line pt-7">
+              <h3 class="text-lg font-bold tracking-tight text-fg">Earlier projects & experiments</h3>
+              <div class="mt-4 grid gap-3 md:grid-cols-2">
+                {additionalProjects.map((project) => (
+                  <ProjectArchiveItem frontmatter={project.data} />
+                ))}
+              </div>
+            </div>
           )
         }
       </div>
