@@ -5,6 +5,7 @@ href: huawei-canada
 type: Research
 dates: October 2025 - June 2026
 location: Remote
+img: ../../assets/experience/huawei.svg
 skills:
   - Mobile GUI Agents
   - Autonomous Exploration
