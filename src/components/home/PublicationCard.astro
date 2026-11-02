@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
-import { ArrowUpRight, Code2, FileText } from "lucide-astro";
+import { ArrowUpRight, Code2, FileText, Maximize2, X } from "lucide-astro";
 
 interface Props {
   publication: {
@@ -58,24 +58,61 @@ const links = [
 >
   {
     publication.thumbnail && publication.thumbnailAlt && (
-      <figure
-        class="border-b border-line bg-bg/60 p-3 lg:border-b-0 lg:border-r"
-        title={publication.thumbnailCaption}
-      >
-        <div
-          class:list={[
-            "relative mx-auto w-full overflow-hidden rounded-sm border border-line/70 bg-white",
-            publication.thumbnailFrame === "extra-wide" ? "aspect-[2.7/1]" : "aspect-[2.25/1]",
-          ]}
+      <figure class="border-b border-line bg-bg/60 p-3 lg:flex lg:items-center lg:border-b-0 lg:border-r">
+        {/* The card thumbnail is too small to read on desktop, so it opens the full,
+            uncropped figure in a dialog. */}
+        <button
+          type="button"
+          class="group relative mx-auto block w-full cursor-zoom-in rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          aria-label={`Enlarge figure: ${publication.title}`}
+          data-figure-open
         >
-          <Image
-            src={publication.thumbnail}
-            alt={publication.thumbnailAlt}
-            width={1600}
-            height={720}
-            class="absolute inset-0 h-full w-full object-cover object-center"
-          />
-        </div>
+          <div
+            class:list={[
+              "relative w-full overflow-hidden rounded-sm border border-line/70 bg-white",
+              publication.thumbnailFrame === "extra-wide" ? "aspect-[2.7/1]" : "aspect-[2.25/1]",
+            ]}
+          >
+            <Image
+              src={publication.thumbnail}
+              alt={publication.thumbnailAlt}
+              width={1600}
+              height={720}
+              class="absolute inset-0 h-full w-full object-cover object-center"
+            />
+          </div>
+          <span
+            class="absolute bottom-1.5 right-1.5 flex h-7 w-7 items-center justify-center rounded-sm border border-line bg-surface/90 text-muted shadow-card transition-colors group-hover:text-accent"
+            aria-hidden="true"
+          >
+            <Maximize2 size={14} />
+          </span>
+        </button>
+        <dialog
+          class="publication-figure m-auto w-[min(94vw,88rem)] max-w-none rounded border border-line bg-surface p-0 text-fg shadow-card"
+          aria-label={publication.title}
+        >
+          <div class="flex items-start justify-between gap-4 border-b border-line px-4 py-3">
+            <p class="text-sm font-semibold leading-snug">{publication.thumbnailCaption ?? publication.title}</p>
+            <form method="dialog">
+              <button
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm text-muted hover:bg-bg hover:text-fg"
+                aria-label="Close figure"
+              >
+                <X size={18} aria-hidden="true" />
+              </button>
+            </form>
+          </div>
+          <div class="bg-white p-3 md:p-5">
+            <Image
+              src={publication.thumbnail}
+              alt={publication.thumbnailAlt}
+              width={Math.min(2400, publication.thumbnail.width)}
+              loading="lazy"
+              class="mx-auto max-h-[80vh] w-full object-contain"
+            />
+          </div>
+        </dialog>
       </figure>
     )
   }
@@ -91,9 +128,9 @@ const links = [
               : "bg-badge-review/10 text-badge-review",
         ]}
       >
-        {/* The venue name carries the year, so no separate year is shown. */}
+        {/* An accepted badge's colour already says "accepted", and the venue name carries the year. */}
         {publication.status === "accepted" && publication.venue
-          ? `Accepted at ${publication.venue}`
+          ? publication.venue
           : statusLabels[publication.status]}
       </span>
       {publication.topics.length > 0 && <span class="meta ml-auto">{publication.topics.join(" / ")}</span>}
@@ -124,3 +161,21 @@ const links = [
     }
   </div>
 </article>
+
+<style>
+  .publication-figure::backdrop {
+    background: rgb(0 0 0 / 0.7);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-figure-open]").forEach((button) => {
+    const dialog = button.parentElement?.querySelector("dialog");
+    if (!dialog) return;
+    button.addEventListener("click", () => dialog.showModal());
+    // A click that lands on the dialog element itself is a click on the backdrop.
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+</script>
