@@ -15,6 +15,7 @@ export interface Profile {
   links: {
     github: string;
     linkedin: string;
+    scholar?: string;
     twitter?: string;
   };
   now: { text: string; updated: string };
@@ -36,13 +37,14 @@ export const profile: Profile = {
   affiliations: ["Concordia University", "Mila"],
   location: "Montreal, Canada",
   personalEmail: "adamo.orsini01@gmail.com",
-  academicEmail: "adamo.orsini@mila.quebec",
+  academicEmail: "adamo.orsini@mail.concordia.ca",
   site: "https://adamoorsini.com",
   description:
     "Adamo Orsini - PhD student in Computer Science at Concordia University / Mila working on mobile GUI agents and world models.",
   links: {
     github: "https://github.com/Adamo-O",
     linkedin: "https://www.linkedin.com/in/adamo-orsini/",
+    scholar: "https://scholar.google.com/citations?user=Aei55m0AAAAJ",
   },
   now: {
     text: "Deep diving on world models & grinding SoftGolf's mobile app",

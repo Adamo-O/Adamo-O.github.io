@@ -1,7 +1,8 @@
 ---
 /**
- * Hero block: intro copy from profile.ts beside the portrait, the CV CTA, a
- * profile-link row and the pinned publication's acceptance row.
+ * Hero block: intro copy from profile.ts beside the portrait, one labelled
+ * contact row (CV included, same weight as the rest) and the pinned
+ * publication's acceptance row.
  * Designed to sit inside <Section id="about">; it does not wrap a <section>.
  *
  * Research CTA intentionally absent: it duplicates the persistent mobile tab bar
@@ -10,8 +11,7 @@
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import type { CollectionEntry } from "astro:content";
-import { FileText, Github, Linkedin, Mail } from "lucide-astro";
-import Button from "@/components/Button.astro";
+import { FileText, Github, GraduationCap, Linkedin, Mail } from "lucide-astro";
 import { profile } from "@/data/profile";
 
 type Publication = CollectionEntry<"publications">["data"];
@@ -51,12 +51,17 @@ const latestEyebrow = latest
 const latestHref =
   latest?.links.arxiv ?? latest?.links.openreview ?? latest?.links.pdf ?? latest?.links.project;
 
-/** Email is a mailto, so it takes no target/rel. Google Scholar is deliberately
-    absent (Adamo's call, 2026-09-11); it stays in the sidebar and Contact. */
+/** One row, equal weight, each with a text label (Adamo 2026-11-02): the CV is no
+    longer a filled button. Email is a mailto, so it takes no target/rel. Scholar
+    is back now that the profile lists TAG-Nav (removed 2026-09-11 while empty). */
 const profileLinks: Array<[label: string, href: string, external: boolean, Icon: any]> = [
+  ["Email", `mailto:${profile.academicEmail}`, false, Mail],
+  ...(profile.links.scholar
+    ? [["Scholar", profile.links.scholar, true, GraduationCap] as [string, string, boolean, any]]
+    : []),
   ["LinkedIn", profile.links.linkedin, true, Linkedin],
   ["GitHub", profile.links.github, true, Github],
-  ["Email", `mailto:${profile.academicEmail}`, false, Mail],
+  ["CV", profile.cvPdf, true, FileText],
 ];
 ---
 
@@ -85,27 +90,21 @@ const profileLinks: Array<[label: string, href: string, external: boolean, Icon:
         {lead && <p class="max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{lead}</p>}
       </div>
 
-    <div class="flex flex-wrap items-center gap-3">
-      <Button href={profile.cvPdf} title="Open CV (PDF)" newTab variant="default" staticSize>
-        <FileText size="18" aria-hidden="true" />
-        CV
-      </Button>
-      <nav class="flex flex-wrap items-center gap-x-1 text-muted" aria-label="Profiles and contact">
-        {
-          profileLinks.map(([label, href, external, Icon]) => (
-            <a
-              href={href}
-              title={label}
-              aria-label={label}
-              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              class="inline-flex h-11 w-11 items-center justify-center rounded-pill transition-colors duration-fast hover:text-accent focus-visible:text-accent"
-            >
-              <Icon size="20" aria-hidden="true" />
-            </a>
-          ))
-        }
-      </nav>
-    </div>
+    <nav class="-ml-1 flex flex-wrap items-center gap-x-4 text-muted sm:gap-x-5" aria-label="Profiles and contact">
+      {
+        profileLinks.map(([label, href, external, Icon]) => (
+          <a
+            href={href}
+            title={label === "CV" ? "Open CV (PDF)" : undefined}
+            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            class="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium transition-colors duration-fast hover:text-accent focus-visible:text-accent"
+          >
+            <Icon size="17" aria-hidden="true" />
+            {label}
+          </a>
+        ))
+      }
+    </nav>
 
     {
       latest && (

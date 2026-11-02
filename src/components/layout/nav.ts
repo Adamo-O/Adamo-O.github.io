@@ -41,6 +41,9 @@ export const EXTERNAL_ITEMS: NavItem[] = [
   { href: profile.cvPdf, label: "CV", icon: "file-text", outline: true, external: true },
   { href: profile.links.github, label: "GitHub", icon: "github", external: true },
   { href: profile.links.linkedin, label: "LinkedIn", icon: "linkedin", external: true },
+  ...(profile.links.scholar
+    ? [{ href: profile.links.scholar, label: "Scholar", icon: "graduation-cap", external: true } satisfies NavItem]
+    : []),
   { href: `mailto:${profile.academicEmail}`, label: "Email", icon: "mail" },
 ];
 
