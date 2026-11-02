@@ -130,8 +130,12 @@ const { class: className, withLabel = false, variant = "pill" } = Astro.props;
             clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`],
           },
           {
-            duration: 420,
-            easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+            // Symmetric ease-in-out on the radius. The old strong ease-out covered
+            // 90% of a phone screen in 130ms, then took 175ms more to reach the far
+            // corners, which read as a pause. This one fills the screen evenly
+            // (10/50/90/100% at about 140/250/380/485ms from the top-right toggle).
+            duration: 500,
+            easing: "cubic-bezier(0.33, 0, 0.67, 1)",
             pseudoElement: "::view-transition-new(root)",
           },
         );

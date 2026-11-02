@@ -624,6 +624,15 @@ html.theme-transitioning::view-transition-new(root) {
   z-index: 2;
 }
 
+/* The new snapshot is live: without this, ~150 transition-colors fades on
+   buttons, chips and borders run inside the reveal and land after it. */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: none !important;
+}
+
 /* ------------------------------------------------------------------
    Reduced motion
    ------------------------------------------------------------------ */
