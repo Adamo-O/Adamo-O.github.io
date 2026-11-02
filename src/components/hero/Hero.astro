@@ -51,8 +51,8 @@ const latestEyebrow = latest
 const latestHref =
   latest?.links.arxiv ?? latest?.links.openreview ?? latest?.links.pdf ?? latest?.links.project;
 
-/** One row, equal weight, each with a text label (Adamo 2026-11-02): the CV is no
-    longer a filled button. Email is a mailto, so it takes no target/rel. Scholar
+/** One row of equal-weight pill chips, each with a text label (Adamo 2026-11-02):
+    the CV is no longer a filled button, and on phones the chips wrap 3 + 2. Email is a mailto, so it takes no target/rel. Scholar
     is back now that the profile lists TAG-Nav (removed 2026-09-11 while empty). */
 const profileLinks: Array<[label: string, href: string, external: boolean, Icon: any]> = [
   ["Email", `mailto:${profile.academicEmail}`, false, Mail],
@@ -90,16 +90,16 @@ const profileLinks: Array<[label: string, href: string, external: boolean, Icon:
         {lead && <p class="max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{lead}</p>}
       </div>
 
-    <nav class="-ml-1 flex flex-wrap items-center gap-x-4 text-muted sm:gap-x-5" aria-label="Profiles and contact">
+    <nav class="flex flex-wrap items-center gap-2" aria-label="Profiles and contact">
       {
         profileLinks.map(([label, href, external, Icon]) => (
           <a
             href={href}
             title={label === "CV" ? "Open CV (PDF)" : undefined}
             {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            class="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium transition-colors duration-fast hover:text-accent focus-visible:text-accent"
+            class="inline-flex h-11 items-center gap-2 rounded-pill border border-line bg-surface px-4 text-sm font-medium text-fg/80 transition-colors duration-fast hover:border-accent hover:text-accent focus-visible:border-accent focus-visible:text-accent"
           >
-            <Icon size="17" aria-hidden="true" />
+            <Icon size="16" aria-hidden="true" />
             {label}
           </a>
         ))
