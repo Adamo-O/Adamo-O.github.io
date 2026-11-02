@@ -1,0 +1,42 @@
+---
+/**
+ * A titled group inside a Section (e.g. "Research roles").
+ * Below lg the title is a small static label above the group. From lg it
+ * becomes a vertical rail on the group's right edge, echoing the section's
+ * left rail, and sticks only while its own group is on screen.
+ * Props: title, class?. Slot: default (the group's content).
+ */
+import { cn } from "@/lib/utils";
+
+interface Props {
+  title: string;
+  class?: string;
+}
+
+const { title, class: className } = Astro.props;
+---
+
+<div class={cn("lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-x-5", className)}>
+  <h3 class="mb-4 lg:order-last lg:mb-0 lg:border-l lg:border-line lg:pl-3">
+    <span class="subsection-title meta block uppercase tracking-[0.08em] text-fg">{title}</span>
+  </h3>
+  <div class="min-w-0">
+    <slot />
+  </div>
+</div>
+
+<style>
+  @media (min-width: 1024px) {
+    .subsection-title {
+      position: sticky;
+      top: 1.5rem;
+      writing-mode: vertical-lr;
+      font-size: 1.125rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: rgb(var(--c-accent) / 0.6);
+      white-space: nowrap;
+    }
+  }
+</style>

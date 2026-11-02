@@ -16,6 +16,7 @@ import Experience from "@/components/Experience.astro";
 import Hero from "@/components/hero/Hero.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Section from "@/components/layout/Section.astro";
+import SubSection from "@/components/layout/SubSection.astro";
 import Shell from "@/components/layout/Shell.astro";
 import PublicationCard from "@/components/home/PublicationCard.astro";
 import EducationItem from "@/components/home/EducationItem.astro";
@@ -108,15 +109,10 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
       id="research"
       heading="Research"
       title="Research"
+      lede={profile.heroLines[1]}
       class="border-t border-line"
     >
-      <div class="space-y-8">
-        <header class="max-w-2xl">
-          <p class="text-xl font-medium leading-snug text-fg md:text-2xl">
-            {profile.heroLines[1]}
-          </p>
-        </header>
-
+      <div>
         {
           publications.length > 0 ? (
             <div class="grid gap-4">
@@ -141,60 +137,66 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
       title="Experience"
       class="border-t border-line"
     >
-      <div class="grid gap-5">
-        <h3 class="text-lg font-bold tracking-tight text-fg">Research roles</h3>
-        {
-          researchRoles.map((experience) => (
-            <Experience frontmatter={experience.data} variant="featured">
-              <experience.Content />
-            </Experience>
-          ))
-        }
-
-        <h3 class="mt-4 border-t border-line pt-7 text-lg font-bold tracking-tight text-fg">Industry & other experience</h3>
-        {
-          featuredExperiences.map((experience) => (
-            <Experience frontmatter={experience.data} variant="featured">
-              <experience.Content />
-            </Experience>
-          ))
-        }
-
-        {
-          standardExperiences.length > 0 && (
-            <div class="overflow-hidden rounded border border-line bg-surface shadow-card">
-              {standardExperiences.map((experience, index) => (
-                <Experience
-                  frontmatter={experience.data}
-                  variant="row"
-                  class={index > 0 ? "border-t border-line" : undefined}
-                >
+      <div class="space-y-10">
+        <SubSection title="Research roles">
+          <div class="grid gap-5">
+            {
+              researchRoles.map((experience) => (
+                <Experience frontmatter={experience.data} variant="featured">
                   <experience.Content />
                 </Experience>
-              ))}
-            </div>
-          )
-        }
+              ))
+            }
+          </div>
+        </SubSection>
 
-        {
-          earlierExperiences.length > 0 && (
-            <details class="earlier-roles group rounded border border-line bg-surface/60">
-              <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 text-sm font-semibold text-fg marker:hidden">
-                Additional roles
-                <span class="earlier-roles-toggle-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-pill border border-line bg-bg/70 text-muted" aria-hidden="true">
-                  <ChevronDown size={20} stroke-width={1.8} />
-                </span>
-              </summary>
-              <div class="grid gap-4 border-t border-line p-4 md:p-5">
-                {earlierExperiences.map((experience) => (
-                  <Experience frontmatter={experience.data} variant="compact">
-                    <experience.Content />
-                  </Experience>
-                ))}
-              </div>
-            </details>
-          )
-        }
+        <SubSection title="Industry & other experience">
+          <div class="grid gap-5">
+            {
+              featuredExperiences.map((experience) => (
+                <Experience frontmatter={experience.data} variant="featured">
+                  <experience.Content />
+                </Experience>
+              ))
+            }
+
+            {
+              standardExperiences.length > 0 && (
+                <div class="overflow-hidden rounded border border-line bg-surface shadow-card">
+                  {standardExperiences.map((experience, index) => (
+                    <Experience
+                      frontmatter={experience.data}
+                      variant="row"
+                      class={index > 0 ? "border-t border-line" : undefined}
+                    >
+                      <experience.Content />
+                    </Experience>
+                  ))}
+                </div>
+              )
+            }
+
+            {
+              earlierExperiences.length > 0 && (
+                <details class="earlier-roles group rounded border border-line bg-surface/60">
+                  <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 text-sm font-semibold text-fg marker:hidden">
+                    Additional roles
+                    <span class="earlier-roles-toggle-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-pill border border-line bg-bg/70 text-muted" aria-hidden="true">
+                      <ChevronDown size={20} stroke-width={1.8} />
+                    </span>
+                  </summary>
+                  <div class="grid gap-4 border-t border-line p-4 md:p-5">
+                    {earlierExperiences.map((experience) => (
+                      <Experience frontmatter={experience.data} variant="compact">
+                        <experience.Content />
+                      </Experience>
+                    ))}
+                  </div>
+                </details>
+              )
+            }
+          </div>
+        </SubSection>
       </div>
     </Section>
 
@@ -204,30 +206,28 @@ const awards = awardsRaw.sort((a, b) => b.data.date.localeCompare(a.data.date));
       title="Projects"
       class="border-t border-line"
     >
-      <div class="space-y-8">
-        <p class="max-w-2xl text-base leading-relaxed text-muted">
-          Selected product, machine-learning, and software projects. Older experiments remain available below.
-        </p>
-        <div class="grid gap-5">
-          {
-            selectedProjects.map((project) => (
-              <Project frontmatter={project.data}>
-                <project.Content />
-              </Project>
-            ))
-          }
-        </div>
+      <div class="space-y-10">
+        <SubSection title="Selected projects">
+          <div class="grid gap-5">
+            {
+              selectedProjects.map((project) => (
+                <Project frontmatter={project.data}>
+                  <project.Content />
+                </Project>
+              ))
+            }
+          </div>
+        </SubSection>
 
         {
           additionalProjects.length > 0 && (
-            <div class="border-t border-line pt-7">
-              <h3 class="text-lg font-bold tracking-tight text-fg">Earlier projects & experiments</h3>
-              <div class="mt-4 grid gap-3 md:grid-cols-2">
+            <SubSection title="Earlier projects & experiments">
+              <div class="grid gap-3 md:grid-cols-2">
                 {additionalProjects.map((project) => (
                   <ProjectArchiveItem frontmatter={project.data} />
                 ))}
               </div>
-            </div>
+            </SubSection>
           )
         }
       </div>

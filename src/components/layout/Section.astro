@@ -7,6 +7,7 @@
  *  title     accessible h2 text; visible below md, sr-only from md
  *  hideMobileTitle? keep the h2 available to assistive technology without
  *                   repeating it visually below md
+ *  lede?     optional one-line intro under the heading; the only intro style
  *  class?    extra classes on <section>
  *  contentClass?  extra classes on the content column
  * Slot: default (content).
@@ -19,6 +20,7 @@ interface Props {
   heading: string;
   title: string;
   hideMobileTitle?: boolean;
+  lede?: string;
   class?: string;
   contentClass?: string;
 }
@@ -28,6 +30,7 @@ const {
   heading,
   title,
   hideMobileTitle = false,
+  lede,
   class: className,
   contentClass,
 } = Astro.props;
@@ -64,6 +67,9 @@ const hasBackground = Astro.slots.has("background");
     >
       {title}
     </h2>
+    {lede && (
+      <p class="mb-8 max-w-2xl text-xl font-medium leading-snug text-fg md:text-2xl">{lede}</p>
+    )}
     <slot />
   </div>
 </section>
