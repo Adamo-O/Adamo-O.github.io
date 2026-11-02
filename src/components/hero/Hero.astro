@@ -24,12 +24,12 @@ interface Props {
 const { portrait, latest } = Astro.props;
 const lead = profile.heroLines[0];
 
-/** "Accepted to Findings of AACL-IJCNLP 2026" from status + venue; nothing hand-written. */
+/** "Accepted at Findings of AACL-IJCNLP 2026" from status + venue; nothing hand-written. */
 const statusPhrase = (publication: Publication): string => {
   const venue = publication.venue?.trim();
   switch (publication.status) {
     case "accepted":
-      return venue ? `Accepted to ${venue}` : "Accepted";
+      return venue ? `Accepted at ${venue}` : "Accepted";
     case "workshop":
       return venue ? `Workshop paper at ${venue}` : "Workshop paper";
     case "preprint":
