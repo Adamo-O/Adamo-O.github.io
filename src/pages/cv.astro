@@ -55,7 +55,8 @@ const publications = publicationsRaw
     (a, b) =>
       Number(!!b.data.highlight) - Number(!!a.data.highlight) ||
       b.data.year - a.data.year ||
-      publicationStatusOrder[a.data.status] - publicationStatusOrder[b.data.status],
+      publicationStatusOrder[a.data.status] - publicationStatusOrder[b.data.status] ||
+      a.data.title.localeCompare(b.data.title),
   );
 
 const education = educationRaw
