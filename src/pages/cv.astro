@@ -51,7 +51,9 @@ const publicationStatusOrder = {
 const publications = publicationsRaw
   .filter(({ data }) => !data.hidden && !hasTodo(data))
   .sort(
+    // Pinned papers lead, as on the home page.
     (a, b) =>
+      Number(!!b.data.highlight) - Number(!!a.data.highlight) ||
       b.data.year - a.data.year ||
       publicationStatusOrder[a.data.status] - publicationStatusOrder[b.data.status],
   );
