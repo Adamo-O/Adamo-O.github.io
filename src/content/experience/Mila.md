@@ -13,10 +13,12 @@ skills:
   - Computer Vision
 link: https://mila.quebec/en/directory/adamo-orsini
 highlight: true
-highlightSummary: Student researcher at Mila through my graduate studies at Concordia University, supervised by Prof. Yang Wang. Research on mobile GUI agents and world models.
+highlightSummary: Conduct doctoral research on mobile GUI agents and world models, supervised by Prof. Yang Wang. Joined during the Master's program at Concordia University and continued into the PhD.
 cv: true
 cvBullets:
-  - Affiliated with Mila through graduate studies at Concordia University, supervised by Prof. Yang Wang.
-  - Research mobile GUI agents and world models.
+  - Conduct doctoral research on mobile GUI agents and world models, supervised by Prof. Yang Wang.
+  - Joined during the Master's program at Concordia University and continued into the PhD.
 ---
-Student researcher at Mila through my graduate studies at Concordia University, supervised by Prof. Yang Wang.
+Conduct doctoral research on mobile GUI agents and world models, supervised by Prof. Yang Wang.
+
+Joined during the Master's program at Concordia University and continued into the PhD.
